@@ -13,7 +13,7 @@ export const dmTriggeringEvents = new TupleSet(['newFollowSubscription'] as cons
 export type DmTriggeringEvent = UnionOf<typeof dmTriggeringEvents>;
 
 const getFollowSubscriptionStartDate = () => forumSelect({
-  LessWrong: new Date("2024-06-06"),
+  Unresigned: new Date("2024-06-06"),
   default: undefined
 })
 

@@ -2,7 +2,7 @@ import { isServer, isDevelopment, isAnyTest, isE2E, isProduction } from './execu
 import { TupleSet, UnionOf } from './utils/typeGuardUtils';
 import {initializeSetting} from './settingsCache'
 import { getInstanceSettings } from './getInstanceSettings';
-import { forumTypeSetting, isAF, isEAForum, isLW, isLWorAF } from '@/lib/forumTypeUtils';
+import { forumTypeSetting, isAF, isEAForum, isLW, isLWorAF, isUnresignedForum } from '@/lib/forumTypeUtils';
 import type { FilterTag } from './filterSettings';
 
 const getNestedProperty = function (obj: AnyBecauseTodo, desc: AnyBecauseTodo) {
@@ -99,17 +99,17 @@ export class PublicInstanceSetting<SettingValueType> {
   Public Instance Settings
 */
 
-export const allForumTypes = new TupleSet(["LessWrong","AlignmentForum","EAForum"] as const);
+export const allForumTypes = new TupleSet(["AlignmentForum","EAForum","Unresigned"] as const);
 export type ForumTypeString = UnionOf<typeof allForumTypes>;
-// export const forumTypeSetting = new PublicInstanceSetting<ForumTypeString>('forumType', 'LessWrong', 'warning') // What type of Forum is being run, {LessWrong, AlignmentForum, EAForum}
+// export const forumTypeSetting = new PublicInstanceSetting<ForumTypeString>('forumType', 'Unresigned', 'warning') // What type of Forum is being run, {Unresigned, AlignmentForum, EAForum}
 
 // eslint-disable-next-line no-barrel-files/no-barrel-files
-export { forumTypeSetting, isLW, isEAForum, isAF, isLWorAF };
+export { forumTypeSetting, isLW, isEAForum, isAF, isLWorAF, isUnresignedForum };
 
-export const forumTitleSetting = new PublicInstanceSetting<string>('title', 'LessWrong', 'warning') // Default title for URLs
+export const forumTitleSetting = new PublicInstanceSetting<string>('title', 'Unresigned', 'warning') // Default title for URLs
 
-// Your site name may be referred to as "The Alignment Forum" or simply "LessWrong". Use this setting to prevent something like "view on Alignment Forum". Leave the article uncapitalized ("the Alignment Forum") and capitalize if necessary.
-export const siteNameWithArticleSetting = new PublicInstanceSetting<string>('siteNameWithArticle', "LessWrong", "warning")
+// Your site name may be referred to as "The Alignment Forum" or simply "Unresigned". Use this setting to prevent something like "view on Alignment Forum". Leave the article uncapitalized ("the Alignment Forum") and capitalize if necessary.
+export const siteNameWithArticleSetting = new PublicInstanceSetting<string>('siteNameWithArticle', "Unresigned", "warning")
 
 // NB: Now that neither LW nor the EAForum use this setting, it's a matter of
 // time before it falls out of date. Nevertheless, I expect any newly-created
@@ -152,7 +152,7 @@ export const lowKarmaUserVotingCutoffKarmaSetting = new PublicInstanceSetting<nu
 export const taglineSetting = new PublicInstanceSetting<string>('tagline', "A community blog devoted to refining the art of rationality", "warning")
 export const faviconUrlSetting = new PublicInstanceSetting<string>('faviconUrl', '/img/favicon.ico', "warning")
 export const faviconWithBadgeSetting = new PublicInstanceSetting<string|null>('faviconWithBadge', null, "optional")
-export const tabTitleSetting = new PublicInstanceSetting<string>('forumSettings.tabTitle', 'LessWrong', "warning")
+export const tabTitleSetting = new PublicInstanceSetting<string>('forumSettings.tabTitle', 'Unresigned', "warning")
 export const tabLongTitleSetting = new PublicInstanceSetting<string | null>('forumSettings.tabLongTitle', null, "optional")
 
 export const noIndexSetting = new PublicInstanceSetting<boolean>('noindex', false, "optional")
@@ -202,7 +202,7 @@ export const homepagePostFeedsSetting = new PublicInstanceSetting<PostFeedDetail
     {
       'name': 'forum-classic',
       'label': 'Latest',
-      'description': 'The classic LessWrong frontpage algorithm that combines karma with time discounting, plus any tag-based weighting if applied.',
+      'description': 'The classic Unresigned frontpage algorithm that combines karma with time discounting, plus any tag-based weighting if applied.',
     },
     {
       'name': 'forum-bookmarks',
@@ -222,7 +222,7 @@ export const recombeeCacheTtlMsSetting = new PublicInstanceSetting<number>('reco
 
 export const aboutPostIdSetting = new PublicInstanceSetting<string>('aboutPostId', 'bJ2haLkcGeLtTWaD5', "warning") // Post ID for the /about route
 
-export const anthropicApiKey = new PublicInstanceSetting<string>('anthropic.claudeTestKey', "LessWrong", "optional")
+export const anthropicApiKey = new PublicInstanceSetting<string>('anthropic.claudeTestKey', "Unresigned", "optional")
 
 export const falApiKey = new PublicInstanceSetting<string>('falAI.apiKey', "", "optional")
 
@@ -302,7 +302,7 @@ export const legacyRouteAcronymSetting = new PublicInstanceSetting<string>('lega
 export const defaultVisibilityTags = new PublicInstanceSetting<Array<FilterTag>>('defaultVisibilityTags', [], "optional");
 
 // Public elicit settings
-export const elicitSourceURL = new PublicInstanceSetting('elicitSourceURL', 'https://LessWrong.com', "optional");
+export const elicitSourceURL = new PublicInstanceSetting('elicitSourceURL', 'https://Unresigned.com', "optional");
 export const elicitSourceId = new PublicInstanceSetting('elicitSourceId', 'XCjOpumu-', "optional");
 
 export const mapboxAPIKeySetting = new PublicInstanceSetting<string | null>('mapbox.apiKey', null, "optional"); // API Key for the mapbox map and tile requests

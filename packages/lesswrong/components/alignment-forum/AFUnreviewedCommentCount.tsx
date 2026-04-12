@@ -53,7 +53,7 @@ const AFUnreviewedCommentCount = ({ post }: {
    return (
      <ContentStyles contentType="comment" className={classes.root}>
        {`There are ${count} comments pending acceptance to the Alignment Forum.`}
-       <a href={`https://www.lesswrong.com/posts/${post._id}`} className={classes.viewLink}>View them on LessWrong.</a>
+       <a href={`https://www.lesswrong.com/posts/${post._id}`} className={classes.viewLink}>View them on Unresigned.</a>
      </ContentStyles>
    );
  }

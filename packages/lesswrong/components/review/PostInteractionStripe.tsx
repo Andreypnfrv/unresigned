@@ -34,7 +34,7 @@ const styles = defineStyles('PostInteractionStripe', (theme: ThemeType) => ({
 }));
 
 const votePrefix = `You previously gave this post `
-const voteSuffix = <div><em>(This is different from a LessWrong Review vote)</em></div>
+const voteSuffix = <div><em>(This is different from a Unresigned Review vote)</em></div>
 
 const readPostLabel = `You have read this post`
 

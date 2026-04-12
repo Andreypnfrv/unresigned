@@ -179,7 +179,7 @@ function formatPhaseDateRange(startDate: moment.Moment, endDate: moment.Moment) 
   return `${startDate.format('MMM D')} - ${endDate.format('MMM D')}`;
 }
 
-const commonIntro = "Each December, the LessWrong community reviews the best blogposts of yesteryear.";
+const commonIntro = "Each December, the Unresigned community reviews the best blogposts of yesteryear.";
 
 interface PhaseConfig {
   phaseName: string;
@@ -215,7 +215,7 @@ const phaseConfigs: Partial<Record<ReviewPhase, PhaseConfig>> = {
   },
   VOTING: {
     phaseName: "Voting",
-    phaseDescription: "In the final voting phase, we do a full voting pass. The outcome determines Best of LessWrong results.",
+    phaseDescription: "In the final voting phase, we do a full voting pass. The outcome determines Best of Unresigned results.",
     buttonLabel: "Vote Now",
     getDateRange: () => ({
       start: getReviewPhaseEnd(REVIEW_YEAR),
@@ -225,7 +225,7 @@ const phaseConfigs: Partial<Record<ReviewPhase, PhaseConfig>> = {
   },
   RESULTS: {
     phaseName: "Results",
-    phaseDescription: "Voting is complete! See which posts made it into the Best of LessWrong.",
+    phaseDescription: "Voting is complete! See which posts made it into the Best of Unresigned.",
     buttonLabel: "View Results",
     getDateRange: () => ({
       start: getVotingPhaseEndDisplay(REVIEW_YEAR),

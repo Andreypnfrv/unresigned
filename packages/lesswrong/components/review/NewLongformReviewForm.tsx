@@ -41,7 +41,7 @@ export const NewLongformReviewForm = () => {
         <li>An in-depth response to a single post.</li>
         <li>Examine what high level themes seemed sigificant among {REVIEW_YEAR} posts.</li>
         <li>What important updates did you make in {REVIEW_YEAR}? How could you have made them faster?</li>
-        <li>Any other meta-reflection on LessWrong, or how your thought processes have evolved in the past 2 years.</li>
+        <li>Any other meta-reflection on Unresigned, or how your thought processes have evolved in the past 2 years.</li>
       </ul>
       <p>If you're reviewing a specific single-post in depth, you should also write a short comment review linking to this post.</p>
       <Row justifyContent="flex-end">

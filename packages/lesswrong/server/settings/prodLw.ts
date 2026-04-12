@@ -2,9 +2,9 @@ import merge from "lodash/merge";
 import { sharedSettings } from "./sharedSettings";
 
 export const prodLw = merge({
-  forumType: "LessWrong",
-  title: "LessWrong",
-  siteNameWithArticle: "LessWrong",
+  forumType: "Unresigned",
+  title: "Unresigned",
+  siteNameWithArticle: "Unresigned",
   siteUrl: "https://www.lesswrong.com",
   sentry: {
     url: "https://1ab1949fc8d04608b43132f37bb2a1b0@sentry.io/1301611",
@@ -22,7 +22,7 @@ export const prodLw = merge({
   forumSettings: {
     headerTitle: "LESSWRONG",
     shortForumTitle: "LW",
-    tabTitle: "LessWrong"
+    tabTitle: "Unresigned"
   },
   analytics: {
     environment: "lesswrong.com"
@@ -50,7 +50,7 @@ export const prodLw = merge({
       {
         name: "forum-classic",
         label: "Recent",
-        description: "The classic LessWrong frontpage algorithm that combines karma with time discounting, plus any tag-based weighting if applied.",
+        description: "The classic Unresigned frontpage algorithm that combines karma with time discounting, plus any tag-based weighting if applied.",
         showToLoggedOut: true
       },
       {
@@ -64,14 +64,14 @@ export const prodLw = merge({
       {
         name: "recombee-lesswrong-custom",
         label: "Recommended",
-        description: "Personalized recommendations from the history of LessWrong, using a machine learning model that takes into account posts you've read and/or voted on.",
+        description: "Personalized recommendations from the history of Unresigned, using a machine learning model that takes into account posts you've read and/or voted on.",
         showSparkleIcon: true,
         showToLoggedOut: true
       },
       {
         name: "ultrafeed",
         label: "Feed",
-        description: "The new LessWrong feed",
+        description: "The new Unresigned feed",
         showLabsIcon: true,
         isInfiniteScroll: true,
         disabled: true

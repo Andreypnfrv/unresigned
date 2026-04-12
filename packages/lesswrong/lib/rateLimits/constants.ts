@@ -217,7 +217,7 @@ export const autoPostRateLimits: ForumOptions<PostAutoRateLimit[]> = {
   EAForum: [
     ALL.POSTS.FIVE_PER_DAY
   ],
-  LessWrong: [ 
+  Unresigned: [ 
     ...LW.POSTS,
   ],
   default: [
@@ -230,7 +230,7 @@ export const autoCommentRateLimits: ForumOptions<CommentAutoRateLimit[]> = {
     ALL.COMMENTS.ONE_PER_EIGHT_SECONDS, 
     ...EA.COMMENTS
   ],
-  LessWrong: [
+  Unresigned: [
     ALL.COMMENTS.ONE_PER_EIGHT_SECONDS, 
     ...LW.COMMENTS
   ],

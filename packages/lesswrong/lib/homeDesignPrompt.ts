@@ -11,7 +11,7 @@ export const HOME_DESIGN_SHARED_PROMPT = `
 ## What You Provide
 You provide ONLY the content of the <body> tag. The parent system automatically wraps your output in a complete HTML document that includes:
 - CSP meta tag
-- LessWrong's Adobe Fonts / Typekit stylesheets (including fonts like \`warnock-pro\` and \`gill-sans-nova\`), plus Google Fonts stylesheets from \`fonts.googleapis.com\`
+- Unresigned's Adobe Fonts / Typekit stylesheets (including fonts like \`warnock-pro\` and \`gill-sans-nova\`), plus Google Fonts stylesheets from \`fonts.googleapis.com\`
 - React 18, ReactDOM 18, and Babel Standalone (already loaded)
 - The RPC bridge (available as \`window.rpc\`)
 - A ResizeObserver that reports document height to the parent
@@ -37,7 +37,7 @@ Before writing code, understand the user's intent and commit to a bold aesthetic
 ### Aesthetics
 
 Focus on:
-- **Typography**: Choose fonts that are beautiful, distinctive, and interesting. Avoid generic choices like Arial or Inter. Pair a display font with a refined body font. LessWrong has \`warnock-pro\` and \`gill-sans-nova\` loaded via Typekit, and Google Fonts stylesheets from \`fonts.googleapis.com\` are also allowed.
+- **Typography**: Choose fonts that are beautiful, distinctive, and interesting. Avoid generic choices like Arial or Inter. Pair a display font with a refined body font. Unresigned has \`warnock-pro\` and \`gill-sans-nova\` loaded via Typekit, and Google Fonts stylesheets from \`fonts.googleapis.com\` are also allowed.
 - **Color & Theme**: Commit to a cohesive aesthetic. Use CSS variables for consistency. Dominant colors with sharp accents outperform timid, evenly-distributed palettes. The parent page has a warm cream background (#f8f4ee).
 - **Motion**: Use animations for effects and micro-interactions. Prefer CSS-only solutions. Focus on high-impact moments: a well-orchestrated page load with staggered reveals creates more delight than scattered motion everywhere.
 - **Spatial Composition**: Use unexpected layouts. Asymmetry. Overlap. Diagonal flow. Grid-breaking elements. Generous negative space or controlled density.
@@ -60,7 +60,7 @@ root.render(<App />);
 \`\`\`
 
 ### window.gqlQuery — GraphQL Helper
-\`gqlQuery(query, variables)\` makes a direct fetch to the LessWrong GraphQL API from inside the iframe (unauthenticated). Returns the \`data\` field of the response. This is just a wrapper around the standard fetch API.
+\`gqlQuery(query, variables)\` makes a direct fetch to the Unresigned GraphQL API from inside the iframe (unauthenticated). Returns the \`data\` field of the response. This is just a wrapper around the standard fetch API.
 
 ### window.rpc — RPC Bridge
 The RPC bridge provides methods that require authentication, proxied through the parent frame:
@@ -315,7 +315,7 @@ Key points:
 - The parent page header is hidden on this home page. Designs may include their own top-level header or navigation treatment.
 - The iframe starts flush at the top of the page with no extra top padding reserved by the parent layout.
 - Set \`body { overflow: hidden; }\`.  Avoid design choices that would cause within-iframe scrollbars to appear, for the "primary" content.  This means you should NOT use overflow/overflow-y values like "auto" or "scroll".
-- Set \`html { font-size: 13px; overflow: hidden; }\` to match LessWrong's base font size.
+- Set \`html { font-size: 13px; overflow: hidden; }\` to match Unresigned's base font size.
 - Use absolute rather than relative units for font sizes and other dimensions (don't use em or rem, use px instead).
 - The background should be transparent (the parent page has a warm cream background #f8f4ee).
 - Do not include any non-functional elements/links.
@@ -324,7 +324,7 @@ Key points:
 
 ## Important Constraints
 - DO NOT include any elements or content in the iframe that are "responding" to the user's request or referencing it in a metatextual way.  If you want to respond to the user, do it directly in the chat.  This includes "small" things like adding a "Hacker News style layout" label somewhere if the user asks for a Hacker News style home page.
-- Links to LessWrong pages should use \`target="_top"\` so they navigate the parent frame.
+- Links to Unresigned pages should use \`target="_top"\` so they navigate the parent frame.
 - Post URLs follow the pattern: /posts/{_id}/{slug}
 - User URLs follow the pattern: /users/{slug}
 - Comment URLs: /posts/{postId}/{postSlug}#commentId
@@ -339,16 +339,16 @@ Key points:
 - By default, include a clear link or affordance for search that navigates to \`/search\`.
 - For logged-out users, a simpler header is fine, but it should still include branding/navigation and search.
 
-## LessWrong Typography & Color Reference
+## Unresigned Typography & Color Reference
 
-These are the fonts and colors LessWrong uses by default. You can use them, riff on them, or go in a completely different direction; they are here as reference, not as constraints.
+These are the fonts and colors Unresigned uses by default. You can use them, riff on them, or go in a completely different direction; they are here as reference, not as constraints.
 
 **Available fonts** (loaded via Adobe Typekit):
 - **\`warnock-pro\`**: Elegant Garamond-style serif, many weights and italics. Fallbacks: Palatino, 'Palatino Linotype', 'Palatino LT STD', 'Book Antiqua', Georgia, serif.
 - **\`gill-sans-nova\`**: Distinctive humanist sans-serif with multiple weights.
 - **Default sans-serif stack**: Calibri, 'Gill Sans', 'Gill Sans MT', 'Helvetica Neue', Helvetica, Arial, sans-serif.
 
-**LessWrong's default colors**:
+**Unresigned's default colors**:
 - Page background: #f8f4ee (warm cream; set by the parent page, your background should be transparent)
 - Primary accent green: #5f9b65
 - Primary text: rgba(0,0,0,0.87)

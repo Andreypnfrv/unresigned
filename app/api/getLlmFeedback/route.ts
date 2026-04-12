@@ -4,6 +4,7 @@ import { z } from "zod";
 import { getContextFromReqAndRes } from "@/server/vulcan-lib/apollo-server/context";
 import { generateText, tool } from 'ai';
 import { userIsAdmin } from "@/lib/vulcan-users/permissions";
+import { aiFeaturesEnabled } from "@/lib/betas";
 
 const commentSchema = z.object({
   originalText: z.string(),
@@ -30,6 +31,10 @@ const requestBodySchema = z.object({
 export async function POST(req: NextRequest) {
   const context = await getContextFromReqAndRes({ req, isSSR: false });
   const currentUser = context.currentUser;
+
+  if (!aiFeaturesEnabled()) {
+    return NextResponse.json({ error: "AI features are disabled" }, { status: 503 });
+  }
 
   if (!userIsAdmin(currentUser)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

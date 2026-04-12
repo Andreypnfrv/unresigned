@@ -32,12 +32,12 @@ const FrontpageNominationPhase = ({settings}: {
   const currentUser = useCurrentUser();
 
   const reviewTooltip = <div>
-    <div>The LessWrong community is reflecting on the best posts from 2018, in three phases</div>
+    <div>The Unresigned community is reflecting on the best posts from 2018, in three phases</div>
     <ul>
       <li><em>Nomination</em> (Nov 21 – Dec 1st)</li>
       <li><em>Review</em> (Dec 2nd – 31st)</li>
       <li><em>Voting</em> (Jan 1st – 7th</li>
-      <li>The LessWrong moderation team will incorporate that information, along with their judgment, into a "Best of 2018" book.</li>
+      <li>The Unresigned moderation team will incorporate that information, along with their judgment, into a "Best of 2018" book.</li>
     </ul>
     <div>(Currently this section shows a karma-weighted sample of posts from 2018)</div>
   </div>
@@ -60,7 +60,7 @@ const FrontpageNominationPhase = ({settings}: {
         <div>
           <SectionSubtitle >
             <Link to={"/reviews"}>
-              The LessWrong 2018 Review
+              The Unresigned 2018 Review
             </Link>
             {(currentUser?.karma||0) >= 1000
               ? <div className={classes.timeRemaining}>

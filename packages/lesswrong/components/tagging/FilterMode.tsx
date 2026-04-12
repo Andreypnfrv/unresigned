@@ -235,7 +235,7 @@ const FilterModeRawComponent = ({tagId="", label, mode, canRemove=false, onChang
       : "";
 
   const tagPreviewPostCount = forumSelect({
-    LessWrong: 0,
+    Unresigned: 0,
     default: 3
   });
 

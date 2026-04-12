@@ -263,7 +263,7 @@ const PostFormSecondaryGroups = ({
           </div>
           {canSeeHighlight && <div className={classes.highlightGroup}>
             <h3 className={classes.formGroupTitle}>Custom Highlight</h3>
-            <p><em>Admin Only. Changes the post hover text on LessWrong. (Doesn't appear in post previews yet)</em></p>
+            <p><em>Admin Only. Changes the post hover text on Unresigned. (Doesn't appear in post previews yet)</em></p>
             <form.Field name="customHighlight">
               {(field) => (
                 <EditorFormComponent

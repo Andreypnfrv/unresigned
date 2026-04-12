@@ -86,7 +86,7 @@ export const NewPostNotification = createServerNotificationType({
 export const PostApprovedNotification = createServerNotificationType({
   name: "postApproved",
   emailSubject: async ({ user, notifications }: {user: DbUser, notifications: DbNotification[]}) => {
-    return "LessWrong notification";
+    return "Unresigned notification";
   },
   emailBody: async ({ user, notifications }: {user: DbUser, notifications: DbNotification[]}) => null
 });
@@ -446,7 +446,7 @@ export const NewReplyToYouNotification = createServerNotificationType({
 export const NewUserNotification = createServerNotificationType({
   name: "newUser",
   emailSubject: async ({ user, notifications }: {user: DbUser, notifications: DbNotification[]}) => {
-    return "LessWrong notification";
+    return "Unresigned notification";
   },
   emailBody: async ({ user, notifications }: {user: DbUser, notifications: DbNotification[]}) => null,
 });

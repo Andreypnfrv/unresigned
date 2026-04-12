@@ -67,7 +67,7 @@ export function getRecommendationSettings({settings, currentUser, configName}: {
 
 // TODO: Probably to be removed when Community becomes a tag
 const forumIncludeExtra: ForumOptions<{humanName: string, machineName: 'includePersonal' | 'includeMeta'}> = {
-  LessWrong: {humanName: 'Personal Blogposts', machineName: 'includePersonal'},
+  Unresigned: {humanName: 'Personal Blogposts', machineName: 'includePersonal'},
   AlignmentForum: {humanName: 'Personal Blogposts', machineName: 'includePersonal'},
   EAForum: {humanName: 'Community', machineName: 'includeMeta'},
   default: {humanName: 'Personal Blogposts', machineName: 'includePersonal'},
@@ -121,7 +121,7 @@ const RecommendationsAlgorithmPicker = ({settings, configName, onChange, showAdv
       <Checkbox
         checked={!settings.hideReview}
         onChange={(ev, checked) => applyChange({ ...settings, hideReview: !checked })}
-      /> Show 'The LessWrong 2018 Review'
+      /> Show 'The Unresigned 2018 Review'
     </div>} */}
 
     {/* <div>

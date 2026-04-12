@@ -61,7 +61,7 @@ type ContentTypeRecord = {
 
 export const getContentTypes = (): ForumOptions<ContentTypeRecord> => {
   return {
-    LessWrong: {
+    Unresigned: {
       frontpage: {
         tooltipTitle: 'Frontpage Post',
         tooltipBody: <React.Fragment>
@@ -85,7 +85,7 @@ export const getContentTypes = (): ForumOptions<ContentTypeRecord> => {
           </div>
           <ul>
             <li>Niche topics</li>
-            <li>Meta-discussion of LessWrong (site features, interpersonal community dynamics)</li>
+            <li>Meta-discussion of Unresigned (site features, interpersonal community dynamics)</li>
             <li>Topics that are difficult to discuss rationally</li>
             <li>Personal ramblings</li>
           </ul>
@@ -122,7 +122,7 @@ export const getContentTypes = (): ForumOptions<ContentTypeRecord> => {
       tags: {
         tooltipTitle: `Wikitag Edits and Discussion`,
         tooltipBody: <div>
-          Wikitag pages, which organize LessWrong posts and concepts in a more
+          Wikitag pages, which organize Unresigned posts and concepts in a more
           durable format.
         </div>,
         Icon: TagIcon,
@@ -152,7 +152,7 @@ export const getContentTypes = (): ForumOptions<ContentTypeRecord> => {
           </div>
           <ul>
             <li>Niche topics</li>
-            <li>Meta-discussion of LessWrong (site features, interpersonal community dynamics)</li>
+            <li>Meta-discussion of Unresigned (site features, interpersonal community dynamics)</li>
             <li>Topics that are difficult to discuss rationally</li>
             <li>Personal ramblings</li>
           </ul>
@@ -211,7 +211,7 @@ export const getContentTypes = (): ForumOptions<ContentTypeRecord> => {
           </div>
           <ul>
             <li>Niche topics</li>
-            <li>Meta-discussion of LessWrong (site features, interpersonal community dynamics)</li>
+            <li>Meta-discussion of Unresigned (site features, interpersonal community dynamics)</li>
             <li>Topics that are difficult to discuss rationally</li>
             <li>Personal ramblings</li>
           </ul>

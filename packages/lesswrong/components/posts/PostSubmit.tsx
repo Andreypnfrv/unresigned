@@ -3,7 +3,7 @@ import Button from '@/lib/vendor/@material-ui/core/src/Button';
 import classNames from 'classnames';
 import { useCurrentUser } from "../common/withUser";
 import { useTracking } from "../../lib/analyticsEvents";
-import { forumTitleSetting, isEAForum, isLW, isLWorAF, requestFeedbackKarmaLevelSetting } from '@/lib/instanceSettings.ts';
+import { forumTitleSetting, intercomAppIdSetting, isEAForum, isLW, isLWorAF, requestFeedbackKarmaLevelSetting } from '@/lib/instanceSettings.ts';
 import { getSiteUrl } from "../../lib/vulcan-lib/utils";
 import type { EditablePost, PostSubmitMeta } from '@/lib/collections/posts/helpers.ts';
 import type { TypedFormApi } from '@/components/tanstack-form-components/BaseAppForm.tsx';
@@ -135,12 +135,14 @@ export const PostSubmit = ({
                             url: getSiteUrl() + "posts/" + createdPost._id
                           };
 
-                          // eslint-disable-next-line
-                          window.Intercom(
-                            'trackEvent',
-                            'requested-feedback',
-                            intercomProps
-                          );
+                          if (intercomAppIdSetting.get()) {
+                            // eslint-disable-next-line
+                            window.Intercom?.(
+                              'trackEvent',
+                              'requested-feedback',
+                              intercomProps
+                            );
+                          }
                         },
                         // The redirect here is both undesirable and might interfere with Intercom displaying the message prompt
                         skipRedirect: true,

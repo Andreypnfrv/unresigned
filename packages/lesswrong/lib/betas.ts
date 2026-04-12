@@ -6,7 +6,7 @@
 //
 // Beta-feature test functions must handle the case where user is null.
 
-import { testServerSetting, isEAForum, isLWorAF, isLW, userIdsWithAccessToLlmChat } from './instanceSettings';
+import { testServerSetting, isEAForum, isLWorAF, isLW, isUnresignedForum, userIdsWithAccessToLlmChat } from './instanceSettings';
 import { isAdmin, userOverNKarmaOrApproved } from "./vulcan-users/permissions";
 import {isFriendlyUI} from '../themes/forumTheme'
 
@@ -27,10 +27,12 @@ const adminOrBeta = (user: UsersCurrent|DbUser|null): boolean => adminOnly(user)
 
 export const userCanCreateCommitMessages = moderatorOnly;
 export const userCanUseSharing = (user: UsersCurrent|DbUser|null): boolean => moderatorOnly(user) || userOverNKarmaOrApproved(1)(user);
+export const aiFeaturesEnabled = () => !isUnresignedForum();
+
 export const userHasNewTagSubscriptions: BetaGate = (user) => isEAForum() ? shippedFeature(user) : disabled(user);
 export const userHasDefaultProfilePhotos = disabled
 
-export const userHasAutosummarize = adminOnly
+export const userHasAutosummarize: BetaGate = (user) => !isUnresignedForum() && adminOnly(user)
 
 export const visitorGetsDynamicFrontpage: BetaGate = (user) => isLW() ? shippedFeature(user) : disabled(user);
 
@@ -42,7 +44,7 @@ export const userHasLlmChat = (currentUser: UsersCurrent|DbUser|null): currentUs
   }
   const userIdsWithAccess = userIdsWithAccessToLlmChat.get();
   
-  return isLW() && (isAdmin(currentUser) || userIdsWithAccess.includes(currentUser._id));
+  return !isUnresignedForum() && isLW() && (isAdmin(currentUser) || userIdsWithAccess.includes(currentUser._id));
 }
 
 export const userHasPostAutosave: BetaGate = (user) => isLWorAF() ? adminOnly(user) : disabled(user);
@@ -59,8 +61,8 @@ export const hasCollapsedFootnotes = false; // TODO re-enable for EAF once https
 export const usesCurationEmailsCron = () => isLW();
 export const hasWikiLenses = () => isLWorAF();
 
-export const userCanCreateAndEditJargonTerms = (user: UsersCurrent|DbUser|null) => isLW() && !!user && user.karma >= 100;
-export const userCanViewJargonTerms = (user: UsersCurrent|DbUser|UpdateUserDataInput|null) => isLW();
-export const userCanViewUnapprovedJargonTerms = (user: UsersCurrent|DbUser|null) => isLW()
+export const userCanCreateAndEditJargonTerms = (user: UsersCurrent|DbUser|null) => isLW() && !isUnresignedForum() && !!user && user.karma >= 100;
+export const userCanViewJargonTerms = (user: UsersCurrent|DbUser|UpdateUserDataInput|null) => isLW() && !isUnresignedForum();
+export const userCanViewUnapprovedJargonTerms = (user: UsersCurrent|DbUser|null) => isLW() && !isUnresignedForum()
 /* if this is reduced to 0, we need to make sure to handle spam somehow */
-export const userCanPassivelyGenerateJargonTerms = (user: UsersCurrent|DbUser|null) => isLW() && !!user && user.karma >= 100
+export const userCanPassivelyGenerateJargonTerms = (user: UsersCurrent|DbUser|null) => isLW() && !isUnresignedForum() && !!user && user.karma >= 100

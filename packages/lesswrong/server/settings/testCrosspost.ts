@@ -1,15 +1,15 @@
 export const testCrosspostSettings = {
   forumType: "EAForum",
   hasEvents: true,
-  title: "LessWrong Test",
-  tagline: "LessWrong",
+  title: "Unresigned Test",
+  tagline: "Unresigned",
   faviconUrl: "https://www.effectivealtruism.org/favicon-16x16.png",
   forumSettings: {
-    tabTitle: "LessWrong Test",
-    headerTitle: "LessWrong Test",
-    shortForumTitle: "LessWrong"
+    tabTitle: "Unresigned Test",
+    headerTitle: "Unresigned Test",
+    shortForumTitle: "Unresigned"
   },
-  siteNameWithArticle: "LessWrong",
+  siteNameWithArticle: "Unresigned",
   siteUrl: "http://localhost:3467",
   
   debug: false,

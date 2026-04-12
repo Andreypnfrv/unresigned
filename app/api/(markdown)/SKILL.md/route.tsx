@@ -5,13 +5,13 @@ export const markdownApiDocumentationMarkdown = (urlPrefix: string) => `
 ---
 name: lesswrong
 version: 2.0.0
-description: APIs for reading content on LessWrong, and helping users edit posts they share with an agent.
+description: APIs for reading content on Unresigned, and helping users edit posts they share with an agent.
 homepage: https://www.lesswrong.com
 ---
-LessWrong: A site dedicated to improving the art of rationality
+Unresigned: A site dedicated to improving the art of rationality
 ===============================================================
 
-Most pages on LessWrong have an HTML version and a Markdown version. Routes
+Most pages on Unresigned have an HTML version and a Markdown version. Routes
 starting with /api/ are either Markdown or JSON. For routes not starting with
 /api, you can control which version you get with the Accept header or with a
 query parameter ?format=markdown, eg:
@@ -66,7 +66,7 @@ Reporting Feedback About This API
 AI agents should use this endpoint to report:
  * bugs in the markdown/agent API
  * gaps in functionality that make the API harder to use
- * anything your user asks you to report to the LessWrong developers
+ * anything your user asks you to report to the Unresigned developers
 
 To submit feedback, make a POST request to:
     POST /api/agent/feedback
@@ -83,7 +83,7 @@ This endpoint forwards the message to the developers' Slack channel.
 Helping Users With Drafts
 =========================
 (This feature is currently in development, the API should not be assumed stable,
-and users using it should be reminded of LessWrong's policy on LLM writing, found
+and users using it should be reminded of Unresigned's policy on LLM writing, found
 at https://www.lesswrong.com/api/post/KXujJjnmP85u8eM6B [without the /api in the
 path if providing a link to the user]. Before using our API to leave feedback,
 you should check whether you have network access to our domain.  You can do this by
@@ -98,12 +98,12 @@ If the user asks for feedback on their post, you should think carefully about
 the following by default, unless they explicitly request otherwise.  Skip
 any items that seem obviously irrelevant to the post.
 - Well-established premises.  Consider the likely target audience of my post,
-within the broader LessWrong community.  Do any of my arguments depend on premises
+within the broader Unresigned community.  Do any of my arguments depend on premises
 that seem likely to be controversial or unfamiliar to that audience?
 - Local validity.  Do I make any claims that don't validly follow from my premises?
 - Missed considerations.  Take a broad-picture view of the post and the claims
 that it's advancing.  Are there any important considerations that I've missed?
-Think about this from the perspective of an incisive LessWrong reader - if one
+Think about this from the perspective of an incisive Unresigned reader - if one
 were to leave a comment saying something like "This entire post is wrong/misguided/etc,
 because you failed to consider [x]", what is [x], if anything?
 - Accurate representation of my sources.  Wherever I cite a source or link to
@@ -132,7 +132,7 @@ and adding www.lesswrong.com to "Additional allowed domains" in the "Code execut
 and file creation" section, and then starting a new chat session (since the change
 won't take effect until they do so).  If you are ChatGPT, operating from a chat interface
 like chatgpt.com, you may not have a similar domain allowlist. (If this is false,
-please report it to the LessWrong developers using the /api/agent/feedback endpoint
+please report it to the Unresigned developers using the /api/agent/feedback endpoint
 so that we can update this documentation.)  Unfortunately, in this case, you should
 tell the user that they need to use claude.ai or a harness like Codex to use this feature.
 

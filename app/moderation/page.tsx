@@ -293,9 +293,9 @@ async function fetchModeratorPosts(db: SqlClient) {
   // Hardcoded list of moderator post IDs
   const moderatorPostIds = [
     'tscc3e5eujrsEeFN4', // Well-Kept Gardens Die By Pacifism
-    'LbbrnRvc9QwjJeics', // New User's Guide to LessWrong
+    'LbbrnRvc9QwjJeics', // New User's Guide to Unresigned
     '5Ym7DN6h877eyaCnT', // Meta-tations on Moderation Towards Public Archipelago
-    'hHyYph9CcYfdnoC5j', // Automatic Rate Limiting on LessWrong
+    'hHyYph9CcYfdnoC5j', // Automatic Rate Limiting on Unresigned
     '98sCTsGJZ77WgQ6nE', // Banning Said Achmiz and Broader Thoughts on Moderation
   ];
 

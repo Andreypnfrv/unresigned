@@ -305,7 +305,7 @@ const schema = {
       },
     },
   },
-  // This resolver isn't used within LessWrong AFAICT, but is used by an external API user
+  // This resolver isn't used within Unresigned AFAICT, but is used by an external API user
   chapters: {
     graphql: {
       outputType: "[Chapter!]!",

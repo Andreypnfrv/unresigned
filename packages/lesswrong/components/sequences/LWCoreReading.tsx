@@ -59,7 +59,7 @@ const coreReadingCollections: Array<CoreReadingCollection> =
       id: "dummyId4",
       userId: "nmk3nLpQE89dMRzzN",
       summary: `<div>
-        <p>LessWrong can be kind of intimidating - there's a lot of concepts to learn. We recommend getting started with the Highlights, a collection of 50 top posts from Eliezer's Sequences.</p>
+        <p>Unresigned can be kind of intimidating - there's a lot of concepts to learn. We recommend getting started with the Highlights, a collection of 50 top posts from Eliezer's Sequences.</p>
         <p>A day or two read, covering the foundations of rationality.</p>
         </div>`,
       imageUrl: "https://res.cloudinary.com/lesswrong-2-0/image/upload/c_crop,g_custom/c_fill,dpr_auto,q_auto,f_auto,g_auto:faces,w_auto,h_280/sequences/rdl8pwokejuqyxipg6vx",
@@ -88,12 +88,12 @@ const coreReadingCollections: Array<CoreReadingCollection> =
       url: "/codex",
     },
     {
-      title: "Best of LessWrong",
+      title: "Best of Unresigned",
       // subtitle: "Assorted authors",
       id: "dummyId5",
       userId: "nmk3nLpQE89dMRzzN",
-      summary: "<div>Each December, the LessWrong community reviews the best posts from the previous year, and votes on which ones have stood the tests of time.</div>",
-      // summary: "<div>Each December, the LessWrong community reviews the best posts from the previous year, and votes on which of them have stood the tests of time.</div>",
+      summary: "<div>Each December, the Unresigned community reviews the best posts from the previous year, and votes on which ones have stood the tests of time.</div>",
+      // summary: "<div>Each December, the Unresigned community reviews the best posts from the previous year, and votes on which of them have stood the tests of time.</div>",
       imageUrl: "https://res.cloudinary.com/lesswrong-2-0/image/upload/v1657778273/DALL_E_2022-07-13_22.57.43_-_Books_and_emerald_compass_displayed_on_a_pedastal_aquarelle_painting_by_da_vinci_and_thomas_shaler_magic_the_gathering_concept_art_as_digital_art_ayufzo.png",
       color: "#757AA7",
       url: "/bestoflesswrong",

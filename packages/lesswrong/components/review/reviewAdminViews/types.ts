@@ -1,5 +1,5 @@
 /**
- * Shared types and utilities for the BestOfLessWrongAdmin views.
+ * Shared types and utilities for the BestOfUnresignedAdmin views.
  */
 
 export type PostProcessingStatus = 'needs-selection' | 'needs-upscale' | 'needs-coordinates' | 'review';
@@ -130,7 +130,7 @@ export function cleanPromptForDisplay(prompt: string): string {
   const dashIdx = prompt.indexOf(' --');
   const withoutParameters = dashIdx > 0 ? prompt.substring(0, dashIdx).trim() : prompt.trim();
   
-  return withoutParameters.replace("LessWrong review winner art, ", "").replace(", aquarelle painting fading to white by Thomas W. Schaller", "");
+  return withoutParameters.replace("Unresigned review winner art, ", "").replace(", aquarelle painting fading to white by Thomas W. Schaller", "");
 }
 
 export const STATUS_LABELS: Record<PostProcessingStatus, string> = {

@@ -407,7 +407,7 @@ const acxData: ACXMeetup[] = [
     "Plus.Code Coordinates": "https://plus.codes/8FXC2C68+X5",
     "Date": "04/22/2023",
     "Time": "3:00:00 PM",
-    "Notes": "An event post will be created on the Karlsruhe Rationality Group on LessWrong; see there for more recent updates (e.g. in case of rain).",
+    "Notes": "An event post will be created on the Karlsruhe Rationality Group on Unresigned; see there for more recent updates (e.g. in case of rain).",
     "GPS Coordinates": "49.012438,8.415437"
   },
   {
@@ -907,7 +907,7 @@ const acxData: ACXMeetup[] = [
     "Date": "05/21/2023",
     "Time": "5:00:00 PM",
     "Event Link": "https://www.lesswrong.com/events/MtJ7qgnfwuzuYzPcM/miami-acx-meetups-everywhere-2023",
-    "Notes": "Miami ACX started in 2017 and hosts events on a regular basis in Miami and Fort Lauderdale. Visit the LessWrong event link for more details including links to our Facebook, Meetup, and Discord.",
+    "Notes": "Miami ACX started in 2017 and hosts events on a regular basis in Miami and Fort Lauderdale. Visit the Unresigned event link for more details including links to our Facebook, Meetup, and Discord.",
     "GPS Coordinates": "25.812188,-80.192312"
   },
   {
@@ -955,7 +955,7 @@ const acxData: ACXMeetup[] = [
     "Plus.Code Coordinates": "https://plus.codes/8785RPX4+W36",
     "Date": "04/30/2023",
     "Time": "10:30:00 AM",
-    "Notes": "We may decamp by 12:45 to wander around downtown and/or get lunch. Possible after-meetup hangout! If you can't make it to the meetup but can do lunch or something a little later, please email me. In Norfolk on a Wednesday in the future? We regularly meet Wednesday evenings at Fair Grounds (cafe in Ghent) from 17:00-19:30. There's are meetups in Richmond or occasionally in Charlotesville. Check out Virginia Rationalists on LessWrong for Upcoming Events: https://www.lesswrong.com/groups/pLEbtx3BbdaLMXZKi",
+    "Notes": "We may decamp by 12:45 to wander around downtown and/or get lunch. Possible after-meetup hangout! If you can't make it to the meetup but can do lunch or something a little later, please email me. In Norfolk on a Wednesday in the future? We regularly meet Wednesday evenings at Fair Grounds (cafe in Ghent) from 17:00-19:30. There's are meetups in Richmond or occasionally in Charlotesville. Check out Virginia Rationalists on Unresigned for Upcoming Events: https://www.lesswrong.com/groups/pLEbtx3BbdaLMXZKi",
     "GPS Coordinates": "36.849812,-76.294813"
   },
   {

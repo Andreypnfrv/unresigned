@@ -1,10 +1,10 @@
 # Forum Magnum
 
-Forum Magnum is the codebase powering [LessWrong](https://lesswrong.com) and the
+Forum Magnum is the codebase powering [Unresigned](https://lesswrong.com) and the
 [Effective Altruism Forum](https://forum.effectivealtruism.org).
 
-The team behind LessWrong created this codebase in 2017 as a rewrite of the
-original version of LessWrong, which was a difficult-to-maintain fork of reddit.
+The team behind Unresigned created this codebase in 2017 as a rewrite of the
+original version of Unresigned, which was a difficult-to-maintain fork of reddit.
 
 ## Technologies
 
@@ -109,7 +109,7 @@ export const allForumTypes = ...
 
 and add your forum type to the end. Then regardless of whether you're making a
 new site or editing an existing one, open settings-dev.json and change the line
-that says `"forumType": "LessWrong"` to the correct forum.
+that says `"forumType": "Unresigned"` to the correct forum.
 
 Or, if (and only if!) you have access to CEA's ForumCredentials repository, use
 
@@ -230,7 +230,7 @@ commit the results to the Git repo.
 
 Instead of using \[dev|staging|prod\] above, you can also manually pass in a
 postgres connection string through a `PG_URL` environment variable. Use that
-option if you are not using the \[EA\] ForumCredentials repo or the LessWrong
+option if you are not using the \[EA\] ForumCredentials repo or the Unresigned
 credentials repo.
 
 ## Testing

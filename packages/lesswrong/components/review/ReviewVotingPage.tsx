@@ -360,7 +360,7 @@ const ReviewVotingPage = ({reviewYear, expandedPost, setExpandedPost}: {
     reSortPosts(sortPosts, sortReversed, tagFilter)
   }, [canInitialResort, reSortPosts, sortPosts, sortReversed, tagFilter, statusFilter])
 
-  let voteTooltip = "Showing votes from all LessWrong users" as voteTooltipType
+  let voteTooltip = "Showing votes from all Unresigned users" as voteTooltipType
 
   const handleSetExpandedPost = (post: PostsReviewVotingList) => {
     if (expandedPost?._id === post._id) {

@@ -20,6 +20,7 @@ export type SiteUIStyle = "book" | "friendly";
 const getSiteUIStyle = (): SiteUIStyle => forumSelect<SiteUIStyle>({
   LWAF: "book",
   EAForum: "friendly",
+  Unresigned: "book",
   default: "friendly",
 })
 export const isBookUI = () => true

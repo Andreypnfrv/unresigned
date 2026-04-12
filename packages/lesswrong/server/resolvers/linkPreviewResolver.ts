@@ -627,7 +627,7 @@ async function fetchImageDimensions(url: string): Promise<ExtractedImageSize | n
       signal: abortController.signal,
       redirect: "follow",
       headers: {
-        "User-Agent": "LessWrong-LinkPreviewBot/1.0 (+https://www.lesswrong.com)",
+        "User-Agent": "Unresigned-LinkPreviewBot/1.0 (+https://www.lesswrong.com)",
         "Accept": "image/*,*/*;q=0.1",
         "Range": `bytes=0-${MAX_IMAGE_PROBE_BYTES - 1}`,
       },
@@ -830,7 +830,7 @@ async function fetchRemoteHtml(url: string): Promise<string> {
       signal: abortController.signal,
       redirect: "follow",
       headers: {
-        "User-Agent": "LessWrong-LinkPreviewBot/1.0 (+https://www.lesswrong.com)",
+        "User-Agent": "Unresigned-LinkPreviewBot/1.0 (+https://www.lesswrong.com)",
         "Accept": "text/html,application/xhtml+xml;q=0.9,*/*;q=0.1",
       },
     });

@@ -1,5 +1,5 @@
 import transitions from '@/lib/vendor/@material-ui/core/src/styles/transitions';
-import { defaultComponentPalette, headerStack } from './defaultPalette';
+import { defaultComponentPalette } from './defaultPalette';
 import { defaultZIndexes } from "./zIndexes";
 import { isAF, isLW } from '@/lib/instanceSettings';
 
@@ -151,7 +151,7 @@ export const defaultTypography = (palette: ThemePalette) => ({
     fontSize: 18,
     fontWeight: 500,
     marginBottom: 3,
-    fontFamily: headerStack,
+    fontFamily: palette.fonts.headerStack,
     ...(isAF() && {
       fontFamily: palette.fonts.sansSerifStack,
       fontWeight: 500,
@@ -230,7 +230,7 @@ export const defaultTypography = (palette: ThemePalette) => ({
     lineHeight: `1.5em`,
   },
   headerStyle: {
-    fontFamily: headerStack,
+    fontFamily: palette.fonts.headerStack,
   },
   subtitle: {
     fontSize: 16,

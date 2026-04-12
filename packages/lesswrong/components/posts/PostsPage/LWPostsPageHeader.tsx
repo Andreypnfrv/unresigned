@@ -5,7 +5,7 @@ import { extractVersionsFromSemver } from '../../../lib/editor/utils';
 import classNames from 'classnames';
 import { postGetLink, postGetLinkTarget, detectLinkpost, parseUnsafeUrl } from '@/lib/collections/posts/helpers';
 import type { AnnualReviewMarketInfo } from '@/lib/collections/posts/annualReviewMarkets';
-import ReviewPillContainer from './BestOfLessWrong/ReviewPillContainer';
+import ReviewPillContainer from './BestOfUnresigned/ReviewPillContainer';
 import PostsTopSequencesNav, { titleStyles } from './PostsTopSequencesNav';
 import { Link } from '@/lib/reactRouterWrapper';
 import PostsPageTitle from "./PostsPageTitle";
@@ -153,7 +153,7 @@ const styles = defineStyles('LWPostsPageHeader', (theme: ThemeType) => ({
   readTime: {
     marginRight: 20,
   },
-  bestOfLessWrong: {
+  bestOfUnresigned: {
     ...titleStyles(theme),
     marginBottom: 12,
     color: theme.palette.greyAlpha(.7),
@@ -275,8 +275,8 @@ const LWPostsPageHeader = ({post, showEmbeddedPlayer, toggleEmbeddedPlayer, dial
         <PostsTopSequencesNav post={post} blackText={showSplashPageHeader}/>
       </div>}
     </AnalyticsContext>
-    {showSplashPageHeader && !('sequence' in post && !!post.sequence) && <Link to={`/bestoflesswrong?year=${reviewYear}&category=all`} className={classes.bestOfLessWrong}>
-      Best of LessWrong {reviewYear}
+    {showSplashPageHeader && !('sequence' in post && !!post.sequence) && <Link to={`/bestoflesswrong?year=${reviewYear}&category=all`} className={classes.bestOfUnresigned}>
+      Best of Unresigned {reviewYear}
     </Link>}
     <div>
       <span className={classes.topRight}>

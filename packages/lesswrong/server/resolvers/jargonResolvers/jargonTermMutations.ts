@@ -51,7 +51,7 @@ const jargonTermListResponseSchema = z.object({
   reasoning: z.string(),
   likelyKnownJargonTerms: z.array(z.string()),
   marginalTerms: z.array(z.string()),
-}).describe('A tool that allows Claude to return a list of jargon terms extracted from a post, and of those, which terms are likely already known to LessWrong readers, and which terms are the next most likely candidates for inclusion in a glossary.');
+}).describe('A tool that allows Claude to return a list of jargon terms extracted from a post, and of those, which terms are likely already known to Unresigned readers, and which terms are the next most likely candidates for inclusion in a glossary.');
 
 type JargonTermListResponse = z.infer<typeof jargonTermListResponseSchema>;
 

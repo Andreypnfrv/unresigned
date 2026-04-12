@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react';
 import { AnalyticsContext } from "../../lib/analyticsEvents";
 import { getReviewPhase, reviewIsActive, REVIEW_YEAR } from '../../lib/reviewUtils';
-import { showReviewOnFrontPageIfActive, ultraFeedEnabledSetting, isLW, isAF } from '@/lib/instanceSettings';
+import { showReviewOnFrontPageIfActive, ultraFeedEnabledSetting, isAF, isUnresignedForum } from '@/lib/instanceSettings';
 import { useCookiesWithConsent } from '../hooks/useCookiesWithConsent';
 import { LAST_VISITED_FRONTPAGE_COOKIE } from '../../lib/cookies/cookies';
 import moment from 'moment';
@@ -26,7 +26,25 @@ import dynamic from 'next/dynamic';
 import { IsReturningVisitorContextProvider } from '@/components/layout/IsReturningVisitorContextProvider';
 const RecentDiscussionFeed = dynamic(() => import("../recentDiscussion/RecentDiscussionFeed"), { ssr: false });
 
-const styles = defineStyles("LWHome", () => ({
+const styles = defineStyles("LWHome", (theme: ThemeType) => ({
+  hero: {
+    padding: "20px 24px",
+    marginBottom: 8,
+    borderRadius: 4,
+    background: theme.palette.background.primaryTranslucent,
+    border: theme.palette.border.faint,
+  },
+  heroTitle: {
+    fontSize: "1.35rem",
+    fontWeight: 600,
+    marginBottom: 8,
+    fontFamily: theme.palette.fonts.sansSerifStack,
+  },
+  heroBody: {
+    fontSize: "1.05rem",
+    lineHeight: 1.5,
+    opacity: 0.92,
+  },
   desktopSpotlight: {
     ['@media(max-width: 1199.95px)']: {
       display: "none",
@@ -43,9 +61,11 @@ const LESSONLINE_MOBILE_SPOTLIGHT_ID = 'j4q2gcjowKqfpdjsR';
 const LESSONLINE_MOBILE_SPOTLIGHT_UNTIL = new Date('2026-03-26T00:00:00Z');
 
 const getLessOnlineMobileSpotlightOverrideId = (now: Date = new Date()): string | null => (
-  now.getTime() < LESSONLINE_MOBILE_SPOTLIGHT_UNTIL.getTime()
-    ? LESSONLINE_MOBILE_SPOTLIGHT_ID
-    : null
+  isUnresignedForum()
+    ? null
+    : (now.getTime() < LESSONLINE_MOBILE_SPOTLIGHT_UNTIL.getTime()
+      ? LESSONLINE_MOBILE_SPOTLIGHT_ID
+      : null)
 );
 
 const getStructuredData = () => ({
@@ -61,18 +81,14 @@ const getStructuredData = () => ({
     "@type": "WebPage",
     "@id": `${getSiteUrl()}`,
   },
-  ...(isLW() && {
-    "description": [
-      "LessWrong is an online forum and community dedicated to improving human reasoning and decision-making.", 
-      "We seek to hold true beliefs and to be effective at accomplishing our goals.", 
-      "Each day, we aim to be less wrong about the world than the day before."
-    ].join(' ')
-  }),
   ...(isAF() && {
     "description": [
       "The Alignment Forum is a single online hub for researchers to discuss all ideas related to ensuring that transformatively powerful AIs are aligned with human values.", 
       "Discussion ranges from technical models of agency to the strategic landscape, and everything in between."
     ].join(' ')
+  }),
+  ...(isUnresignedForum() && {
+    "description": "Unresigned is a forum for longevity science, policy, advocacy, and community — focused on ending aging and building a serious immortalist culture.",
   }),
 })
 
@@ -84,6 +100,14 @@ const LWHome = () => {
       <AnalyticsContext pageContext="homePage">
         <StructuredData generate={() => getStructuredData()}/>
         <UpdateLastVisitCookie />
+        {isUnresignedForum() && <SingleColumnSection>
+          <div className={classes.hero}>
+            <div className={classes.heroTitle}>Unresigned</div>
+            <div className={classes.heroBody}>
+              Longevity science, policy, advocacy, and community — replace placeholder text in admin when ready.
+            </div>
+          </div>
+        </SingleColumnSection>}
         {reviewIsActive() && <>
           {getReviewPhase() !== "RESULTS" && <SingleColumnSection>
             <SuspenseWrapper name="FrontpageReviewWidget">

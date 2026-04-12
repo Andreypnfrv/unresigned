@@ -538,7 +538,7 @@ export function isCollaborative(post: Pick<DbPost | PostsBase, '_id' | 'shareWit
 export function getDefaultVotingSystem() {
   return forumSelect({
     EAForum: "eaEmojis",
-    LessWrong: "namesAttachedReactions",
+    Unresigned: "namesAttachedReactions",
     AlignmentForum: "namesAttachedReactions",
     default: "default",
   });

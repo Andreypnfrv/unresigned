@@ -69,7 +69,7 @@ const PredictedTop50Intro = () => {
   return (
     <ContentStyles contentType="post" className={classes.intro}>
       <p>
-        The LessWrong Review highlights the posts most worth readers' time and attention.
+        The Unresigned Review highlights the posts most worth readers' time and attention.
         But its results take a while to appear.
         To bridge that gap, each popular post now has its own prediction market where users bet on whether it will rank among the year's top 50.
       </p>

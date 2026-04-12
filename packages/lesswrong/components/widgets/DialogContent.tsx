@@ -13,7 +13,7 @@ export const styles = defineStyles("DialogContent", (theme) => ({
       paddingTop: 24,
     },
     
-    ...(theme.forumType === "LessWrong" && {
+    ...(theme.forumType === "Unresigned" && {
       fontFamily: theme.palette.fonts.sansSerifStack,
       fontSize: 15.08,
       lineHeight: "1.5em"

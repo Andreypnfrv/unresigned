@@ -38,6 +38,10 @@ const IntercomWrapper = () => {
 
   const { cookiePreferences } = useCookiePreferences()
   const functionalCookiesAllowed = cookiePreferences.includes('functional')
+
+  if (!intercomAppIdSetting.get()) {
+    return null;
+  }
   
   if (isStandaloneRoute(pathname)) {
     return null;

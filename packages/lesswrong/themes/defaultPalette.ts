@@ -4,7 +4,7 @@
 // There are two themes active at a time: the user theme and the site theme. The
 // user theme is a user-configurable preference representing whether to use
 // light mode, dark mode, etc. The site theme represents the styling differences
-// between LessWrong, EA Forum, Alignment Forum, Progress Studies Forum, and
+// between Unresigned, EA Forum, Alignment Forum, Progress Studies Forum, and
 // whatever other sites share the codebase.
 //
 // Helper color functions are defined in `colorUtil.ts`.

@@ -311,35 +311,35 @@ const Books2021SaleAnimation = ({successContent}: {
     <div className={classNames(classes.root)}>
       <div className="parent-container book2018">
         <div className="book-container epistemology">
-          <a className="book" href="https://www.amazon.com/Map-that-Reflects-Territory-LessWrong/dp/1736128507/">
+          <a className="book" href="https://www.amazon.com/Map-that-Reflects-Territory-Unresigned/dp/1736128507/">
             <img className="spine" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1606785787/v1.1_epistemology_spine_n8p1w4.jpg" />
             <div className="spine-thickness"></div>
             <img className="cover" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1606785787/v1.1_epistemology_cover_ecxmxo.jpg" />
           </a>
         </div>
         <div className="book-container agency">
-          <a className="book" href="https://www.amazon.com/Map-that-Reflects-Territory-LessWrong/dp/1736128507/">
+          <a className="book" href="https://www.amazon.com/Map-that-Reflects-Territory-Unresigned/dp/1736128507/">
             <img className="spine" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1606792629/v1.1_agency_spine_d4jih0.jpg" />
             <div className="spine-thickness"></div>
             <img className="cover" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1606792629/v1.1_agency_cover_yqhnyo.jpg" />
           </a>
         </div>
         <div className="book-container coordination">
-          <a className="book" href="https://www.amazon.com/Map-that-Reflects-Territory-LessWrong/dp/1736128507/">
+          <a className="book" href="https://www.amazon.com/Map-that-Reflects-Territory-Unresigned/dp/1736128507/">
             <img className="spine" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1606792629/v1.1_coordination_spine_doxyww.jpg" />
             <div className="spine-thickness"></div>
             <img className="cover" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1606792632/v1.1_coordination_cover_xbuj1e.jpg" />
           </a>
         </div>
         <div className="book-container curiosity">
-          <a className="book" href="https://www.amazon.com/Map-that-Reflects-Territory-LessWrong/dp/1736128507/">
+          <a className="book" href="https://www.amazon.com/Map-that-Reflects-Territory-Unresigned/dp/1736128507/">
             <img className="spine" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1606792630/v1.1_curiosity_spine_zdr1yv.jpg" />
             <div className="spine-thickness"></div>
             <img className="cover" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1606792632/v1.1_curiosity_cover_yeatxr.jpg" />
           </a>
         </div>
         <div className="book-container alignment">
-          <a className="book" href="https://www.amazon.com/Map-that-Reflects-Territory-LessWrong/dp/1736128507/">
+          <a className="book" href="https://www.amazon.com/Map-that-Reflects-Territory-Unresigned/dp/1736128507/">
             <img className="spine" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1606792629/v1.1_Alignment_spine_bvrrmw.jpg" />
             <div className="spine-thickness"></div>
             <img className="cover" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1606792630/v1.1_Alignment_cover_bberdl.jpg" />
@@ -348,28 +348,28 @@ const Books2021SaleAnimation = ({successContent}: {
       </div>
       <div className="parent-container book2019">
         <div className="book-container trust">
-          <a className="book" href="https://www.amazon.com/Engines-Cognition-Essays-LessWrong-Community/dp/1736128515/">
+          <a className="book" href="https://www.amazon.com/Engines-Cognition-Essays-Unresigned-Community/dp/1736128515/">
             <img className="spine" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1640068924/TRUST-Cover_Spine_bsztnh.jpg" />
             <div className="spine-thickness"></div>
             <img className="cover" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1640068126/TRUST-Cover_smaller_agodox.jpg" />
           </a>
         </div>
         <div className="book-container modularity">
-          <a className="book" href="https://www.amazon.com/Engines-Cognition-Essays-LessWrong-Community/dp/1736128515/">
+          <a className="book" href="https://www.amazon.com/Engines-Cognition-Essays-Unresigned-Community/dp/1736128515/">
             <img className="spine" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1640068912/MODULARITY-Cover_Spine_rdyh1n.jpg" />
             <div className="spine-thickness"></div>
             <img className="cover" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1640068218/MODULARITY_Front_smaller_js2iok.jpg" />
           </a>
         </div>
         <div className="book-container incentives">
-          <a className="book" href="https://www.amazon.com/Engines-Cognition-Essays-LessWrong-Community/dp/1736128515/">
+          <a className="book" href="https://www.amazon.com/Engines-Cognition-Essays-Unresigned-Community/dp/1736128515/">
             <img className="spine" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1640068885/INCENTIVES-Cover_Spine_bljhdc.jpg" />
             <div className="spine-thickness"></div>
             <img className="cover" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1640068067/INCENTIVES_Front_smaller_v5bhqi.jpg" />
           </a>
         </div>
         <div className="book-container failure">
-          <a className="book" href="https://www.amazon.com/Engines-Cognition-Essays-LessWrong-Community/dp/1736128515/">
+          <a className="book" href="https://www.amazon.com/Engines-Cognition-Essays-Unresigned-Community/dp/1736128515/">
             <img className="spine" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1640068843/FAILURE-Cover_Spine_l9kfls.jpg" />
             <div className="spine-thickness"></div>
             <img className="cover" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1640068350/FAILURE-Cover_Jacket_copy_zvmvvh.jpg" />
@@ -378,28 +378,28 @@ const Books2021SaleAnimation = ({successContent}: {
       </div>
       <div className="parent-container book2020">
         <div className="book-container coordination-constraint">
-          <a className="book" href="https://www.amazon.com/Carving-Reality-Essays-LessWrong-Community/dp/B0C95MJJBK/">
+          <a className="book" href="https://www.amazon.com/Carving-Reality-Essays-Unresigned-Community/dp/B0C95MJJBK/">
             <img className="spine" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1702342228/Spine_1_ypqobc.png" />
             <div className="spine-thickness"></div>
             <img className="cover" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1692320746/coordination-constraint_i8ievm.jpg" />
           </a>
         </div>
         <div className="book-container alignment-agency">
-          <a className="book" href="https://www.amazon.com/Carving-Reality-Essays-LessWrong-Community/dp/B0C95MJJBK/">
+          <a className="book" href="https://www.amazon.com/Carving-Reality-Essays-Unresigned-Community/dp/B0C95MJJBK/">
             <img className="spine" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1702342228/Spine_2_s4naer.png" />
             <div className="spine-thickness"></div>
             <img className="cover" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1692320745/alignment-agency-cover_ddrtzy.jpg" />
           </a>
         </div>
         <div className="book-container timelines-takeoff">
-          <a className="book" href="https://www.amazon.com/Carving-Reality-Essays-LessWrong-Community/dp/B0C95MJJBK/">
+          <a className="book" href="https://www.amazon.com/Carving-Reality-Essays-Unresigned-Community/dp/B0C95MJJBK/">
             <img className="spine" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1702342229/Spine_3_t0odgr.png" />
             <div className="spine-thickness"></div>
             <img className="cover" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1692320746/timelines-takeoff-cover_yxfvtw.jpg" />
           </a>
         </div>
         <div className="book-container reality-reason">
-          <a className="book" href="https://www.amazon.com/Carving-Reality-Essays-LessWrong-Community/dp/B0C95MJJBK/">
+          <a className="book" href="https://www.amazon.com/Carving-Reality-Essays-Unresigned-Community/dp/B0C95MJJBK/">
             <img className="spine" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1702342229/Spine_4_tj8umw.png" />
             <div className="spine-thickness"></div>
             <img className="cover" src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1692320746/reality-reason_r9bpxq.jpg" />
@@ -407,15 +407,15 @@ const Books2021SaleAnimation = ({successContent}: {
         </div>
       </div>
       <div className={classes.revealedContent}>
-          <h2>LessWrong Books Holiday Sale</h2>
+          <h2>Unresigned Books Holiday Sale</h2>
           <p>
-            Until Christmas buy the "Best of LessWrong" books for 10% off, or buy all three for 20% off.
+            Until Christmas buy the "Best of Unresigned" books for 10% off, or buy all three for 20% off.
           </p>
           <p>
-            134 essays in 13 books written by 64 authors. Curated by the LessWrong community. 
+            134 essays in 13 books written by 64 authors. Curated by the Unresigned community. 
           </p>
           <div className={classes.buyButton}>
-            <a className={classes.amazonButton} href="https://www.amazon.com/Map-that-Reflects-Territory-LessWrong/dp/1736128507/">
+            <a className={classes.amazonButton} href="https://www.amazon.com/Map-that-Reflects-Territory-Unresigned/dp/1736128507/">
               Buy on Amazon
             </a>
             <a className={classes.hide} onClick={() => setCookie(HIDE_2021_BOOK_BANNER_COOKIE,"true")}> 

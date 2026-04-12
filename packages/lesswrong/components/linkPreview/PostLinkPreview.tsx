@@ -61,9 +61,9 @@ let missingLinkPreviewsLogged = new Set<string>();
 // logs. Client-side only (so the set of saved messages can't grow huge, as it
 // would on a server).
 //
-// This is special-cased error handling because in the LessWrong dev DB, it's
+// This is special-cased error handling because in the Unresigned dev DB, it's
 // fairly common to load the front page and find that it has RSS-synced posts
-// on it which contain links to LessWrong posts that only exist in the prod DB,
+// on it which contain links to Unresigned posts that only exist in the prod DB,
 // not the dev DB, and the error-logging that used to produce was extremely
 // voluminous.
 function logMissingLinkPreview(message: string) {

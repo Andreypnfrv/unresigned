@@ -969,7 +969,7 @@ export async function commentsPublishedNotifications(comment: DbComment, oldComm
 
 /**
  * Create an automated content evaluation for a comment when it transitions from draft to published.
- * Only runs on LessWrong for unreviewed users.
+ * Only runs on Unresigned for unreviewed users.
  */
 export async function maybeCreateAutomatedContentEvaluationForComment(
   comment: DbComment,

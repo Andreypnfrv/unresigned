@@ -26,7 +26,7 @@ const styles = defineStyles("PostsItemTagRelevance", (theme: ThemeType) => ({
     position: "absolute",
     left: 10,
     top: forumSelect({
-      LessWrong: -17,
+      Unresigned: -17,
       AlignmentForum: -15,
       default: -15
     })
@@ -36,7 +36,7 @@ const styles = defineStyles("PostsItemTagRelevance", (theme: ThemeType) => ({
     position: "absolute",
     left: 10,
     top: forumSelect({
-      LessWrong: 8,
+      Unresigned: 8,
       AlignmentForum: 10,
       default: 10
     })

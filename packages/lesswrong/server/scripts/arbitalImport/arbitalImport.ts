@@ -2398,10 +2398,10 @@ export async function fixArbitalLensFirstRevisionUserId(mysqlConnectionString: s
       continue;
     }
 
-    // find matching user in LessWrong DB
+    // find matching user in Unresigned DB
     const matchedUser = matchedUsers[arbitalFirstRevision.creatorId];
     if (!matchedUser) {
-      console.log(`No matching user found for revision ${initialRevision._id} in LessWrong DB`);
+      console.log(`No matching user found for revision ${initialRevision._id} in Unresigned DB`);
       continue;
     }
 

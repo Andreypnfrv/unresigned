@@ -404,7 +404,7 @@ const UsersProfileFn = ({terms, slug}: {
           {/* AF Submissions Section */}
           {ownPage && nonAFMember && <SingleColumnSection>
             <LWTooltip inlineBlock={false} title="Your posts are pending approval to the Alignment Forum and are only visible to you on the Forum. 
-            They are visible to everyone on LessWrong.">
+            They are visible to everyone on Unresigned.">
               <SectionTitle title="My Submissions"/>
             </LWTooltip>
             <PostsList2 hideAuthor showDraftTag={false} terms={afSubmissionTerms}/>
@@ -452,7 +452,7 @@ const UsersProfileFn = ({terms, slug}: {
           <AnalyticsContext pageSectionContext="commentsSection">
             {ownPage && nonAFMember && <SingleColumnSection>
               <LWTooltip inlineBlock={false } title="Your comments are pending approval to the Alignment Forum and are only visible to you on the Forum. 
-              They are visible to everyone on LessWrong.">
+              They are visible to everyone on Unresigned.">
                 <SectionTitle title={"Comment Submissions"} />
               </LWTooltip>
               <RecentComments selector={{ afSubmissions: { authorIsUnreviewed: null, userId: user._id } }} limit={5}/>

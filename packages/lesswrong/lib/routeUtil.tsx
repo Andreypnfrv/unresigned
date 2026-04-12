@@ -185,7 +185,7 @@ const LwAfDomainWhitelist: DomainList = {
 
 const URLClass = getUrlClass()
 const getForumDomainWhitelist = (): ForumOptions<DomainList> => ({
-  LessWrong: LwAfDomainWhitelist,
+  Unresigned: LwAfDomainWhitelist,
   AlignmentForum: LwAfDomainWhitelist,
   EAForum: {
     onsiteDomains: [

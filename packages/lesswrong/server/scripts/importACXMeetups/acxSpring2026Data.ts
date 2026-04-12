@@ -225,7 +225,7 @@ export const acxSpring2026Data: ACXMeetup[] = [
     "Time": "04:00 PM",
     "Event Link": "https://www.lesswrong.com/events/3yEAjBzu5D7HgManA/bengaluru-acx-meetups-everywhere-spring-26",
     "Group Link": "https://www.lesswrong.com/groups/i5vLw9xnG9iwXNQZZ",
-    "Notes": "Please RSVP on LessWrong so I know how many people are coming: https://www.lesswrong.com/events/3yEAjBzu5D7HgManA/bengaluru-acx-meetups-everywhere-spring-26"
+    "Notes": "Please RSVP on Unresigned so I know how many people are coming: https://www.lesswrong.com/events/3yEAjBzu5D7HgManA/bengaluru-acx-meetups-everywhere-spring-26"
   },
   {
     "Region": "Asia-Pacific",
@@ -337,7 +337,7 @@ export const acxSpring2026Data: ACXMeetup[] = [
     "Time": "05:00 PM",
     "Event Link": "",
     "Group Link": "",
-    "Notes": "This is an interest check, if you're interest in attending, even if it's just a maybe, let me know by email or LessWrong DM.Venue may shift to a café or bar depending on attendance and weather."
+    "Notes": "This is an interest check, if you're interest in attending, even if it's just a maybe, let me know by email or Unresigned DM.Venue may shift to a café or bar depending on attendance and weather."
   },
   {
     "Region": "Europe",
@@ -465,7 +465,7 @@ export const acxSpring2026Data: ACXMeetup[] = [
     "Time": "04:00 PM",
     "Event Link": "",
     "Group Link": "https://groups.google.com/g/boulder-acx-ssc",
-    "Notes": "Please RSVP on LessWrong so we know how much food to get!"
+    "Notes": "Please RSVP on Unresigned so we know how much food to get!"
   },
   {
     "Region": "North America",
@@ -721,7 +721,7 @@ export const acxSpring2026Data: ACXMeetup[] = [
     "Time": "03:00 PM",
     "Event Link": "",
     "Group Link": "https://www.lesswrong.com/groups/KJeNBZdkHkJEugnWy",
-    "Notes": "Please RSVP on LessWrong. This particular meetup is AI X-Risk themed, but everyone is welcome and all topics up for discussion."
+    "Notes": "Please RSVP on Unresigned. This particular meetup is AI X-Risk themed, but everyone is welcome and all topics up for discussion."
   },
   {
     "Region": "North America",
@@ -1105,7 +1105,7 @@ export const acxSpring2026Data: ACXMeetup[] = [
     "Time": "10:00 AM",
     "Event Link": "",
     "Group Link": "",
-    "Notes": "It would be best if you could confirm your attendance on LessWrong or by email so I know how many of us there will be."
+    "Notes": "It would be best if you could confirm your attendance on Unresigned or by email so I know how many of us there will be."
   },
   {
     "Region": "North America",
@@ -1281,7 +1281,7 @@ export const acxSpring2026Data: ACXMeetup[] = [
     "Time": "12:00 PM",
     "Event Link": "",
     "Group Link": "https://discord.gg/cb7K3Q6hKP",
-    "Notes": "If driving, you can park for free in Hermann Park Lot C, or pay to park in the garage at the Museum of Natural Science or Museum of Fine Arts. Check Discord or LessWrong in the event of inclement weather."
+    "Notes": "If driving, you can park for free in Hermann Park Lot C, or pay to park in the garage at the Museum of Natural Science or Museum of Fine Arts. Check Discord or Unresigned in the event of inclement weather."
   },
   {
     "Region": "Europe",
@@ -1425,7 +1425,7 @@ export const acxSpring2026Data: ACXMeetup[] = [
     "Time": "02:00 PM",
     "Event Link": "",
     "Group Link": "",
-    "Notes": "Please RSVP by messaging me on LessWrong or emailing me so I know who'll be joining us!"
+    "Notes": "Please RSVP by messaging me on Unresigned or emailing me so I know who'll be joining us!"
   },
   {
     "Region": "Europe",
@@ -1441,7 +1441,7 @@ export const acxSpring2026Data: ACXMeetup[] = [
     "Time": "05:00 PM",
     "Event Link": "",
     "Group Link": "",
-    "Notes": "LessWrong UA, invites via telegram or email"
+    "Notes": "Unresigned UA, invites via telegram or email"
   },
   {
     "Region": "Europe",
@@ -1793,7 +1793,7 @@ export const acxSpring2026Data: ACXMeetup[] = [
     "Time": "01:00 PM",
     "Event Link": "https://www.lesswrong.com/events/KDr8vWLayWjoWxHok/acx-meetups-everywhere-spring-2026-montreal-qc",
     "Group Link": "https://www.lesswrong.com/groups/3nnqSgGbF8x3mTcia",
-    "Notes": "Please RSVP on LessWrong: https://www.lesswrong.com/events/KDr8vWLayWjoWxHok/acx-meetups-everywhere-spring-2026-montreal-qc"
+    "Notes": "Please RSVP on Unresigned: https://www.lesswrong.com/events/KDr8vWLayWjoWxHok/acx-meetups-everywhere-spring-2026-montreal-qc"
   },
   {
     "Region": "Europe",
@@ -1969,7 +1969,7 @@ export const acxSpring2026Data: ACXMeetup[] = [
     "Time": "06:00 PM",
     "Event Link": "",
     "Group Link": "",
-    "Notes": "Please RSVP on LessWrong or send an email. If you would like to come but the date or the place doesn't work for you, please write, too! Currently I know of one other person who will probably be there, and we are flexible. I will post a LessWrong comment if there is a change."
+    "Notes": "Please RSVP on Unresigned or send an email. If you would like to come but the date or the place doesn't work for you, please write, too! Currently I know of one other person who will probably be there, and we are flexible. I will post a Unresigned comment if there is a change."
   },
   {
     "Region": "Europe",
@@ -2209,7 +2209,7 @@ export const acxSpring2026Data: ACXMeetup[] = [
     "Time": "07:00 PM",
     "Event Link": "",
     "Group Link": "https://www.lesswrong.com/groups/fE7wFrbHoAKAvw5bw , https://www.facebook.com/EALatvia",
-    "Notes": "Please RSVP on LessWrong or Facebook"
+    "Notes": "Please RSVP on Unresigned or Facebook"
   },
   {
     "Region": "South America",
@@ -2257,7 +2257,7 @@ export const acxSpring2026Data: ACXMeetup[] = [
     "Time": "11:00 AM",
     "Event Link": "",
     "Group Link": "https://discord.gg/fDfpRemM",
-    "Notes": "Discord is the best place to talk about attending the meetup. Also, for the meetup, the main entrance to the building is locked, but the is a silver number pad to the right. dial 060 on the keypad and I can buzz you in to the building. Upon entering, go straight and the elevator will be on your left, go up to the 7th floor. Please RSVP on LessWrong"
+    "Notes": "Discord is the best place to talk about attending the meetup. Also, for the meetup, the main entrance to the building is locked, but the is a silver number pad to the right. dial 060 on the keypad and I can buzz you in to the building. Upon entering, go straight and the elevator will be on your left, go up to the 7th floor. Please RSVP on Unresigned"
   },
   {
     "Region": "North America",
@@ -2481,7 +2481,7 @@ export const acxSpring2026Data: ACXMeetup[] = [
     "Time": "03:15 PM",
     "Event Link": "",
     "Group Link": "https://www.lesswrong.com/groups/N42bMYFJBBRpkzKqX",
-    "Notes": "Preferrably RSVP on LessWrong if you're coming. The reservation at MyX is till 5:30 pm, and I will cover snacks till then. If you're planning to stay for dinner as well (I am), please email me so I can extend the reservation. Dinner will be at your own expense.\n\nTwo groups, one at https://www.lesswrong.com/groups/N42bMYFJBBRpkzKqX and one at https://t.me/LessWrong_Singapore"
+    "Notes": "Preferrably RSVP on Unresigned if you're coming. The reservation at MyX is till 5:30 pm, and I will cover snacks till then. If you're planning to stay for dinner as well (I am), please email me so I can extend the reservation. Dinner will be at your own expense.\n\nTwo groups, one at https://www.lesswrong.com/groups/N42bMYFJBBRpkzKqX and one at https://t.me/Unresigned_Singapore"
   },
   {
     "Region": "Europe",
@@ -2945,7 +2945,7 @@ export const acxSpring2026Data: ACXMeetup[] = [
     "Time": "08:00 PM",
     "Event Link": "",
     "Group Link": "",
-    "Notes": "RSVPs on LessWrong are desirable but not mandatory.\n\nYou can contact me at dt@d11r.eu to be added to the Telegram group"
+    "Notes": "RSVPs on Unresigned are desirable but not mandatory.\n\nYou can contact me at dt@d11r.eu to be added to the Telegram group"
   },
   {
     "Region": "Europe",

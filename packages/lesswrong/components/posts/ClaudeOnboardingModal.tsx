@@ -117,7 +117,7 @@ const getClaudeAccessLinkMutation = gql(`
 `);
 
 function getClaudeConfirmMessage(confirmUrl: string) {
-  return `Please confirm that you can access the LessWrong API by running:\n\ncurl -X POST ${confirmUrl}`;
+  return `Please confirm that you can access the Unresigned API by running:\n\ncurl -X POST ${confirmUrl}`;
 }
 
 const ClaudeOnboardingModal = ({
@@ -162,7 +162,7 @@ const ClaudeOnboardingModal = ({
       <div className={classes.content}>
         <div className={classes.title}>
           <ClaudeSparkIcon className={classes.claudeIcon} />
-          Connect Claude to LessWrong
+          Connect Claude to Unresigned
         </div>
 
         <div className={classes.instructions}>

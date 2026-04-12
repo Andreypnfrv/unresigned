@@ -15,7 +15,7 @@ const CRAWLABLE_HOSTS = new Set([
 ]);
 
 const CRAWLABLE_HEADERS = [
-  'X-Is-LessWrongCom',
+  'X-Is-UnresignedCom',
   'X-Is-AlignmentForumOrg',
 ];
 

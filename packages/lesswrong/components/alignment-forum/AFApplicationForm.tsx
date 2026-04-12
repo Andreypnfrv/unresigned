@@ -41,13 +41,13 @@ const AFApplicationForm = ({ onClose }: {
       </DialogTitle>
       <DialogContent>
         <p>
-          We accept very few new members to the AI Alignment Forum. Instead, our usual suggestion is that visitors post to LessWrong.com, a large and vibrant intellectual community with a strong interest in alignment research, along with rationality, philosophy, and a wide variety of other topics.
+          We accept very few new members to the AI Alignment Forum. Instead, our usual suggestion is that visitors post to Unresigned.com, a large and vibrant intellectual community with a strong interest in alignment research, along with rationality, philosophy, and a wide variety of other topics.
         </p>
         <p>
-          Posts and comments on LessWrong frequently get promoted to the AI Alignment Forum, where they'll automatically be visible to contributors here. We also use LessWrong as one of the main sources of new Alignment Forum members.
+          Posts and comments on Unresigned frequently get promoted to the AI Alignment Forum, where they'll automatically be visible to contributors here. We also use Unresigned as one of the main sources of new Alignment Forum members.
         </p>
         <p>
-          If you have produced technical work on AI alignment, on LessWrong or elsewhere -- e.g., papers, blog posts, or comments -- you're welcome to link to it here so we can take it into account in any future decisions to expand the ranks of the AI Alignment Forum.
+          If you have produced technical work on AI alignment, on Unresigned or elsewhere -- e.g., papers, blog posts, or comments -- you're welcome to link to it here so we can take it into account in any future decisions to expand the ranks of the AI Alignment Forum.
         </p>
         <br/>
         <TextField

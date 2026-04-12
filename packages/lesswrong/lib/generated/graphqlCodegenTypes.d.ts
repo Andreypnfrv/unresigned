@@ -8612,7 +8612,7 @@ type ReviewWinnerArtsPostArtInput = {
 };
 
 type ReviewWinnerSelector = {
-  bestOfLessWrongAnnouncement?: InputMaybe<EmptyViewInput>;
+  bestOfUnresignedAnnouncement?: InputMaybe<EmptyViewInput>;
   default?: InputMaybe<EmptyViewInput>;
   reviewWinnerSingle?: InputMaybe<ReviewWinnersReviewWinnerSingleInput>;
 };
@@ -16534,24 +16534,24 @@ type PostsNewFormQueryVariables = Exact<{
 
 type PostsNewFormQuery = PostsNewFormQuery_Query;
 
-type multiReviewWinnerBestOfLessWrongAnnouncementQueryQuery_reviewWinners_MultiReviewWinnerOutput_results_ReviewWinner = (
+type multiReviewWinnerBestOfUnresignedAnnouncementQueryQuery_reviewWinners_MultiReviewWinnerOutput_results_ReviewWinner = (
   { __typename?: 'ReviewWinner' }
   & ReviewWinnerAnnouncement
 );
 
-type multiReviewWinnerBestOfLessWrongAnnouncementQueryQuery_reviewWinners_MultiReviewWinnerOutput = { __typename?: 'MultiReviewWinnerOutput', totalCount: number | null, results: Array<multiReviewWinnerBestOfLessWrongAnnouncementQueryQuery_reviewWinners_MultiReviewWinnerOutput_results_ReviewWinner> };
+type multiReviewWinnerBestOfUnresignedAnnouncementQueryQuery_reviewWinners_MultiReviewWinnerOutput = { __typename?: 'MultiReviewWinnerOutput', totalCount: number | null, results: Array<multiReviewWinnerBestOfUnresignedAnnouncementQueryQuery_reviewWinners_MultiReviewWinnerOutput_results_ReviewWinner> };
 
-type multiReviewWinnerBestOfLessWrongAnnouncementQueryQuery_Query = { __typename?: 'Query', reviewWinners: multiReviewWinnerBestOfLessWrongAnnouncementQueryQuery_reviewWinners_MultiReviewWinnerOutput | null };
+type multiReviewWinnerBestOfUnresignedAnnouncementQueryQuery_Query = { __typename?: 'Query', reviewWinners: multiReviewWinnerBestOfUnresignedAnnouncementQueryQuery_reviewWinners_MultiReviewWinnerOutput | null };
 
 
-type multiReviewWinnerBestOfLessWrongAnnouncementQueryQueryVariables = Exact<{
+type multiReviewWinnerBestOfUnresignedAnnouncementQueryQueryVariables = Exact<{
   selector: InputMaybe<ReviewWinnerSelector>;
   limit: InputMaybe<Scalars['Int']['input']>;
   enableTotal: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 
-type multiReviewWinnerBestOfLessWrongAnnouncementQueryQuery = multiReviewWinnerBestOfLessWrongAnnouncementQueryQuery_Query;
+type multiReviewWinnerBestOfUnresignedAnnouncementQueryQuery = multiReviewWinnerBestOfUnresignedAnnouncementQueryQuery_Query;
 
 type createSplashArtCoordinateImageCropPreviewMutation_createSplashArtCoordinate_SplashArtCoordinateOutput_data_SplashArtCoordinate = (
   { __typename?: 'SplashArtCoordinate' }
@@ -17166,37 +17166,37 @@ type RecommendationsQueryQueryVariables = Exact<{
 
 type RecommendationsQueryQuery = RecommendationsQueryQuery_Query;
 
-type multiReviewWinnerArtBestOfLessWrongAdminQueryQuery_reviewWinnerArts_MultiReviewWinnerArtOutput_results_ReviewWinnerArt = (
+type multiReviewWinnerArtBestOfUnresignedAdminQueryQuery_reviewWinnerArts_MultiReviewWinnerArtOutput_results_ReviewWinnerArt = (
   { __typename?: 'ReviewWinnerArt' }
   & ReviewWinnerArtImages
 );
 
-type multiReviewWinnerArtBestOfLessWrongAdminQueryQuery_reviewWinnerArts_MultiReviewWinnerArtOutput = { __typename?: 'MultiReviewWinnerArtOutput', totalCount: number | null, results: Array<multiReviewWinnerArtBestOfLessWrongAdminQueryQuery_reviewWinnerArts_MultiReviewWinnerArtOutput_results_ReviewWinnerArt> };
+type multiReviewWinnerArtBestOfUnresignedAdminQueryQuery_reviewWinnerArts_MultiReviewWinnerArtOutput = { __typename?: 'MultiReviewWinnerArtOutput', totalCount: number | null, results: Array<multiReviewWinnerArtBestOfUnresignedAdminQueryQuery_reviewWinnerArts_MultiReviewWinnerArtOutput_results_ReviewWinnerArt> };
 
-type multiReviewWinnerArtBestOfLessWrongAdminQueryQuery_Query = { __typename?: 'Query', reviewWinnerArts: multiReviewWinnerArtBestOfLessWrongAdminQueryQuery_reviewWinnerArts_MultiReviewWinnerArtOutput | null };
+type multiReviewWinnerArtBestOfUnresignedAdminQueryQuery_Query = { __typename?: 'Query', reviewWinnerArts: multiReviewWinnerArtBestOfUnresignedAdminQueryQuery_reviewWinnerArts_MultiReviewWinnerArtOutput | null };
 
 
-type multiReviewWinnerArtBestOfLessWrongAdminQueryQueryVariables = Exact<{
+type multiReviewWinnerArtBestOfUnresignedAdminQueryQueryVariables = Exact<{
   selector: InputMaybe<ReviewWinnerArtSelector>;
   limit: InputMaybe<Scalars['Int']['input']>;
   enableTotal: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 
-type multiReviewWinnerArtBestOfLessWrongAdminQueryQuery = multiReviewWinnerArtBestOfLessWrongAdminQueryQuery_Query;
+type multiReviewWinnerArtBestOfUnresignedAdminQueryQuery = multiReviewWinnerArtBestOfUnresignedAdminQueryQuery_Query;
 
-type BestOfLessWrongAdminQuery_GetAllReviewWinners_Post = (
+type BestOfUnresignedAdminQuery_GetAllReviewWinners_Post = (
   { __typename?: 'Post' }
   & PostsTopItemInfo
 );
 
-type BestOfLessWrongAdminQuery_Query = { __typename?: 'Query', GetAllReviewWinners: Array<BestOfLessWrongAdminQuery_GetAllReviewWinners_Post> };
+type BestOfUnresignedAdminQuery_Query = { __typename?: 'Query', GetAllReviewWinners: Array<BestOfUnresignedAdminQuery_GetAllReviewWinners_Post> };
 
 
-type BestOfLessWrongAdminQueryVariables = Exact<{ [key: string]: never; }>;
+type BestOfUnresignedAdminQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type BestOfLessWrongAdminQuery = BestOfLessWrongAdminQuery_Query;
+type BestOfUnresignedAdminQuery = BestOfUnresignedAdminQuery_Query;
 
 type FrontpageBestOfLWWidgetQuery_post_SinglePostOutput_result_Post = (
   { __typename?: 'Post' }

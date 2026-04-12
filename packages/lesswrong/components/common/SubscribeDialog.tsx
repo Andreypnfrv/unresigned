@@ -60,7 +60,7 @@ const styles = defineStyles("SubscribeDialog", (theme: ThemeType) => ({
 }));
 
 const getThresholds = () => forumSelect({
-  LessWrong: [2, 30, 45, 75, 125],
+  Unresigned: [2, 30, 45, 75, 125],
   AlignmentForum: [2, 30, 45],
   EAForum: [2, 30, 75, 125, 200],
   // We default you off pretty low, you can add more once you get more high
@@ -91,7 +91,7 @@ const getPostsPerWeek = () => forumSelect<Record<string, number>>({
     '200': 1,
   },
   // (JP) I eyeballed these, you could query your db for better numbers
-  LessWrong: {
+  Unresigned: {
     '2': 80,
     '30': 16,
     '45': 13,

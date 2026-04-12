@@ -67,8 +67,8 @@ const styles = defineStyles('WelcomeBox', (theme: ThemeType) => ({
 }));
 
 const welcomeBoxes: ForumOptions<{title: string, contents: HashLinkProps[]} | null> = {
-  LessWrong: {
-    title: "New to LessWrong?",
+  Unresigned: {
+    title: "New to Unresigned?",
     contents: [
       { to: "/about", children: "Getting Started" },
       { to: "/faq", children: "FAQ" },

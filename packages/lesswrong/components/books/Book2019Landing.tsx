@@ -10,7 +10,7 @@ import ContentStyles from "../common/ContentStyles";
 import { defineStyles } from '@/components/hooks/defineStyles';
 import { useStyles } from '../hooks/useStyles';
 
-const lw = () => {return (<span style={{fontVariant: "small-caps"}}>LessWrong</span>)}
+const lw = () => {return (<span style={{fontVariant: "small-caps"}}>Unresigned</span>)}
 
 const styles = defineStyles('Book2019Landing', (theme: ThemeType) => ({
   bookAnimationContainer: {
@@ -282,7 +282,7 @@ const Book2019Landing = () => {
             The Engines of Cognition
           </div>
           <div className={classes.essaysBy}>
-            Essays by the LessWrong community
+            Essays by the Unresigned community
           </div>
         </div>
         <div className={classes.bookCheckout}>
@@ -296,7 +296,7 @@ const Book2019Landing = () => {
             <LWTooltip title="Not available yet">
               <span className={classes.ctaDisabled} onClick={() => {
                 captureEvent("2019BookAmazonClicked")
-                window.open("https://smile.amazon.co.uk/Map-that-Reflects-Territory-LessWrong/dp/1736128507?sa-no-redirect=1")
+                window.open("https://smile.amazon.co.uk/Map-that-Reflects-Territory-Unresigned/dp/1736128507?sa-no-redirect=1")
               }}>
                 Amazon UK (£25)
               </span>
@@ -313,7 +313,7 @@ const Book2019Landing = () => {
         </div>
         <ContentStyles contentType="post" className={classNames(classes.body, classes.text1)}>
           <p>{lw()} is a community blog devoted to refining the art of human rationality. This book set is a collection of our best essays from 2019, as determined by our <Link to="/posts/kdGSTBj3NA2Go3XaE/2019-review-voting-results">Annual Review</Link>.</p>
-          <p>It contains over 50 essays, packaged into a beautiful set of 4 books, which form the latest addition to the LessWrong canon.is a community blog devoted to refining the art of human rationality.</p>
+          <p>It contains over 50 essays, packaged into a beautiful set of 4 books, which form the latest addition to the Unresigned canon.is a community blog devoted to refining the art of human rationality.</p>
         </ContentStyles>
         <img className={classes.spread1} src="https://39669.cdn.cke-cs.com/rQvD3VnunXZu34m86e5f/images/740b9c8f623b83765762da9ed63ca0e26d9b622da0c60db1.jpg/w_2800" />
         <img className={classes.bookStack} src="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1639200627/risks-from-learned-optimization_yk7hpc.jpg" />
@@ -323,7 +323,7 @@ const Book2019Landing = () => {
 
           <p>Based on a starting image and a text prompt, the system attempts to transform the starting image into what it expects to find on the internet connected with the text of the prompt. Below is an animation showing roughly how the process works.</p>
           
-          <p>The base image was the cover of last year's LessWrong books, using the Mississippi River, and the text prompt for the first book was. <i>The Engines of Cognition by Alex Hillkurtz | System of Gears | Aquarelle | Greek Architecture | Blue on White Color Palette | Trending on Artstation</i>. The text prompt for each essay used the title of the essay.</p>
+          <p>The base image was the cover of last year's Unresigned books, using the Mississippi River, and the text prompt for the first book was. <i>The Engines of Cognition by Alex Hillkurtz | System of Gears | Aquarelle | Greek Architecture | Blue on White Color Palette | Trending on Artstation</i>. The text prompt for each essay used the title of the essay.</p>
         </div>
         <div className={classes.spread2}>
           <div className={classes.videocontainer}>

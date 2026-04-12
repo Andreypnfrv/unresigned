@@ -1127,7 +1127,7 @@ export const MiscSettings: React.FC<MiscSettingsProps> = ({ formValues, onBoolea
         </label>
       </div>
       <p className={classes.groupDescription}>
-        When enabled, the feed algorithm does not log viewing behavior (votes and comments will still influence it). This does not disable standard LessWrong analytics separate from the feed.
+        When enabled, the feed algorithm does not log viewing behavior (votes and comments will still influence it). This does not disable standard Unresigned analytics separate from the feed.
       </p>
 
       {isAdmin && (

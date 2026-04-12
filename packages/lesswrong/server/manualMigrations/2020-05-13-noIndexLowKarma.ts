@@ -8,7 +8,7 @@ export const LOW_KARMA_THRESHOLD = 5
 
 const dateFormat = 'YYYY-MM-DD'
 const launchDateByForum: ForumOptions<string> = {
-  LessWrong: 'TODO', // lw-look-here
+  Unresigned: 'TODO', // lw-look-here
   AlignmentForum: "Don't",
   EAForum: '2014-09-10',
   default: "ahhhhh",

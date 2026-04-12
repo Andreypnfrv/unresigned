@@ -91,7 +91,7 @@ export const sharedSettings = {
   adminAccount: {
     _id: "AgwWRYMJRutPtkjds",
     email: "team@lesswrong.com",
-    username: "LessWrong"
+    username: "Unresigned"
   },
   annualReview: {
     end: "2024-02-01T08:00:00Z",

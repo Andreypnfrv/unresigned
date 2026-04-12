@@ -47,7 +47,7 @@ export function getContributorsFieldResolver(options: ContributorsFieldOptions) 
       contributorUserIds,
       userId => forumSelect({
         // TODO: But this should be tied to whether the default is using our tag page or not
-        LessWrong: -(contributionStatsByUserId[userId]!.currentAttributionCharCount ?? 0),
+        Unresigned: -(contributionStatsByUserId[userId]!.currentAttributionCharCount ?? 0),
         AlignmentForum: -(contributionStatsByUserId[userId]!.currentAttributionCharCount ?? 0),
         default: -contributionStatsByUserId[userId]!.contributionScore
       })

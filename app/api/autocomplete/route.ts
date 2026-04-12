@@ -2,6 +2,7 @@ import { NextRequest } from "next/server";
 import { getContextFromReqAndRes } from "@/server/vulcan-lib/apollo-server/context";
 import { userIsAdmin } from "@/lib/vulcan-users/permissions";
 import { getAnthropicClientOrThrow } from "@/server/languageModels/anthropicClient";
+import { aiFeaturesEnabled } from "@/lib/betas";
 import { constructMessageHistory } from "@/server/autocompleteEndpoint";
 import { z } from "zod";
 
@@ -23,6 +24,14 @@ export async function POST(req: NextRequest) {
     ]);
 
     const currentUser = context.currentUser;
+
+    if (!aiFeaturesEnabled()) {
+      return new Response(JSON.stringify({ error: "AI features are disabled" }), {
+        status: 503,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
     if (!currentUser) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
         status: 401,

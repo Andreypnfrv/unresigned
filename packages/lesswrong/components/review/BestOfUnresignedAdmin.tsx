@@ -15,7 +15,7 @@ import {
 import { FocusedView } from './reviewAdminViews/FocusedView';
 
 const ReviewWinnerArtImagesMultiQuery = gql(`
-  query multiReviewWinnerArtBestOfLessWrongAdminQuery($selector: ReviewWinnerArtSelector, $limit: Int, $enableTotal: Boolean) {
+  query multiReviewWinnerArtBestOfUnresignedAdminQuery($selector: ReviewWinnerArtSelector, $limit: Int, $enableTotal: Boolean) {
     reviewWinnerArts(selector: $selector, limit: $limit, enableTotal: $enableTotal) {
       results {
         ...ReviewWinnerArtImages
@@ -25,7 +25,7 @@ const ReviewWinnerArtImagesMultiQuery = gql(`
   }
 `);
 
-const styles = defineStyles("BestOfLessWrongAdmin", (theme: ThemeType) => ({
+const styles = defineStyles("BestOfUnresignedAdmin", (theme: ThemeType) => ({
   root: {
     paddingLeft: 24,
     paddingRight: 24,
@@ -59,12 +59,12 @@ const styles = defineStyles("BestOfLessWrongAdmin", (theme: ThemeType) => ({
   },
 }));
 
-export const BestOfLessWrongAdmin = ({year}: {year: string}) => {
+export const BestOfUnresignedAdmin = ({year}: {year: string}) => {
   const classes = useStyles(styles);
   const currentUser = useCurrentUser();
 
   const { data, loading: reviewWinnersLoading } = useQuery(gql(`
-    query BestOfLessWrongAdmin {
+    query BestOfUnresignedAdmin {
       GetAllReviewWinners {
         ...PostsTopItemInfo
       }
@@ -114,7 +114,7 @@ export const BestOfLessWrongAdmin = ({year}: {year: string}) => {
 
   return <div className={classes.root}>
     <div className={classes.header}>
-      <h1 className={classes.title}>Best of LessWrong Admin — {year}</h1>
+      <h1 className={classes.title}>Best of Unresigned Admin — {year}</h1>
     </div>
     <div className={classes.stats}>
       <span className={classes.statItem}>
@@ -142,4 +142,4 @@ export const BestOfLessWrongAdmin = ({year}: {year: string}) => {
   </div>;
 };
 
-export default BestOfLessWrongAdmin;
+export default BestOfUnresignedAdmin;

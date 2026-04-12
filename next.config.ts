@@ -46,7 +46,7 @@ const nextConfig: NextConfig = {
   compiler: {
     define: {
       ...(isE2E ? { 'process.env.E2E': 'true' } : {}),
-      'process.env.FORUM_TYPE': process.env.FORUM_TYPE ?? 'LessWrong',
+      'process.env.FORUM_TYPE': process.env.FORUM_TYPE ?? 'Unresigned',
       ...(process.env.VERCEL_DEPLOYMENT_ID ? { 'process.env.VERCEL_DEPLOYMENT_ID': 'true' } : {}),
       ...(process.env.HOCUSPOCUS_URL ? { 'process.env.NEXT_PUBLIC_HOCUSPOCUS_URL': process.env.HOCUSPOCUS_URL } : {}),
     },
@@ -61,6 +61,7 @@ const nextConfig: NextConfig = {
   turbopack: {
     resolveAlias: {
       // Replicate the path mappings from tsconfig-client.json
+      '@/server/settings/settings': { browser: './packages/lesswrong/stubs/server/settings/settings.ts' },
       '@/server/*': { browser: './packages/lesswrong/stubs/server/*' },
       '@/client/*': { browser: './packages/lesswrong/client/*', default: './packages/lesswrong/stubs/client/*' },
       '@/allComponents': './packages/lesswrong/lib/generated/allComponents.ts',

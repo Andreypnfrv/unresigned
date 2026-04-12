@@ -5,10 +5,10 @@ import { updateFieldType } from "./meta/utils";
  * Generated on 2024-08-28T23:08:39.282Z by `yarn makemigrations`
  * The following schema changes were detected:
  * -------------------------------------------
- * diff --git a/Users/rbloom/git/lesswrongSuite/LessWrong2/schema/accepted_schema.sql b/Users/rbloom/git/lesswrongSuite/LessWrong2/schema/schema_to_accept.sql
+ * diff --git a/Users/rbloom/git/lesswrongSuite/Unresigned2/schema/accepted_schema.sql b/Users/rbloom/git/lesswrongSuite/Unresigned2/schema/schema_to_accept.sql
  * index 255a3886ea..f8277ff076 100644
- * --- a/Users/rbloom/git/lesswrongSuite/LessWrong2/schema/accepted_schema.sql
- * +++ b/Users/rbloom/git/lesswrongSuite/LessWrong2/schema/schema_to_accept.sql
+ * --- a/Users/rbloom/git/lesswrongSuite/Unresigned2/schema/accepted_schema.sql
+ * +++ b/Users/rbloom/git/lesswrongSuite/Unresigned2/schema/schema_to_accept.sql
  * @@ -4,5 +4,3 @@
  *  --
  * --- Overall schema hash: e4f656b97627c2f035fdee90d49cb5dc

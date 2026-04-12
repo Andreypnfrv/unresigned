@@ -135,7 +135,7 @@ const buildPreviewFromDocument = (
   const processContents = (contents: { type: string; data: string }) => {
     if (!["html", "ckEditorMarkup", "markdown", "lexical"].includes(contents.type)) {
       return {
-        description: `<Description preview not supported for this editor type (${contents.type}), switch to HTML, Markdown, or LessWrong Docs to see the description preview>`,
+        description: `<Description preview not supported for this editor type (${contents.type}), switch to HTML, Markdown, or Unresigned Docs to see the description preview>`,
         image: null,
       };
     }

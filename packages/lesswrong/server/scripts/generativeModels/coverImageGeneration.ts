@@ -1,5 +1,5 @@
 /*
- * AI-generated cover images for Best of LessWrong review winner posts.
+ * AI-generated cover images for Best of Unresigned review winner posts.
  *
  * Bulk generation via repl:
  *   yarn repl prod packages/lesswrong/server/scripts/generativeModels/coverImageGeneration.ts 'getReviewWinnerArts()'
@@ -229,7 +229,7 @@ ${DIM}────────────────────────�
 // illustration descriptions, then appends the watercolor style suffix.
 
 function buildIllustrationPrompt(title: string, essay: string, promptsGenerated: number): string {
-  return `I am creating cover art for essays that will be featured on LessWrong. For each piece of art, I want a clear description of a visual illustration that captures the essence of the essay.
+  return `I am creating cover art for essays that will be featured on Unresigned. For each piece of art, I want a clear description of a visual illustration that captures the essence of the essay.
 
 The illustration description should be concrete and specific, and should be something that can be depicted in a single image. The description should be something that is both visually striking and that captures the essence of the essay in a way that is likely to be interesting. It should be 5 - 15 words long.
 
@@ -495,7 +495,7 @@ const MJ_SREF_URLS = [
 function formatAsMidjourneyPrompt(illustrationDescription: string): string {
   const lowerCased = illustrationDescription[0].toLowerCase() + illustrationDescription.slice(1);
   const srefs = MJ_SREF_URLS.join(" ");
-  return `LessWrong review winner art, ${lowerCased}, aquarelle painting fading to white by Thomas W. Schaller --no text --sref ${srefs} --profile wkbqykw --ar 2:1 --v 7`;
+  return `Unresigned review winner art, ${lowerCased}, aquarelle painting fading to white by Thomas W. Schaller --no text --sref ${srefs} --profile wkbqykw --ar 2:1 --v 7`;
 }
 
 // ── Browser bridge ────────────────────────────────────────────────────

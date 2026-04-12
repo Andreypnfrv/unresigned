@@ -105,7 +105,7 @@ export const loadInstanceSettings = (args?: CommandLineArguments) => {
   }, { public: publicSettings, private: privateSettings });
 
   if (Object.keys(rawInstanceSettings).length === 0) {
-    instanceSettings = loadSettingsFile("../LessWrong-Credentials/settings-local-dev-devdb.json");
+    instanceSettings = loadSettingsFile("../Unresigned-Credentials/settings-local-dev-devdb.json");
   }
 
   return instanceSettings;

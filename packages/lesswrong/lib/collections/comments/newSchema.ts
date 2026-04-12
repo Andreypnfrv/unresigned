@@ -705,7 +705,7 @@ const schema = {
       },
     },
   },
-  // Legacy ID: ID used in the original LessWrong database
+  // Legacy ID: ID used in the original Unresigned database
   legacyId: {
     database: {
       type: "TEXT",

@@ -4319,7 +4319,7 @@ export function getDefaultHomePageBody(): string {
 
     function AnnouncementCard(props) {
       var post = props.post || null;
-      var cardLabel = post ? formatByline(post) : 'LessWrong';
+      var cardLabel = post ? formatByline(post) : 'Unresigned';
       var titleHref = post ? postUrl(post) : null;
       var isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 639px)').matches;
       var cardRef = useRef(null);

@@ -2,10 +2,10 @@
  * Generated on 2023-08-16T20:38:07.177Z by `yarn makemigrations`
  * The following schema changes were detected:
  * -------------------------------------------
- * diff --git a/Users/raymondarnold/Documents/LessWrongSuite/Lesswrong2/schema/accepted_schema.sql b/Users/raymondarnold/Documents/LessWrongSuite/Lesswrong2/schema/schema_to_accept.sql
+ * diff --git a/Users/raymondarnold/Documents/UnresignedSuite/Lesswrong2/schema/accepted_schema.sql b/Users/raymondarnold/Documents/UnresignedSuite/Lesswrong2/schema/schema_to_accept.sql
  * index 5249d88575..d75708ee3d 100644
- * --- a/Users/raymondarnold/Documents/LessWrongSuite/Lesswrong2/schema/accepted_schema.sql
- * +++ b/Users/raymondarnold/Documents/LessWrongSuite/Lesswrong2/schema/schema_to_accept.sql
+ * --- a/Users/raymondarnold/Documents/UnresignedSuite/Lesswrong2/schema/accepted_schema.sql
+ * +++ b/Users/raymondarnold/Documents/UnresignedSuite/Lesswrong2/schema/schema_to_accept.sql
  * @@ -4,5 +4,3 @@
  *  --
  * --- Overall schema hash: d7266200db426f47cd1ba7abcc6a6db7

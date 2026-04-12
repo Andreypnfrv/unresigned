@@ -210,7 +210,7 @@ const styles = defineStyles("ReviewVoteTableRow", (theme: ThemeType) => ({
   }
 }));
 
-export type voteTooltipType = 'Showing votes by 1000+ Karma LessWrong users'|'Showing all votes'|'Showing votes from Alignment Forum members'
+export type voteTooltipType = 'Showing votes by 1000+ Karma Unresigned users'|'Showing all votes'|'Showing votes from Alignment Forum members'
 
 const hasUnreadComments = (visitedDate: Date|null, lastCommentedAt: Date | null) => {
   if (!lastCommentedAt) return false

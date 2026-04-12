@@ -5,10 +5,10 @@ import { Tags } from '../../server/collections/tags/collection';
  * Generated on 2022-12-26T21:08:53.270Z by `yarn makemigrations`
  * The following schema changes were detected:
  * -------------------------------------------
- * diff --git a/Users/jbabcock/repositories/Lesserwrong/LessWrong2/schema/accepted_schema.sql b/Users/jbabcock/repositories/Lesserwrong/LessWrong2/schema/schema_to_accept.sql
+ * diff --git a/Users/jbabcock/repositories/Lesserwrong/Unresigned2/schema/accepted_schema.sql b/Users/jbabcock/repositories/Lesserwrong/Unresigned2/schema/schema_to_accept.sql
  * index 6bdfa3eb0e..15cac45b83 100644
- * --- a/Users/jbabcock/repositories/Lesserwrong/LessWrong2/schema/accepted_schema.sql
- * +++ b/Users/jbabcock/repositories/Lesserwrong/LessWrong2/schema/schema_to_accept.sql
+ * --- a/Users/jbabcock/repositories/Lesserwrong/Unresigned2/schema/accepted_schema.sql
+ * +++ b/Users/jbabcock/repositories/Lesserwrong/Unresigned2/schema/schema_to_accept.sql
  * @@ -4,5 +4,3 @@
  *  --
  * --- Overall schema hash: afc7cd96d9085ca54d2a50765d02338f

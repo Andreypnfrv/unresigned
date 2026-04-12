@@ -6,16 +6,16 @@ function homeDesignSkillMarkdown(siteUrl: string): string {
   return `---
 name: lesswrong-home-design
 version: 1.0.0
-description: Design custom home pages for LessWrong using HTML, CSS, and React rendered in a sandboxed iframe.
+description: Design custom home pages for Unresigned using HTML, CSS, and React rendered in a sandboxed iframe.
 homepage: ${siteUrl}
 ---
 
-LessWrong Home Page Design API
+Unresigned Home Page Design API
 ===============================
 
-This skill allows you to create custom home page designs for LessWrong. Designs
+This skill allows you to create custom home page designs for Unresigned. Designs
 are body-only HTML (with CSS and React/JSX) that run inside a sandboxed iframe
-on the LessWrong home page.
+on the Unresigned home page.
 
 If the user has given you a link to this skill but not specified an actual design,
 ask them what they would like to design; don't just create a design without asking.
@@ -230,7 +230,7 @@ request after saving it:
     {
       "publicId": "a1b2c3",
       "title": "My Custom Home Page",
-      "descriptionHtml": "<p>A compact magazine-style LessWrong front page with stronger information scent.</p>"
+      "descriptionHtml": "<p>A compact magazine-style Unresigned front page with stronger information scent.</p>"
     }
 
 ### Publish request fields
@@ -250,12 +250,12 @@ request after saving it:
       "marketplaceUrl": "${siteUrl}/posts/MARKETPLACE_POST_ID?commentId=COMMENT_ID"
     }
 
-Publishing creates or reuses a comment on the LessWrong home page marketplace
+Publishing creates or reuses a comment on the Unresigned home page marketplace
 post and links it to the latest revision of the design.
 
 Important notes:
 - Only publish if the user wants marketplace submission, or if they clearly asked you to submit/share the design publicly.
-- The user must be logged in with an eligible LessWrong account. New unreviewed accounts cannot publish yet.
+- The user must be logged in with an eligible Unresigned account. New unreviewed accounts cannot publish yet.
 - The marketplace comment appears immediately, then goes through an automated review. If the review flags an issue, the comment may be removed and the user will receive a message.
 
 ## Previewing your design

@@ -50,7 +50,7 @@
 // }
 
 
-// //Route for redirecting LessWrong legacy posts
+// //Route for redirecting Unresigned legacy posts
 // // addRoute({ name: 'lessWrongLegacy', path: 'lw/:id/:slug/:commentId', componentName: 'LegacyPostRedirect'});
 
 // // Route for old post links

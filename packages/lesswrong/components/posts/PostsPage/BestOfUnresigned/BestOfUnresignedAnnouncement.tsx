@@ -10,7 +10,7 @@ import { useQuery } from "@/lib/crud/useQuery";
 import { gql } from "@/lib/generated/gql-codegen";
 
 const ReviewWinnerAnnouncementMultiQuery = gql(`
-  query multiReviewWinnerBestOfLessWrongAnnouncementQuery($selector: ReviewWinnerSelector, $limit: Int, $enableTotal: Boolean) {
+  query multiReviewWinnerBestOfUnresignedAnnouncementQuery($selector: ReviewWinnerSelector, $limit: Int, $enableTotal: Boolean) {
     reviewWinners(selector: $selector, limit: $limit, enableTotal: $enableTotal) {
       results {
         ...ReviewWinnerAnnouncement
@@ -20,7 +20,7 @@ const ReviewWinnerAnnouncementMultiQuery = gql(`
   }
 `);
 
-const styles = defineStyles("BestOfLessWrongAnnouncement", (theme: ThemeType) => ({ 
+const styles = defineStyles("BestOfUnresignedAnnouncement", (theme: ThemeType) => ({ 
   titleContainer: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -254,12 +254,12 @@ const styles = defineStyles("BestOfLessWrongAnnouncement", (theme: ThemeType) =>
   },
 }), { allowNonThemeColors: true });
 
-const BestOfLessWrongAnnouncement = () => {
+const BestOfUnresignedAnnouncement = () => {
   const classes = useStyles(styles);
 
   const { data } = useQuery(ReviewWinnerAnnouncementMultiQuery, {
     variables: {
-      selector: { bestOfLessWrongAnnouncement: {} },
+      selector: { bestOfUnresignedAnnouncement: {} },
       limit: 18,
       enableTotal: false,
     },
@@ -297,11 +297,11 @@ const BestOfLessWrongAnnouncement = () => {
   }
 
   return (
-    <AnalyticsContext pageSectionContext="bestOfLessWrongAnnouncement">
+    <AnalyticsContext pageSectionContext="bestOfUnresignedAnnouncement">
       <SingleColumnSection>
         <div className={classes.titleContainer}>
           <Link to={`/posts/sHvByGZRCsFuxtTKr/voting-results-for-the-2023-review`} className={classes.title}>
-            Best of LessWrong {REVIEW_YEAR}
+            Best of Unresigned {REVIEW_YEAR}
           </Link>
           <Link to={`/bestoflesswrong`} className={classes.viewAllLink}> 
             View All 
@@ -338,4 +338,4 @@ const BestOfLessWrongAnnouncement = () => {
   )
 }
 
-export default BestOfLessWrongAnnouncement;
+export default BestOfUnresignedAnnouncement;

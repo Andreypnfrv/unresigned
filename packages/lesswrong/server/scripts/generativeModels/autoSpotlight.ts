@@ -29,7 +29,7 @@ function createSpotlight (post: PostsWithNavigation, reviewWinner: PostsTopItemI
     data: {
       documentId: post._id,
       documentType: "Post",
-      customSubtitle: `Best of LessWrong ${postYear}`,
+      customSubtitle: `Best of Unresigned ${postYear}`,
       duration: 1,
       draft: true,
       showAuthor: true,

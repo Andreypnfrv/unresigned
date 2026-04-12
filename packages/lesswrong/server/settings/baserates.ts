@@ -2,9 +2,9 @@ import merge from "lodash/merge";
 import { sharedSettings } from "./sharedSettings";
 
 export const baserates = merge({
-  forumType: "LessWrong",
-  title: "LessWrong Development Server",
-  siteNameWithArticle: "LessWrong",
+  forumType: "Unresigned",
+  title: "Unresigned Development Server",
+  siteNameWithArticle: "Unresigned",
   sentry: {
     url: "https://1ab1949fc8d04608b43132f37bb2a1b0@sentry.io/1301611",
     environment: "development",
@@ -21,7 +21,7 @@ export const baserates = merge({
   forumSettings: {
     headerTitle: "LESSWRONG",
     shortForumTitle: "LW",
-    tabTitle: "LessWrong"
+    tabTitle: "Unresigned"
   },
   analytics: {
     environment: "baserates.org"

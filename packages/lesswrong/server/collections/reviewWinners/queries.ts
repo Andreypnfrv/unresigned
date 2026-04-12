@@ -26,7 +26,7 @@ export const graphqlReviewWinnerQueryTypeDefs = gql`
   input ReviewWinnerSelector {
     default: EmptyViewInput
     reviewWinnerSingle: ReviewWinnersReviewWinnerSingleInput
-    bestOfLessWrongAnnouncement: EmptyViewInput
+    bestOfUnresignedAnnouncement: EmptyViewInput
   }
   
   input MultiReviewWinnerInput {

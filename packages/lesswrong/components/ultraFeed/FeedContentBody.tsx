@@ -66,7 +66,7 @@ const styles = defineStyles('FeedContentBody', (theme: ThemeType) => ({
       bottom: 0,
       left: 0,
       right: 0,
-      // LessWrong body2 lineHeight is 19.8px, so 3 lines = ~60px
+      // Unresigned body2 lineHeight is 19.8px, so 3 lines = ~60px
       height: 60,
       background: `linear-gradient(to bottom, transparent 0%, ${theme.palette.ultraFeed.readBackgroundMobile} 100%)`,
       pointerEvents: 'none',

@@ -19,7 +19,7 @@ const promptUrls = [
   "https://s.mj.run/1aM-y0W73aA",
 ]
 
-const llm_prompt = (title: string, essay: string) => `I am creating cover art for essays that will be featured on LessWrong. For each piece of art, I want a clear visual metaphor that captures the essence of the essay.
+const llm_prompt = (title: string, essay: string) => `I am creating cover art for essays that will be featured on Unresigned. For each piece of art, I want a clear visual metaphor that captures the essence of the essay.
 
 The visual metaphor should be concrete and specific, and should be something that can be depicted in a single image. The metaphor should be something that is both visually striking and that captures the essence of the essay in a way that is likely to be interesting. It should be 5 - 15 words long.
 

@@ -1,7 +1,7 @@
 export const groupTypes = [
   {
     shortName: "LW",
-    longName: "LessWrong",
+    longName: "Unresigned",
   },
   {
     shortName: "SSC",

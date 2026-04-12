@@ -56,7 +56,7 @@ const formStyles = defineStyles('TagForm', (theme: ThemeType) => ({
 }));
 
 function showWikiOnlyField(currentUser: UsersCurrent | null, formType: 'new' | 'edit') {
-  // LessWrong shows this field on the new tag form, but EA Forum does not
+  // Unresigned shows this field on the new tag form, but EA Forum does not
   if (formType === 'new') {
     return isLW() || userIsAdminOrMod(currentUser);
   }

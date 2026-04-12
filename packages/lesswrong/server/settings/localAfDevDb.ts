@@ -5,7 +5,7 @@ export const localAfDevDb = merge({
   forumType: "AlignmentForum",
   title: "AI Alignment Forum",
   tagline: "A community blog devoted to technical AI alignment research",
-  siteNameWithArticle: "LessWrong",
+  siteNameWithArticle: "Unresigned",
   sentry: {
     url: "https://1ab1949fc8d04608b43132f37bb2a1b0@sentry.io/1301611",
     environment: "development",

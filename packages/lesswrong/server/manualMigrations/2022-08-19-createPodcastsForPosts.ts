@@ -24,7 +24,7 @@ const RAZ_PODCAST = {
 
 // TODO: external links
 const CURATED_PODCAST = {
-  title: 'LessWrong Curated Podcast',
+  title: 'Unresigned Curated Podcast',
   applePodcastLink: null,
   spotifyPodcastLink: null
 };

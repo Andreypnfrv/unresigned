@@ -3,7 +3,7 @@ import { createCollection } from '@/lib/vulcan-lib/collections';
 import { DatabaseIndexSet } from '@/lib/utils/databaseIndexSet';
 
 /**
- * This collection stores information about the LessWrong Annual Review winners, used primarily for sort orderings
+ * This collection stores information about the Unresigned Annual Review winners, used primarily for sort orderings
  */
 export const ReviewWinners = createCollection({
   collectionName: 'ReviewWinners',

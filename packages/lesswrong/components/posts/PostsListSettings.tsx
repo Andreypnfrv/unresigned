@@ -40,7 +40,7 @@ const FILTERS_ALL: ForumOptions<Partial<Record<Filters, SettingsOption>>> = {
     },
     questions: questionsFilter
   },
-  "LessWrong": {
+  "Unresigned": {
     all: {
       label: "All Posts",
       tooltip: "Includes personal blogposts as well as frontpage, curated, questions, events and meta posts."

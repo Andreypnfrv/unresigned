@@ -938,7 +938,7 @@ const HomeDesignChatPanel = () => {
           <div className={classes.messages}>
             {messages.length === 0 && (
               <div className={classes.emptyState}>
-                <div className={classes.emptyTitle}>Describe your ideal LessWrong home page.</div>
+                <div className={classes.emptyTitle}>Describe your ideal Unresigned home page.</div>
                 <div className={classes.emptyCopy}>
                   Try: "Make it look like Hacker News" or "Newspaper front page layout" or "Dark mode with cards"
                 </div>
@@ -1071,7 +1071,7 @@ const HomeDesignChatPanel = () => {
               className={classes.marketplaceActionButton}
               onClick={handleRevertToBuiltInDefault}
             >
-              Go back to normal LessWrong
+              Go back to normal Unresigned
             </button>
             <button
               type="button"

@@ -56,7 +56,7 @@ const SignupSubscribeToCurated = ({defaultValue, onChange}: {
       />
       Subscribe to {emailType}
       {isLWorAF() && (
-        <TooltipSpan title="Emails 2-3 times per week with the best posts, chosen by the LessWrong moderation team.">
+        <TooltipSpan title="Emails 2-3 times per week with the best posts, chosen by the Unresigned moderation team.">
           <Info className={classes.infoIcon}/>
         </TooltipSpan>
       )}

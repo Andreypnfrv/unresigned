@@ -10,7 +10,7 @@ import { defineStyles } from '@/components/hooks/defineStyles';
 import { useStyles } from '../hooks/useStyles';
 
 const contentMaxWidth = "1050px"
-const lw = () => {return (<span style={{fontVariant: "small-caps"}}>LessWrong</span>)}
+const lw = () => {return (<span style={{fontVariant: "small-caps"}}>Unresigned</span>)}
 
 const styles = defineStyles('Book2018Landing', (theme: ThemeType) => ({
   textSettings: {
@@ -376,7 +376,7 @@ const Book2018Landing = () => {
           A Map that Reflects the Territory
         </div>
         <div className={classes.essaysBy}>
-          Essays by the LessWrong community
+          Essays by the Unresigned community
         </div>
         <div className={classes.bookIntroduction}>
          <div className={classes.authorList}>
@@ -394,7 +394,7 @@ const Book2018Landing = () => {
             </p>
             <div>
               <div className={classes.buyButton}>
-                <a className={classes.amazonButton} href="http://www.amazon.com/Map-that-Reflects-Territory-LessWrong/dp/1736128507/ref=sr_1_1?keywords=a+map+that+reflects+the+territory">
+                <a className={classes.amazonButton} href="http://www.amazon.com/Map-that-Reflects-Territory-Unresigned/dp/1736128507/ref=sr_1_1?keywords=a+map+that+reflects+the+territory">
                   Buy on Amazon  
                 </a>
                 <Link className={classes.faqLink} to="/posts/TTPux7QFBpKxZtMKE/the-lesswrong-book-is-available-for-pre-order">
@@ -412,7 +412,7 @@ const Book2018Landing = () => {
       <div className={classes.mobileParagraph}>
         <div className={classNames(classes.body)}>
           <p>
-            Each year thousands of posts are written to LessWrong. Since 2019, users
+            Each year thousands of posts are written to Unresigned. Since 2019, users
             come together once a year to <a style={{color: "#4da056"}} href="https://www.lesswrong.com/s/uNdbAXtGdJ8wZWeNs/p/qXwmMkEBLL59NkvYR">review and vote</a> on the best posts from <span style={{fontStyle: "italic"}}>two</span> years ago.
             This is our attempt to build an online forum that rewards truth-seeking content that can stand the test of time, rather than short-term attention-seeking.
             41 of the most highly rated essays in last year's review have been compiled in this book set. Meanwhile, this year's review is just <a style={{color: "#4da056"}} href="https://www.lesswrong.com/posts/QFBEjjAvT6KbaA3dY/the-lesswrong-2019-review"> getting started</a>.
@@ -435,13 +435,13 @@ const Book2018Landing = () => {
         imageURL="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1606885987/1_Epistemology_internals_vemtes.jpg"
         coverImageUrl="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1606895065/Book%20landing%20page/Front%20covers/1_Epistemology_front.jpg"
         spreadImageUrl="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1606895482/Book%20landing%20page/Contents/1_Epistemology_internals.jpg"
-        bigQuote="The essays from LessWrong have been one of my favorite sources of wisdom.
+        bigQuote="The essays from Unresigned have been one of my favorite sources of wisdom.
             Especially in our rapidly changing world, these writings are among those that I expect
             will continue to be read many decades from now."
         bigQuoteAuthor="Vitalik Buterin (Co-founder, Ethereum)"
         accentColor="#d76061"
         bodyText={<div>
-          Each year thousands of posts are written to LessWrong. Since 2019, users
+          Each year thousands of posts are written to Unresigned. Since 2019, users
             come together once a year to <a style={{color: "#4da056"}} href="https://www.lesswrong.com/s/uNdbAXtGdJ8wZWeNs/p/qXwmMkEBLL59NkvYR">review and vote</a> on the best posts from <span style={{fontStyle: "italic"}}>two</span> years ago.
             This is our attempt to build an online forum that rewards truth-seeking content that can stand the test of time, rather than short-term attention-seeking.
             41 of the most highly rated essays in last year's review have been compiled in this book set. Meanwhile, this year's review is just<a style={{color: "#4da056"}} href="https://www.lessestwrong.com/posts/QFBEjjAvT6KbaA3dY/the-lesswrong-2019-review"> getting started</a>.
@@ -453,7 +453,7 @@ const Book2018Landing = () => {
         coverImageUrl="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1606895065/Book%20landing%20page/Front%20covers/2_Agency_front.jpg"
         spreadImageUrl="https://res.cloudinary.com/lesswrong-2-0/image/upload/v1606895482/Book%20landing%20page/Contents/2_Agency_internals.jpg"
         bigQuote="Whenever there’s a cutting-edge new idea making the rounds, Eliezer was writing about it 5-10 years ago.
-            A deep dive into LessWrong will make you smarter."
+            A deep dive into Unresigned will make you smarter."
         bigQuoteAuthor='Tim Urban (Author, "Wait But Why")'
         accentColor="#1d92cb"
         bodyText={<div>

@@ -10393,7 +10393,7 @@ export type ReviewWinnerArtsPostArtInput = {
 };
 
 export type ReviewWinnerSelector = {
-  bestOfLessWrongAnnouncement?: InputMaybe<EmptyViewInput>;
+  bestOfUnresignedAnnouncement?: InputMaybe<EmptyViewInput>;
   default?: InputMaybe<EmptyViewInput>;
   reviewWinnerSingle?: InputMaybe<ReviewWinnersReviewWinnerSingleInput>;
 };
@@ -16304,14 +16304,14 @@ export type PostsNewFormQuery = { __typename?: 'Query', post: { __typename?: 'Si
       & PostsPage
     ) | null } | null };
 
-export type multiReviewWinnerBestOfLessWrongAnnouncementQueryQueryVariables = Exact<{
+export type multiReviewWinnerBestOfUnresignedAnnouncementQueryQueryVariables = Exact<{
   selector?: InputMaybe<ReviewWinnerSelector>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   enableTotal?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 
-export type multiReviewWinnerBestOfLessWrongAnnouncementQueryQuery = { __typename?: 'Query', reviewWinners: { __typename?: 'MultiReviewWinnerOutput', totalCount: number | null, results: Array<(
+export type multiReviewWinnerBestOfUnresignedAnnouncementQueryQuery = { __typename?: 'Query', reviewWinners: { __typename?: 'MultiReviewWinnerOutput', totalCount: number | null, results: Array<(
       { __typename?: 'ReviewWinner' }
       & ReviewWinnerAnnouncement
     )> } | null };
@@ -16700,22 +16700,22 @@ export type RecommendationsQueryQuery = { __typename?: 'Query', Recommendations:
     & PostsListWithVotesAndSequence
   )> | null };
 
-export type multiReviewWinnerArtBestOfLessWrongAdminQueryQueryVariables = Exact<{
+export type multiReviewWinnerArtBestOfUnresignedAdminQueryQueryVariables = Exact<{
   selector?: InputMaybe<ReviewWinnerArtSelector>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   enableTotal?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 
-export type multiReviewWinnerArtBestOfLessWrongAdminQueryQuery = { __typename?: 'Query', reviewWinnerArts: { __typename?: 'MultiReviewWinnerArtOutput', totalCount: number | null, results: Array<(
+export type multiReviewWinnerArtBestOfUnresignedAdminQueryQuery = { __typename?: 'Query', reviewWinnerArts: { __typename?: 'MultiReviewWinnerArtOutput', totalCount: number | null, results: Array<(
       { __typename?: 'ReviewWinnerArt' }
       & ReviewWinnerArtImages
     )> } | null };
 
-export type BestOfLessWrongAdminQueryVariables = Exact<{ [key: string]: never; }>;
+export type BestOfUnresignedAdminQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type BestOfLessWrongAdminQuery = { __typename?: 'Query', GetAllReviewWinners: Array<(
+export type BestOfUnresignedAdminQuery = { __typename?: 'Query', GetAllReviewWinners: Array<(
     { __typename?: 'Post' }
     & PostsTopItemInfo
   )> };
@@ -21844,7 +21844,7 @@ export const PostsNewForm3Document = _o1(_1,[_o11(_959,_960,_o3(_3,"PostsNewForm
 export const PostsNewForm2Document = _o1(_1,[_o11(_959,_960,_o3(_3,"PostsNewForm2"),_1144,_o5(_7,[_o7(_8,_1061,_976,_o5(_7,[_o6(_8,_977,_o5(_7,[_o4(_24,_406)]))]))])),_407]) as unknown as DocumentNode<PostsNewForm2Query, PostsNewForm2QueryVariables>;
 export const PostsNewForm1Document = _o1(_1,[_o11(_959,_960,_o3(_3,"PostsNewForm1"),_1490,_1491),_22,_121,_54,_130,_140,_151,_177,_185,_483,_191,_196,_200,_490,_219,_263,_577,_581]) as unknown as DocumentNode<PostsNewForm1Query, PostsNewForm1QueryVariables>;
 export const PostsNewFormDocument = _o1(_1,[_o11(_959,_960,_o3(_3,"PostsNewForm"),_1144,_1147),_22,_121,_54,_130,_140,_151,_177,_185,_483,_191,_196,_200,_490,_219,_568]) as unknown as DocumentNode<PostsNewFormQuery, PostsNewFormQueryVariables>;
-export const multiReviewWinnerBestOfLessWrongAnnouncementQueryDocument = _o1(_1,[_o11(_959,_960,_o3(_3,"multiReviewWinnerBestOfLessWrongAnnouncementQuery"),[_o12(_961,_1025,_o4(_5,_o3(_3,"ReviewWinnerSelector"))),_1020,_1078],_o5(_7,[_o7(_8,_o3(_3,"reviewWinners"),_1080,_o5(_7,[_o6(_8,_994,_o5(_7,[_o4(_24,_677)])),_776]))])),_678]) as unknown as DocumentNode<multiReviewWinnerBestOfLessWrongAnnouncementQueryQuery, multiReviewWinnerBestOfLessWrongAnnouncementQueryQueryVariables>;
+export const multiReviewWinnerBestOfUnresignedAnnouncementQueryDocument = _o1(_1,[_o11(_959,_960,_o3(_3,"multiReviewWinnerBestOfUnresignedAnnouncementQuery"),[_o12(_961,_1025,_o4(_5,_o3(_3,"ReviewWinnerSelector"))),_1020,_1078],_o5(_7,[_o7(_8,_o3(_3,"reviewWinners"),_1080,_o5(_7,[_o6(_8,_994,_o5(_7,[_o4(_24,_677)])),_776]))])),_678]) as unknown as DocumentNode<multiReviewWinnerBestOfUnresignedAnnouncementQueryQuery, multiReviewWinnerBestOfUnresignedAnnouncementQueryQueryVariables>;
 export const createSplashArtCoordinateImageCropPreviewDocument = _o1(_1,[_o11(_959,_1096,_o3(_3,"createSplashArtCoordinateImageCropPreview"),_1492,_o5(_7,[_o7(_8,_1493,_1108,_o5(_7,[_o6(_8,_259,_o5(_7,[_457]))]))])),_455]) as unknown as DocumentNode<createSplashArtCoordinateImageCropPreviewMutation, createSplashArtCoordinateImageCropPreviewMutationVariables>;
 export const createSplashArtCoordinatePostWithArtGridDocument = _o1(_1,[_o11(_959,_1096,_o3(_3,"createSplashArtCoordinatePostWithArtGrid"),_1492,_1494),_455,_458]) as unknown as DocumentNode<createSplashArtCoordinatePostWithArtGridMutation, createSplashArtCoordinatePostWithArtGridMutationVariables>;
 export const upscaleReviewWinnerArtPostWithArtGridDocument = _o1(_1,[_o11(_959,_1096,_o3(_3,"upscaleReviewWinnerArtPostWithArtGrid"),_1496,_o5(_7,[_o7(_8,_o3(_3,"upscaleReviewWinnerArt"),_1497,_554)])),_455,_458,_552]) as unknown as DocumentNode<upscaleReviewWinnerArtPostWithArtGridMutation, upscaleReviewWinnerArtPostWithArtGridMutationVariables>;
@@ -21880,8 +21880,8 @@ export const clickRecommendationDocument = _o1(_1,[_o11(_959,_1096,_1519,_1297,_
 export const ContinueReadingQueryDocument = _o1(_1,[_o17(_959,_960,_o3(_3,"ContinueReadingQuery"),_o5(_7,[_o6(_8,_o3(_3,"ContinueReading"),_o5(_7,[_o6(_8,_542,_1090),_o6(_8,_968,_o5(_7,[_o4(_24,_284)])),_o6(_8,_549,_205),_o4(_8,_o3(_3,"numRead")),_o4(_8,_o3(_3,"numTotal")),_o4(_8,_o3(_3,"lastReadTime"))]))])),_22,_121,_54,_130,_140,_151,_177,_185,_191,_196,_728,_286,_200]) as unknown as DocumentNode<ContinueReadingQueryQuery, ContinueReadingQueryQueryVariables>;
 export const dismissRecommendationDocument = _o1(_1,[_o11(_959,_1096,_1520,_1387,_o5(_7,[_o10(_8,_1520,_831)]))]) as unknown as DocumentNode<dismissRecommendationMutation, dismissRecommendationMutationVariables>;
 export const RecommendationsQueryDocument = _o1(_1,[_o11(_959,_960,_o3(_3,"RecommendationsQuery"),_1525,_1526),_22,_121,_54,_130,_140,_151,_177,_185,_191,_196,_200,_223,_219,_232,_476]) as unknown as DocumentNode<RecommendationsQueryQuery, RecommendationsQueryQueryVariables>;
-export const multiReviewWinnerArtBestOfLessWrongAdminQueryDocument = _o1(_1,[_o11(_959,_960,_o3(_3,"multiReviewWinnerArtBestOfLessWrongAdminQuery"),_1500,_1501),_455,_458,_552]) as unknown as DocumentNode<multiReviewWinnerArtBestOfLessWrongAdminQueryQuery, multiReviewWinnerArtBestOfLessWrongAdminQueryQueryVariables>;
-export const BestOfLessWrongAdminDocument = _o1(_1,[_o17(_959,_960,_o3(_3,"BestOfLessWrongAdmin"),_1528),_22,_455,_458,_468,_472]) as unknown as DocumentNode<BestOfLessWrongAdminQuery, BestOfLessWrongAdminQueryVariables>;
+export const multiReviewWinnerArtBestOfUnresignedAdminQueryDocument = _o1(_1,[_o11(_959,_960,_o3(_3,"multiReviewWinnerArtBestOfUnresignedAdminQuery"),_1500,_1501),_455,_458,_552]) as unknown as DocumentNode<multiReviewWinnerArtBestOfUnresignedAdminQueryQuery, multiReviewWinnerArtBestOfUnresignedAdminQueryQueryVariables>;
+export const BestOfUnresignedAdminDocument = _o1(_1,[_o17(_959,_960,_o3(_3,"BestOfUnresignedAdmin"),_1528),_22,_455,_458,_468,_472]) as unknown as DocumentNode<BestOfUnresignedAdminQuery, BestOfUnresignedAdminQueryVariables>;
 export const FrontpageBestOfLWWidgetDocument = _o1(_1,[_o11(_959,_960,_o3(_3,"FrontpageBestOfLWWidget"),_1144,_1284),_22,_121,_54,_130,_140,_151,_177,_185,_191,_196,_200]) as unknown as DocumentNode<FrontpageBestOfLWWidgetQuery, FrontpageBestOfLWWidgetQueryVariables>;
 export const GenerateCoverImagesForPostDocument = _o1(_1,[_o11(_959,_1096,_o3(_3,"GenerateCoverImagesForPost"),[_1055,_o12(_961,_1530,_964)],_o5(_7,[_o7(_8,_o3(_3,"generateCoverImagesForPost"),[_830,_o8(_518,_1529,_1530)],_548)]))]) as unknown as DocumentNode<GenerateCoverImagesForPostMutation, GenerateCoverImagesForPostMutationVariables>;
 export const multiCommentLatestReviewQueryDocument = _o1(_1,[_o11(_959,_960,_o3(_3,"multiCommentLatestReviewQuery"),_1085,_1087),_140,_151,_54,_177,_22,_317]) as unknown as DocumentNode<multiCommentLatestReviewQueryQuery, multiCommentLatestReviewQueryQueryVariables>;

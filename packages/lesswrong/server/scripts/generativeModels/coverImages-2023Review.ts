@@ -16,7 +16,7 @@ import { createSplashArtCoordinate } from '@/server/collections/splashArtCoordin
 import { PostsPage } from '@/lib/collections/posts/fragments.ts';
 
 /*
-This script makes AI-generated images for Best of LessWrong posts.
+This script makes AI-generated images for Best of Unresigned posts.
 
 It can be run manually via:
 yarn repl prod packages/lesswrong/server/scripts/generativeModels/coverImages-2023Review.ts 'getReviewWinnerArts()'
@@ -40,7 +40,7 @@ export const prompter = (el: string) => {
   return `${lowerCased}${artPrompt}`
 }
 
-export const llm_prompt = (title: string, essay: string, promptsGenerated: number) => `I am creating cover art for essays that will be featured on LessWrong. For each piece of art, I want a clear description of a visual illustration that captures the essence of the essay.
+export const llm_prompt = (title: string, essay: string, promptsGenerated: number) => `I am creating cover art for essays that will be featured on Unresigned. For each piece of art, I want a clear description of a visual illustration that captures the essence of the essay.
 
 The illustration description should be concrete and specific, and should be something that can be depicted in a single image. The description should be something that is both visually striking and that captures the essence of the essay in a way that is likely to be interesting. It should be 5 - 15 words long.
 

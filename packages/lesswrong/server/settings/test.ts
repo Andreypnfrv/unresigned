@@ -1,5 +1,5 @@
 export const testSettings = {
-  forumType: process.env.FORUM_TYPE ?? "LessWrong",
+  forumType: process.env.FORUM_TYPE ?? "Unresigned",
   hasEvents: true,
   title: "EAForum Test",
   tagline: "Effective Altruism research, discussion and community updates",
@@ -22,7 +22,7 @@ export const testSettings = {
   disableEnsureIndex: true,
   disableElastic: true,
   fmCrosspost: {
-    siteName: "LessWrong Test",
+    siteName: "Unresigned Test",
     baseUrl: "http://localhost:3467/"
   }
 };

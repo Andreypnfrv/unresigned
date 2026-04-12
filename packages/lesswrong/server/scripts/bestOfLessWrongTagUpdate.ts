@@ -6,7 +6,7 @@ import Users from "../../server/collections/users/collection";
 import { createAdminContext } from "../vulcan-lib/createContexts";
 
 // Exported to allow running manually with "yarn repl"
-export async function bestOfLessWrongTagUpdate () {
+export async function bestOfUnresignedTagUpdate () {
   const tag = await Tags.findOne({slug: "best-of-lesswrong"});
   const user = await Users.findOne({displayName: "Raemon"});
   const context = createAdminContext();
@@ -18,7 +18,7 @@ export async function bestOfLessWrongTagUpdate () {
     }, {sort: {postedAt: -1}}).fetch();
 
     // eslint-disable-next-line no-console
-    console.log(`${posts.length} posts to add to Best of LessWrong tag`)
+    console.log(`${posts.length} posts to add to Best of Unresigned tag`)
     
     posts.forEach((post, i) => {
       // eslint-disable-next-line no-console

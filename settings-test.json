@@ -23,7 +23,7 @@
     "disableEnsureIndex": true,
     "disableElastic": true,
     "fmCrosspost": {
-      "siteName": "LessWrong Test",
+      "siteName": "Unresigned Test",
       "baseUrl": "http://localhost:3467/"
     }
   }

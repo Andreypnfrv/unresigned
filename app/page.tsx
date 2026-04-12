@@ -27,7 +27,7 @@ export default async function Home({ searchParams }: {
   return <RouteRoot>
     {forumSelect({
       AlignmentForum: <AlignmentForumHome/>,
-      LessWrong: <HomePageWithDesignChat initialIsOpen={Boolean(openCustomizeParam)} />,
+      Unresigned: <HomePageWithDesignChat initialIsOpen={Boolean(openCustomizeParam)} />,
       default: <LWHome/>,
     })}
   </RouteRoot>;

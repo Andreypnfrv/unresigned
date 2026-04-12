@@ -1,4 +1,4 @@
-import { exec as execCb } from "child_process";
+import { exec as execCb, execSync } from "child_process";
 import { promisify } from "util";
 import { loadEnvConfig } from "@next/env";
 import { TupleSet } from "@/lib/utils/typeGuardUtils";
@@ -6,6 +6,15 @@ import { detectForumType, EnvironmentType, ForumType, isCodegen, isEnvironmentTy
 import fs from "fs/promises";
 
 const exec = promisify(execCb);
+
+function isVercelCliOnPath(): boolean {
+  try {
+    execSync("vercel --version", { stdio: "ignore", timeout: 10_000 });
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 interface CommandLineOptions {
   environment: EnvironmentType|null
@@ -43,7 +52,7 @@ function detectDefaultForumType() {
   const detectedForumType = detectForumType();
   if (detectedForumType === null) {
     // eslint-disable-next-line no-console
-    console.error("Please specify a forum type (lw, ea, af)");
+    console.error("Please specify a forum type (lw, ea, af, ur)");
     process.exit(1);
   }
   return detectedForumType;
@@ -84,13 +93,24 @@ function parseMigrateCommandLine() {
     process.exit(1);
   }
 
-  if (!isForumType(providedForumType)) {
-    // eslint-disable-next-line no-console
-    console.error("Please specify a valid forum type (lw, ea, af)");
-    process.exit(1);
+  let forumType: Exclude<ForumType, "none">;
+  if (providedForumType !== undefined) {
+    if (!isForumType(providedForumType)) {
+      // eslint-disable-next-line no-console
+      console.error("Please specify a valid forum type (lw, ea, af, ur)");
+      process.exit(1);
+    }
+    forumType = providedForumType;
+  } else {
+    const detected = detectForumType();
+    if (detected !== null) {
+      forumType = detected;
+    } else {
+      // eslint-disable-next-line no-console
+      console.error("Please specify a forum type (lw, ea, af, ur), or clone a credentials repo next to this project for auto-detect.");
+      process.exit(1);
+    }
   }
-
-  const forumType = providedForumType ?? detectDefaultForumType();
 
   return {
     command,
@@ -214,11 +234,13 @@ function getVercelEnvName(environment: EnvironmentType, codegen: boolean) {
 export function getForumTypeEnv(forumType: Exclude<ForumType, "none">) {
   switch (forumType) {
     case 'lw':
-      return 'LessWrong';
+      return 'Unresigned';
     case 'af':
       return 'AlignmentForum';
     case 'ea':
       return 'EAForum';
+    case 'ur':
+      return 'Unresigned';
   }
 }
 
@@ -263,7 +285,12 @@ async function loadAndValidateEnv({ environment, forumType, codegen }: {
   // and we'd need to pass in `--token` to run it here instead, which would
   // require exposing the secrets in an annoying way.
   if (!process.env.SKIP_VERCEL_CODE_PULL && !codegen) {
-    await pullEnv({ environment, codegen });
+    if (isVercelCliOnPath()) {
+      await pullEnv({ environment, codegen });
+    } else {
+      // eslint-disable-next-line no-console
+      console.warn("Skipping Vercel env pull (`vercel` CLI not in PATH). Using .env / .env.local. Install the Vercel CLI or set SKIP_VERCEL_CODE_PULL=true.");
+    }
   }
   const useDevSettings = environment === "dev";
   

@@ -1,4 +1,5 @@
 import { userIsAdmin } from "@/lib/vulcan-users/permissions";
+import { aiFeaturesEnabled } from "@/lib/betas";
 import { accessFilterSingle } from "@/lib/utils/schemaUtils";
 import { createComment, updateComment } from "@/server/collections/comments/mutations";
 import { backgroundTask } from "@/server/utils/backgroundTask";
@@ -15,11 +16,11 @@ import { createMessage } from "@/server/collections/messages/mutations";
 import { computeContextFromUser } from "@/server/vulcan-lib/apollo-server/context";
 import { createAnonymousContext } from "@/server/vulcan-lib/createContexts";
 
-export const DESIGN_SECURITY_REVIEW_PROMPT = `You are a security reviewer for user-submitted home page designs on LessWrong, a discussion forum.
+export const DESIGN_SECURITY_REVIEW_PROMPT = `You are a security reviewer for user-submitted home page designs on Unresigned, a discussion forum.
 
 These designs are HTML/CSS/JSX code that runs inside a sandboxed iframe with these constraints:
 - iframe sandbox="allow-scripts allow-top-navigation-by-user-activation" (NO allow-same-origin, NO allow-forms)
-- CSP restricts network access to: GraphQL endpoint on the origin, images from LessWrong's Cloudinary account, scripts from unpkg.com and cdn.tailwindcss.com, stylesheets from Typekit and fonts.googleapis.com, and font files from Typekit and fonts.gstatic.com
+- CSP restricts network access to: GraphQL endpoint on the origin, images from Unresigned's Cloudinary account, scripts from unpkg.com and cdn.tailwindcss.com, stylesheets from Typekit and fonts.googleapis.com, and font files from Typekit and fonts.gstatic.com
 
 The iframe has access to these APIs, which provide authenticated user data:
 - window.rpc.getCurrentUser() → {loggedIn, user: {_id, displayName, slug, karma}}
@@ -34,7 +35,7 @@ The iframe has access to these APIs, which provide authenticated user data:
 Your review scope is NARROW. You are checking for exactly two categories of issues:
 
 ## 1. Private Data Exfiltration
-Any attempt to send PRIVATE user data to an external service or to a party other than LessWrong's own servers. Private data includes: notification contents, karma change details, read statuses, and vote statuses. Note that the user's _id, displayName, slug, and karma are publicly available information and are NOT private.
+Any attempt to send PRIVATE user data to an external service or to a party other than Unresigned's own servers. Private data includes: notification contents, karma change details, read statuses, and vote statuses. Note that the user's _id, displayName, slug, and karma are publicly available information and are NOT private.
 
 Exfiltration vectors to check:
 - Encoding private data into fetch/XHR request URLs, headers, or bodies sent to the GraphQL endpoint (e.g. stuffing private data into query variable values where it would appear in server logs)
@@ -44,7 +45,7 @@ Exfiltration vectors to check:
 - Dynamically constructing script/import URLs in ways that encode private data in the URL path
 - Any creative side-channel for exfiltrating private data: timing attacks, cache probing, URL fragment manipulation
 
-Important: using public user information (like userId or displayName) in GraphQL queries to fetch content related to that user is completely normal and expected. Only flag exfiltration of private data to parties other than LessWrong.
+Important: using public user information (like userId or displayName) in GraphQL queries to fetch content related to that user is completely normal and expected. Only flag exfiltration of private data to parties other than Unresigned.
 
 ## 2. Voting Integrity
 The rpc.castVote() API must only be invoked as a direct result of clear user intent. Flag:
@@ -213,6 +214,13 @@ async function handleRejection(designId: string, reviewContext: AutoReviewContex
 
 async function runAutoReview(designId: string, html: string, reviewContext: AutoReviewContext) {
   try {
+    if (!aiFeaturesEnabled()) {
+      await HomePageDesigns.rawUpdateOne(
+        { _id: designId },
+        { $set: { autoReviewPassed: true, autoReviewMessage: null } },
+      );
+      return;
+    }
     const review = await reviewDesignSecurity(html);
     await HomePageDesigns.rawUpdateOne(
       { _id: designId },

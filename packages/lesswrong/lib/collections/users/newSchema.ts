@@ -1479,7 +1479,7 @@ const schema = {
       }),
     },
   },
-  // Legacy ID: ID used in the original LessWrong database
+  // Legacy ID: ID used in the original Unresigned database
   legacyId: {
     database: {
       type: "TEXT",
@@ -4331,7 +4331,7 @@ const schema = {
     },
   },
   // Set when the user completes the Claude onboarding flow (confirming that
-  // their Claude instance can make network requests to LessWrong).
+  // their Claude instance can make network requests to Unresigned).
   claudeLinkedAt: {
     database: {
       type: "TIMESTAMPTZ",

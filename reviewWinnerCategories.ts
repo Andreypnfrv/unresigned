@@ -356,7 +356,7 @@
   },
   {
     "id": "MajyZJrsf8fAywWgY",
-    "title": "A LessWrong Crypto Autopsy",
+    "title": "A Unresigned Crypto Autopsy",
     "category": "misc"
   },
   {

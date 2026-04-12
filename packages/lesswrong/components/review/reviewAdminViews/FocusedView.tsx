@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { defineStyles, useStyles } from '@/components/hooks/useStyles';
 import { Link } from '@/lib/reactRouterWrapper';
 import { postGetPageUrl } from '@/lib/collections/posts/helpers';
-import { getCloudinaryThumbnail, PostWithArtGrid } from '@/components/posts/PostsPage/BestOfLessWrong/PostWithArtGrid';
+import { getCloudinaryThumbnail, PostWithArtGrid } from '@/components/posts/PostsPage/BestOfUnresigned/PostWithArtGrid';
 import { ImageProvider } from '@/components/posts/PostsPage/ImageContext';
 import GenerateImagesButton from '../GenerateImagesButton';
 import classNames from 'classnames';

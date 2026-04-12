@@ -83,7 +83,7 @@ export const ReviewDashboardButtons = ({reviewYear, reviewPhase, showAdvancedDas
             <li>What high level themes seemed sigificant among {reviewYear} posts?</li>
             <li>An in-depth response to a single post.</li>
             <li>What important updates did you make in {reviewYear}? How could you have made them faster?</li>
-            <li>Any other meta-reflection on LessWrong, or how your thought processes have evolved since {reviewYear}.</li>
+            <li>Any other meta-reflection on Unresigned, or how your thought processes have evolved since {reviewYear}.</li>
           </ul>
         </div>}>
           <Link to={"/newLongformReview"} className={classes.actionButtonCTA}>

@@ -242,7 +242,7 @@ const acxData: ACXMeetup[] = [
     "Time": "06:30 PM",
     "Event Link": "https://www.lesswrong.com/events/ziyNTuMGquENeYyaN/los-angeles-ca-acx-spring-meetups-everywhere-2024-lw-acx",
     "Group Link": "Discord Server: https://discord.gg/TaYjsvN Website: https://losangelesrationality.com/",
-    "Notes": "RSVPs on the LessWrong event are not necessary but recommended: https://www.lesswrong.com/events/ziyNTuMGquENeYyaN/los-angeles-ca-acx-spring-meetups-everywhere-2024-lw-acx",
+    "Notes": "RSVPs on the Unresigned event are not necessary but recommended: https://www.lesswrong.com/events/ziyNTuMGquENeYyaN/los-angeles-ca-acx-spring-meetups-everywhere-2024-lw-acx",
     "GPS Coordinates": "33.9963125,-118.4156875"
   },
   {
@@ -396,7 +396,7 @@ const acxData: ACXMeetup[] = [
     "Time": "03:00 PM",
     "Event Link": "",
     "Group Link": "https://www.lesswrong.com/events/va9fsFSYcrWRkmFpH/astralcodexten-lesswrong-meetup-9",
-    "Notes": "RSVP on LessWrong",
+    "Notes": "RSVP on Unresigned",
     "GPS Coordinates": "55.65383749999999,12.5661719"
   },
   {
@@ -550,7 +550,7 @@ const acxData: ACXMeetup[] = [
     "Time": "03:00 PM",
     "Event Link": "",
     "Group Link": "https://discord.gg/MrBxnNBKbA",
-    "Notes": "RSVP on LessWrong is preferred, but optional. Anyone even remotely interested in ACX, LW, or EA is welcome!",
+    "Notes": "RSVP on Unresigned is preferred, but optional. Anyone even remotely interested in ACX, LW, or EA is welcome!",
     "GPS Coordinates": "54.6894375,25.2708125"
   },
   {
@@ -900,7 +900,7 @@ const acxData: ACXMeetup[] = [
     "Time": "03:00 PM",
     "Event Link": "",
     "Group Link": "https://groups.google.com/g/boulder-acx-ssc",
-    "Notes": "Please RSVP on LessWrong so we can estimate snacks.",
+    "Notes": "Please RSVP on Unresigned so we can estimate snacks.",
     "GPS Coordinates": "40.0189375,-105.1378125"
   },
   {
@@ -1356,13 +1356,13 @@ const acxData: ACXMeetup[] = [
     "Name": "Benjamin",
     "Email address": "b.rothenhaeusler@gmail.com",
     "City": "Ulm",
-    "Location description": "Please RSVP on LessWrong so I know a bit how much snacks to bring: If the weather is bad, we will keep this meeting point, but will move over together to Cafe BellaVista. If the weather is fine, feel free to bring food, a blanket and cozy stuff, we'll picknick and chat in the meadow.",
+    "Location description": "Please RSVP on Unresigned so I know a bit how much snacks to bring: If the weather is bad, we will keep this meeting point, but will move over together to Cafe BellaVista. If the weather is fine, feel free to bring food, a blanket and cozy stuff, we'll picknick and chat in the meadow.",
     "Plus.Code Coordinates": "https://plus.codes/8FWF9XWR+3VV",
     "Date": "4/13/2024",
     "Time": "03:00 PM",
     "Event Link": "https://www.lesswrong.com/events/zNhJdX5atRCuk7e8S/ulm-germany-acx-meetups-everywhere-2024",
     "Group Link": "There's no group so far (there's a small, local EA group). This event is thought to bring people together to maybe form such a group.",
-    "Notes": "Please RSVP on LessWrong so I know a bit how much snacks to bring: If the weather is bad, we will keep this meeting point, but will move over together to Cafe BellaVista. If the weather is fine, feel free to bring food, a blanket and cozy stuff, we'll picknick and chat in the meadow. ",
+    "Notes": "Please RSVP on Unresigned so I know a bit how much snacks to bring: If the weather is bad, we will keep this meeting point, but will move over together to Cafe BellaVista. If the weather is fine, feel free to bring food, a blanket and cozy stuff, we'll picknick and chat in the meadow. ",
     "GPS Coordinates": "48.3952375,9.992171899999999"
   },
   {
@@ -1432,7 +1432,7 @@ const acxData: ACXMeetup[] = [
     "Time": "03:00 PM",
     "Event Link": "https://www.lesswrong.com/events/zNhJdX5atRCuk7e8S/ulm-germany-acx-meetups-everywhere-2024",
     "Group Link": "https://www.lesswrong.com/events/mbhk7hHvjggumgxvP/stuttgart-germany-acx-spring-meetups-everywhere-2024",
-    "Notes": "Please RSVP on LessWrong so I know how much food to get. If the weather is bad, we will keep this meeting point, but will move over together to Cafe Mela. If the weather is fine, feel free to bring food, a blanket and cozy stuff, we'll picknick and chat in the meadow. ",
+    "Notes": "Please RSVP on Unresigned so I know how much food to get. If the weather is bad, we will keep this meeting point, but will move over together to Cafe Mela. If the weather is fine, feel free to bring food, a blanket and cozy stuff, we'll picknick and chat in the meadow. ",
     "GPS Coordinates": "48.7785625,9.179812499999999"
   },
   {
@@ -1502,7 +1502,7 @@ const acxData: ACXMeetup[] = [
     "Time": "02:00 PM",
     "Event Link": "",
     "Group Link": "",
-    "Notes": "Please RSVP on LessWrong",
+    "Notes": "Please RSVP on Unresigned",
     "GPS Coordinates": "51.0520625,-114.0891719"
   },
   {
@@ -1544,7 +1544,7 @@ const acxData: ACXMeetup[] = [
     "Time": "01:00 PM",
     "Event Link": "",
     "Group Link": "Email for our discord",
-    "Notes": "Please RSVP on LessWrong so I know how much food to get. I'll have podcasting equipment set up if anyone wants to record a spicy conversation, opt in only obviously",
+    "Notes": "Please RSVP on Unresigned so I know how much food to get. I'll have podcasting equipment set up if anyone wants to record a spicy conversation, opt in only obviously",
     "GPS Coordinates": "38.5616875,-121.4828125"
   },
   {
@@ -1628,7 +1628,7 @@ const acxData: ACXMeetup[] = [
     "Time": "02:00 PM",
     "Event Link": "",
     "Group Link": "",
-    "Notes": "Please RSVP by email or on LessWrong ",
+    "Notes": "Please RSVP by email or on Unresigned ",
     "GPS Coordinates": "39.2161875,-121.0721875"
   },
   {
@@ -1684,7 +1684,7 @@ const acxData: ACXMeetup[] = [
     "Time": "05:00 PM",
     "Event Link": "",
     "Group Link": "",
-    "Notes": "Please RSVP on LessWrong so I know how many people are coming",
+    "Notes": "Please RSVP on Unresigned so I know how many people are coming",
     "GPS Coordinates": "40.4060625,-3.6999375"
   },
   {
@@ -1838,7 +1838,7 @@ const acxData: ACXMeetup[] = [
     "Time": "02:00 PM",
     "Event Link": "",
     "Group Link": "https://acxatlanta.com/",
-    "Notes": "Please RSVP on LessWrong",
+    "Notes": "Please RSVP on Unresigned",
     "GPS Coordinates": "33.8021875,-84.4266875"
   },
   {
@@ -1880,7 +1880,7 @@ const acxData: ACXMeetup[] = [
     "Time": "01:00 PM",
     "Event Link": "",
     "Group Link": "https://discord.gg/DzmEPAscpS",
-    "Notes": "Please RSVP on LessWrong.  Food and drinks will be provided from Second Slice Sandwich Sandwich Shop.",
+    "Notes": "Please RSVP on Unresigned.  Food and drinks will be provided from Second Slice Sandwich Sandwich Shop.",
     "GPS Coordinates": "29.7446875,-95.3394375"
   },
   {
@@ -1894,7 +1894,7 @@ const acxData: ACXMeetup[] = [
     "Time": "07:00 PM",
     "Event Link": "",
     "Group Link": "",
-    "Notes": "There will be an \"ACX Meetup\" sign where we will sit to spot the place. We will occupy a couple (or hopefully more!) tables, have a drink, chat or rant depending on the topic. Please RSVP on LessWrong and/or meetup.com.",
+    "Notes": "There will be an \"ACX Meetup\" sign where we will sit to spot the place. We will occupy a couple (or hopefully more!) tables, have a drink, chat or rant depending on the topic. Please RSVP on Unresigned and/or meetup.com.",
     "GPS Coordinates": "37.9398375,23.6920781"
   },
   {
@@ -1902,7 +1902,7 @@ const acxData: ACXMeetup[] = [
     "Name": "Silas Barta",
     "Email address": "sbarta@gmail.com",
     "City": "Austin",
-    "Location description": "The Brewtorium, 6015 Dillard Cir A, Austin, TX 78752, we'll be inside somewhere, just look for the Austin LessWrong and ACX Meetup signs",
+    "Location description": "The Brewtorium, 6015 Dillard Cir A, Austin, TX 78752, we'll be inside somewhere, just look for the Austin Unresigned and ACX Meetup signs",
     "Plus.Code Coordinates": "https://plus.codes/862487GM+96",
     "Date": "5/25/2024",
     "Time": "12:00 PM",
@@ -1922,7 +1922,7 @@ const acxData: ACXMeetup[] = [
     "Time": "05:00 PM",
     "Event Link": "",
     "Group Link": "",
-    "Notes": "Please RSVP on LessWrong so that I know roughly how many people are coming!",
+    "Notes": "Please RSVP on Unresigned so that I know roughly how many people are coming!",
     "GPS Coordinates": "30.6229125,-96.32839059999999"
   },
   {
@@ -1963,8 +1963,8 @@ const acxData: ACXMeetup[] = [
     "Date": "5/11/2024",
     "Time": "01:00 PM",
     "Event Link": "https://www.lesswrong.com/events/8HEFDrXXm6EjGpDSM/acx-meetups-everywhere-spring-2024-montreal-qc",
-    "Group Link": "LessWrong group: https://www.lesswrong.com/groups/3nnqSgGbF8x3mTcia ; Mailing list: http://eepurl.com/io5vZM ; Discord: https://discord.gg/K8gMNzqPVG ; Facebook group: https://www.facebook.com/groups/less.wrong.montreal/ ; Meetup.com group: https://www.meetup.com/astral-codex-ten-montreal/",
-    "Notes": "Please RSVP on LessWrong: https://www.lesswrong.com/events/8HEFDrXXm6EjGpDSM/acx-meetups-everywhere-spring-2024-montreal-qc",
+    "Group Link": "Unresigned group: https://www.lesswrong.com/groups/3nnqSgGbF8x3mTcia ; Mailing list: http://eepurl.com/io5vZM ; Discord: https://discord.gg/K8gMNzqPVG ; Facebook group: https://www.facebook.com/groups/less.wrong.montreal/ ; Meetup.com group: https://www.meetup.com/astral-codex-ten-montreal/",
+    "Notes": "Please RSVP on Unresigned: https://www.lesswrong.com/events/8HEFDrXXm6EjGpDSM/acx-meetups-everywhere-spring-2024-montreal-qc",
     "GPS Coordinates": "45.5151875,-73.5818125"
   },
   {
@@ -2104,7 +2104,7 @@ const acxData: ACXMeetup[] = [
     "Time": "02:00 PM",
     "Event Link": "",
     "Group Link": "https://www.lesswrong.com/groups/dks4PmoHn4dpK94MR",
-    "Notes": "Please RSVP on LessWrong so we can reserve tables",
+    "Notes": "Please RSVP on Unresigned so we can reserve tables",
     "GPS Coordinates": "40.5907125,-105.0732656"
   },
   {
@@ -2118,7 +2118,7 @@ const acxData: ACXMeetup[] = [
     "Time": "02:00 PM",
     "Event Link": "",
     "Group Link": "https://www.meetup.com/bellingham-rationalish-community/",
-    "Notes": "Please RSVP on Meetup or LessWrong (preferably Meetup) Event link: https://www.meetup.com/bellingham-rationalish-community/events/299992021/",
+    "Notes": "Please RSVP on Meetup or Unresigned (preferably Meetup) Event link: https://www.meetup.com/bellingham-rationalish-community/events/299992021/",
     "GPS Coordinates": "48.75743749999999,-122.4905781"
   },
   {
@@ -2188,7 +2188,7 @@ const acxData: ACXMeetup[] = [
     "Time": "07:00 PM",
     "Event Link": "https://www.lesswrong.com/events/Fez72WdfeyDZAM796/acx-spring-meetups-everywhere-1",
     "Group Link": "https://www.lesswrong.com/groups/hNzrLboTGkRFraHWG",
-    "Notes": "Please do your best to RSVP on LessWrong so we know how much food to get",
+    "Notes": "Please do your best to RSVP on Unresigned so we know how much food to get",
     "GPS Coordinates": "53.5506875,-113.5355625"
   },
   {
@@ -2202,7 +2202,7 @@ const acxData: ACXMeetup[] = [
     "Time": "02:00 PM",
     "Event Link": "",
     "Group Link": "",
-    "Notes": "Please RSVP on LessWrong so I see who is coming — email me your phone number if you are likely to be late and you want an SMS when we decide to move away from the meeting point. I will do a «wrap-up» point one hour after the beginning so that those who want to leave can leave and not miss any coordination stuff; I will stay at least two hours if anyone wants to stay that long (and possibly longer, we'll see).",
+    "Notes": "Please RSVP on Unresigned so I see who is coming — email me your phone number if you are likely to be late and you want an SMS when we decide to move away from the meeting point. I will do a «wrap-up» point one hour after the beginning so that those who want to leave can leave and not miss any coordination stuff; I will stay at least two hours if anyone wants to stay that long (and possibly longer, we'll see).",
     "GPS Coordinates": "44.8373125,-0.5860468999999999"
   },
   {
@@ -2229,8 +2229,8 @@ const acxData: ACXMeetup[] = [
     "Date": "4/14/2024",
     "Time": "10:15 AM",
     "Event Link": "https://www.lesswrong.com/groups/MsTdZ4KpJmHFmLrt4",
-    "Group Link": "LessWrong: https://www.lesswrong.com/groups/MsTdZ4KpJmHFmLrt4  Email List:https://groups.google.com/g/acx-mumbai/about ",
-    "Notes": "Please RSVP on LessWrong and join our google group: https://groups.google.com/g/acx-mumbai/about ",
+    "Group Link": "Unresigned: https://www.lesswrong.com/groups/MsTdZ4KpJmHFmLrt4  Email List:https://groups.google.com/g/acx-mumbai/about ",
+    "Notes": "Please RSVP on Unresigned and join our google group: https://groups.google.com/g/acx-mumbai/about ",
     "GPS Coordinates": "19.1264375,72.8204375"
   },
   {
@@ -2272,7 +2272,7 @@ const acxData: ACXMeetup[] = [
     "Time": "03:00 PM",
     "Event Link": "https://www.lesswrong.com/events/KRcNWJusPhdLrvvxx/acx-phoenix-may-meetup",
     "Group Link": "https://www.lesswrong.com/groups/xSLmmoudDGM2w8JEG",
-    "Notes": "RSVPs on LessWrong appreciated: https://www.lesswrong.com/events/KRcNWJusPhdLrvvxx/acx-phoenix-may-meetup ",
+    "Notes": "RSVPs on Unresigned appreciated: https://www.lesswrong.com/events/KRcNWJusPhdLrvvxx/acx-phoenix-may-meetup ",
     "GPS Coordinates": "33.4759625,-112.0904219"
   },
   {
@@ -2342,7 +2342,7 @@ const acxData: ACXMeetup[] = [
     "Time": "07:00 PM",
     "Event Link": "",
     "Group Link": "",
-    "Notes": "Please RSVP on LessWrong or by email (gabeaweil@gmail.com) so I know how much food to get.",
+    "Notes": "Please RSVP on Unresigned or by email (gabeaweil@gmail.com) so I know how much food to get.",
     "GPS Coordinates": "40.6551875,-73.4753125"
   },
   {
@@ -2370,7 +2370,7 @@ const acxData: ACXMeetup[] = [
     "Time": "11:00 AM",
     "Event Link": "",
     "Group Link": "",
-    "Notes": "RSVP on LessWrong will be nice. Ended up eating all the food last time ):",
+    "Notes": "RSVP on Unresigned will be nice. Ended up eating all the food last time ):",
     "GPS Coordinates": "9.0690625,7.478437500000001"
   },
   {
@@ -2412,7 +2412,7 @@ const acxData: ACXMeetup[] = [
     "Time": "07:00 PM",
     "Event Link": "https://www.lesswrong.com/events/Xo7QE9pjGDvqLd5Ao/ljubljana-acx-meetups-everywhere-spring-2024",
     "Group Link": "https://www.lesswrong.com/groups/bedNTWaYbHgK7PreQ",
-    "Notes": "Please RSVP on LessWrong here (https://www.lesswrong.com/events/Xo7QE9pjGDvqLd5Ao/ljubljana-acx-meetups-everywhere-spring-2024) if possible, it helps with logistics to estimate the number.",
+    "Notes": "Please RSVP on Unresigned here (https://www.lesswrong.com/events/Xo7QE9pjGDvqLd5Ao/ljubljana-acx-meetups-everywhere-spring-2024) if possible, it helps with logistics to estimate the number.",
     "GPS Coordinates": "46.0530625,14.4996875"
   },
   {
@@ -2482,7 +2482,7 @@ const acxData: ACXMeetup[] = [
     "Time": "02:30 PM",
     "Event Link": "",
     "Group Link": "https://www.lesswrong.com/groups/JTMprAL9QpCct2od3",
-    "Notes": "Feel free to bring kids, gadgets, books-as-conversation starter. Invite friends. Please RSVP on LessWrong so I know how much food to get. ",
+    "Notes": "Feel free to bring kids, gadgets, books-as-conversation starter. Invite friends. Please RSVP on Unresigned so I know how much food to get. ",
     "GPS Coordinates": "38.6049375,-90.2489375"
   },
   {
@@ -2566,7 +2566,7 @@ const acxData: ACXMeetup[] = [
     "Time": "05:00 PM",
     "Event Link": "",
     "Group Link": "",
-    "Notes": "Please RSVP on LessWrong so I know how much food to get. Please come even if you don't RSVP",
+    "Notes": "Please RSVP on Unresigned so I know how much food to get. Please come even if you don't RSVP",
     "GPS Coordinates": "39.3994375,-107.2133125"
   },
   {
@@ -2622,7 +2622,7 @@ const acxData: ACXMeetup[] = [
     "Time": "06:00 PM",
     "Event Link": "",
     "Group Link": "https://fb.me/e/28OXui8Zy",
-    "Notes": "Please RSVP on LessWrong so I know how much food to get.",
+    "Notes": "Please RSVP on Unresigned so I know how much food to get.",
     "GPS Coordinates": "50.0701875,14.4410625"
   },
   {
@@ -2664,7 +2664,7 @@ const acxData: ACXMeetup[] = [
     "Time": "11:00 AM",
     "Event Link": "",
     "Group Link": "",
-    "Notes": "Please RSVP on LessWrong or email or WhatsApp +27 79 813 5144, so I know how big a table to book.",
+    "Notes": "Please RSVP on Unresigned or email or WhatsApp +27 79 813 5144, so I know how big a table to book.",
     "GPS Coordinates": "-33.92818750000001,18.4226875"
   }
 ]

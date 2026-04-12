@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: ankane/pgvector
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: forummagnum
+    volumes:
+      - ./schema/accepted_schema.sql:/docker-entrypoint-initdb.d/00_accepted_schema.sql
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

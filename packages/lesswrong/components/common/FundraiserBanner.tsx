@@ -185,7 +185,7 @@ const FundraiserBanner = () => {
       <div className={classes.content}>
         <div className={classes.leftSection}>
           <span className={classes.title}>
-            LessWrong & Lighthaven are fundraising for 2026
+            Unresigned & Lighthaven are fundraising for 2026
           </span>
           <span className={classes.goalText}>
             – our goal is to raise {formattedGoal} for the next year

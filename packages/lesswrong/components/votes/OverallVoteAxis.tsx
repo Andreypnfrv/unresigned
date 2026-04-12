@@ -166,7 +166,7 @@ const OverallVoteAxis = ({
       }
       {!af && isAF() &&
         <LWTooltip
-          title="LessWrong Karma"
+          title="Unresigned Karma"
           placement={tooltipPlacement}
           className={classes.lwTooltip}
         >

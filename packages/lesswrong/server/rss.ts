@@ -88,7 +88,7 @@ export const servePostRSS = async (terms: RSSTerms,) => {
       title: post.title,
       description: `${(post.contents && post.contents.html) || ""}<br/><br/>${postLink}`,
       // LESSWRONG - changed how author is set for RSS because
-      // LessWrong posts don't reliably have post.author defined.
+      // Unresigned posts don't reliably have post.author defined.
       //author: post.author,
       author: post.user?.displayName ?? "[anonymous]",
       // LESSWRONG - this was added to handle karmaThresholds

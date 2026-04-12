@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from '@/lib/vendor/@material-ui/core/src/Button';
 import { useCurrentUser } from '../../common/withUser';
-import { forumTitleSetting } from '../../../lib/instanceSettings';
+import { forumTitleSetting, intercomAppIdSetting } from '../../../lib/instanceSettings';
 import { getSiteUrl } from "../../../lib/vulcan-lib/utils";
 import { defineStyles } from '@/components/hooks/defineStyles';
 import { useStyles } from '@/components/hooks/useStyles';
@@ -36,12 +36,14 @@ export const DialogueEditorFeedback = ({post}: {
   return <div className={classes.root}>
     <div className={classes.feedbackRow}>{clickState === 'unclicked'
       ? <Button className={classes.button} onClick={async _ => { 
-          // eslint-disable-next-line
-          window.Intercom(
-            'trackEvent',
-            'requested-feedback',
-            {title: post.title, _id: post._id, url: getSiteUrl() + "posts/" + post._id}
-          );
+          if (intercomAppIdSetting.get()) {
+            // eslint-disable-next-line
+            window.Intercom?.(
+              'trackEvent',
+              'requested-feedback',
+              {title: post.title, _id: post._id, url: getSiteUrl() + "posts/" + post._id}
+            );
+          }
           setClickState('success')
         }}>
           Get feedback or editing help from the {forumTitleSetting.get()} team.

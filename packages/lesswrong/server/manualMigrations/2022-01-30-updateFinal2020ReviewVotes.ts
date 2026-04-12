@@ -151,7 +151,7 @@ export default registerMigration({
 
     const donateButton = (post: DbPost) => isLW() ? `<td><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" style="text-align: center">
     <input type="hidden" name="cmd" value="_s-xclick" />
-    <input type="hidden" name="item_name" value='Best of LessWrong Prize, with special appreciation for ${getAuthor(post).displayName}, author of "${post.title}".' />
+    <input type="hidden" name="item_name" value='Best of Unresigned Prize, with special appreciation for ${getAuthor(post).displayName}, author of "${post.title}".' />
     <input type="hidden" name="hosted_button_id" value="ZMFZULZHMAM9Y" />
     <input type="submit" value="Donate" border="0" name="submit" title="Donate via PayPal" alt="Donate with PayPal button" class="donate-button"/>
     <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />

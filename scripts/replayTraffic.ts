@@ -115,7 +115,7 @@ function buildFilters(opts: ReplayOptions) {
 function toOptions(args: Record<string, string | boolean>): ReplayOptions {
   const speed = Number(args.speed ?? 1)
   const host = String(args.host ?? '')
-  const userAgent = String(args['user-agent'] ?? args.ua ?? 'LessWrong-Replay/1.0')
+  const userAgent = String(args['user-agent'] ?? args.ua ?? 'Unresigned-Replay/1.0')
   const methodsCsv = String(args.methods ?? 'GET')
   const methods = new Set(methodsCsv.split(',').map(s => s.trim().toUpperCase()).filter(Boolean))
   const include = typeof args.include === 'string' ? String(args.include) : undefined

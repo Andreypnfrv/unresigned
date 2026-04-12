@@ -1,5 +1,5 @@
 import React from "react";
-import BestOfLessWrongAdmin from '@/components/review/BestOfLessWrongAdmin';
+import BestOfUnresignedAdmin from '@/components/review/BestOfUnresignedAdmin';
 import { getDefaultMetadata, getPageTitleFields } from "@/server/pageMetadata/sharedMetadata";
 import type { Metadata } from "next";
 import merge from "lodash/merge";
@@ -7,7 +7,7 @@ import RouteRoot from "@/components/layout/RouteRoot";
 import { assertRouteAttributes } from "@/lib/routeChecks/assertRouteAttributes";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return merge({}, await getDefaultMetadata(), getPageTitleFields('Best of LessWrong Admin'));
+  return merge({}, await getDefaultMetadata(), getPageTitleFields('Best of Unresigned Admin'));
 }
 
 assertRouteAttributes("/bestoflesswrongadmin/[year]", {
@@ -23,6 +23,6 @@ export default async function Page({ params }: {
 }) {
   const { year } = await params;
   return <RouteRoot>
-    <BestOfLessWrongAdmin year={year} />
+    <BestOfUnresignedAdmin year={year} />
   </RouteRoot>
 }

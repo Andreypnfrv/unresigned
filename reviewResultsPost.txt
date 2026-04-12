@@ -2015,7 +2015,7 @@
     </tr><tr>
       <td class="item-count">176</td>
       <td>
-        <a class="post-title" href="/posts/LbbrnRvc9QwjJeics/new-user-s-guide-to-lesswrong">New User's Guide to LessWrong</a>
+        <a class="post-title" href="/posts/LbbrnRvc9QwjJeics/new-user-s-guide-to-lesswrong">New User's Guide to Unresigned</a>
         <span class="post-author">Ruby</span>
       </td>
       <td>

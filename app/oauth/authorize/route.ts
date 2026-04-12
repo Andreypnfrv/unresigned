@@ -189,7 +189,7 @@ function renderConsentPage(args: ConsentPageArgs): string {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Authorize ${escapeHtml(clientName)} — LessWrong</title>
+  <title>Authorize ${escapeHtml(clientName)} — Unresigned</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -230,7 +230,7 @@ function renderConsentPage(args: ConsentPageArgs): string {
   <div class="card">
     <h1>Authorize ${escapeHtml(clientName)}</h1>
     <p>
-      <strong>${escapeHtml(clientName)}</strong> is requesting access to your LessWrong account
+      <strong>${escapeHtml(clientName)}</strong> is requesting access to your Unresigned account
       (<strong>${escapeHtml(userName)}</strong>).
     </p>
     <p>This will allow ${escapeHtml(clientName)} to:</p>
@@ -259,7 +259,7 @@ function renderErrorPage(message: string): string {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Authorization Error — LessWrong</title>
+  <title>Authorization Error — Unresigned</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;

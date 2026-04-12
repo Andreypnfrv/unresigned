@@ -138,11 +138,11 @@ const sourceLabels: Record<FeedItemSourceType, string> = {
   'bookmarks': 'you bookmarked this',
   'quicktakes': 'recent Quick Take',
   'recentComments': 'recent comments',
-  'spotlights': 'LessWrong featured item',
+  'spotlights': 'Unresigned featured item',
 };
 
 const sourceTooltips: Partial<Record<FeedItemSourceType, string>> = {
-  'recombee-lesswrong-ultrafeed': 'LessWrong uses Recombee, trained on your reads and votes',
+  'recombee-lesswrong-ultrafeed': 'Unresigned uses Recombee, trained on your reads and votes',
   'bookmarks': 'Bookmarks are inserted periodically into your feed to remind you about them, you can turn this off in the settings',
 };
 

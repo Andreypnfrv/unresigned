@@ -5,10 +5,10 @@ import { addField, dropField } from "./meta/utils";
  * Generated on 2023-04-24T20:04:07.169Z by `yarn makemigrations`
  * The following schema changes were detected:
  * -------------------------------------------
- * diff --git a/Users/raymondarnold/Documents/LessWrongSuite/Lesswrong2/schema/accepted_schema.sql b/Users/raymondarnold/Documents/LessWrongSuite/Lesswrong2/schema/schema_to_accept.sql
+ * diff --git a/Users/raymondarnold/Documents/UnresignedSuite/Lesswrong2/schema/accepted_schema.sql b/Users/raymondarnold/Documents/UnresignedSuite/Lesswrong2/schema/schema_to_accept.sql
  * index 559df24b0e..6904b09a27 100644
- * --- a/Users/raymondarnold/Documents/LessWrongSuite/Lesswrong2/schema/accepted_schema.sql
- * +++ b/Users/raymondarnold/Documents/LessWrongSuite/Lesswrong2/schema/schema_to_accept.sql
+ * --- a/Users/raymondarnold/Documents/UnresignedSuite/Lesswrong2/schema/accepted_schema.sql
+ * +++ b/Users/raymondarnold/Documents/UnresignedSuite/Lesswrong2/schema/schema_to_accept.sql
  * @@ -4,5 +4,3 @@
  *  --
  * --- Overall schema hash: 1058503cdf3522b15f94b3499566433a

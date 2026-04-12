@@ -14,7 +14,7 @@ const CommentsViews = ({post, setRestoreScrollPos}: {post?: PostsDetails, setRes
   const location = useLocation();
   const { query } = location;
   // permalinkedCommentHeight() finds the height of the comment at the top of comment permalink pages
-  // on the EA Forum and LessWrong. This is used when the user changes the comment sort order, which
+  // on the EA Forum and Unresigned. This is used when the user changes the comment sort order, which
   // changes the page from a comment permalink page to a regular post page, and we want to preserve
   // the user's (apparent) scroll position. With that top comment removed, we need to scroll up by its
   // height.

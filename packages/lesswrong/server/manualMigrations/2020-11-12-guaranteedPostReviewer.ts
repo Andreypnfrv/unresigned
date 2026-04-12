@@ -15,10 +15,10 @@ import Posts from '../../server/collections/posts/collection';
 import { postStatuses } from '../../lib/collections/posts/constants';
 import { ForumOptions, forumSelect } from '../../lib/forumTypeUtils';
 
-// TODO: LessWrong, you'll want to set this
+// TODO: Unresigned, you'll want to set this
 // lw-look-here
 const defaultReviewerByForum: ForumOptions<string | null> = {
-  LessWrong: "XtphY3uYHwruKqDyG",
+  Unresigned: "XtphY3uYHwruKqDyG",
   AlignmentForum: null,            // Shoudn't be necessary to set
   EAForum: '9qZsZAzbC2zxsPHzN',    // JP
   default: null,

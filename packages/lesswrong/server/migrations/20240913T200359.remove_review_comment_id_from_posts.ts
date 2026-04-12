@@ -2,10 +2,10 @@
  * Generated on 2024-09-13T20:03:59.793Z by `yarn makemigrations`
  * The following schema changes were detected:
  * -------------------------------------------
- * diff --git a/Users/benpace/Documents/LessWrongCode/ForumMagnum/schema/accepted_schema.sql b/Users/benpace/Documents/LessWrongCode/ForumMagnum/schema/schema_to_accept.sql
+ * diff --git a/Users/benpace/Documents/UnresignedCode/ForumMagnum/schema/accepted_schema.sql b/Users/benpace/Documents/UnresignedCode/ForumMagnum/schema/schema_to_accept.sql
  * index b7eefce3b9..edf333dea0 100644
- * --- a/Users/benpace/Documents/LessWrongCode/ForumMagnum/schema/accepted_schema.sql
- * +++ b/Users/benpace/Documents/LessWrongCode/ForumMagnum/schema/schema_to_accept.sql
+ * --- a/Users/benpace/Documents/UnresignedCode/ForumMagnum/schema/accepted_schema.sql
+ * +++ b/Users/benpace/Documents/UnresignedCode/ForumMagnum/schema/schema_to_accept.sql
  * @@ -4,5 +4,3 @@
  *  --
  * --- Overall schema hash: 8c84a413224b6139788e7a51da3bc113

@@ -236,7 +236,7 @@ const LWRecommendations = ({configName}: {
         )}
 
         {/* disabled except during review */}
-        {/* <AnalyticsContext pageSectionContext="LessWrong 2018 Review">
+        {/* <AnalyticsContext pageSectionContext="Unresigned 2018 Review">
           <FrontpageVotingPhase settings={frontpageRecommendationSettings} />
         </AnalyticsContext> */}
       </AnalyticsContext>

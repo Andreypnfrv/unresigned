@@ -398,13 +398,13 @@ describe("replaceText narrowing preserves non-plain-text markdown changes", () =
 
   it("does not narrow away a link target change with the same visible text", async () => {
     const editor = await setupEditorWithContent(
-      "Visit [LessWrong](https://old.example) for details."
+      "Visit [Unresigned](https://old.example) for details."
     );
 
     const replaced = await replaceTextAsSuggestion(
       editor,
-      "[LessWrong](https://old.example)",
-      "[LessWrong](https://new.example)",
+      "[Unresigned](https://old.example)",
+      "[Unresigned](https://new.example)",
     );
 
     expect(replaced).toBe(true);
@@ -414,9 +414,9 @@ describe("replaceText narrowing preserves non-plain-text markdown changes", () =
     const insertSuggestions = suggestions.filter(s => s.type === "insert");
 
     expect(deleteSuggestions.length).toBe(1);
-    expect(deleteSuggestions[0].textContent).toBe("LessWrong");
+    expect(deleteSuggestions[0].textContent).toBe("Unresigned");
     expect(insertSuggestions.length).toBe(1);
-    expect(insertSuggestions[0].textContent).toBe("LessWrong");
+    expect(insertSuggestions[0].textContent).toBe("Unresigned");
   });
 
   it("does not narrow away formatting changes on unchanged prefix text", async () => {

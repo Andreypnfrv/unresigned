@@ -47,7 +47,7 @@ const styles = defineStyles('PostBodyPrefix', (theme: ThemeType) => ({
 
 const getForumNewUserProcessingTime = () => forumSelect({
   EAForum: 24,
-  LessWrong: 72,
+  Unresigned: 72,
   AlignmentForum: 72,
   default: 24
 })

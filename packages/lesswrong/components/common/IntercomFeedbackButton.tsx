@@ -3,6 +3,7 @@ import { useTracking } from "../../lib/analyticsEvents";
 import { useCurrentUser } from "./withUser";
 import classNames from "classnames";
 import LWTooltip from "./LWTooltip";
+import { intercomAppIdSetting } from "@/lib/instanceSettings";
 import { defineStyles } from '@/components/hooks/defineStyles';
 import { useStyles } from '@/components/hooks/useStyles';
 
@@ -29,9 +30,12 @@ const IntercomFeedbackButton = ({title = "Give feedback", eventName, className}:
   const {captureEvent} = useTracking();
   const onClick = useCallback(() => {
     // eslint-disable-next-line babel/new-cap
-    window.Intercom("trackEvent", eventName);
+    window.Intercom?.("trackEvent", eventName);
     captureEvent(eventName);
   }, [eventName, captureEvent]);
+  if (!intercomAppIdSetting.get()) {
+    return null;
+  }
   return (
     <LWTooltip title={
       currentUser?.hideIntercom

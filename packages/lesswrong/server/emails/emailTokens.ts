@@ -209,7 +209,7 @@ export const emailTokenTypesByName = {
         { _id: user._id },
         { $set: { claudeLinkedAt: new Date() } }
       );
-      return { message: `Claude access confirmed. You can now use Claude to interact with your LessWrong posts by clicking the "Claude" button in the editor's settings panel.` };
+      return { message: `Claude access confirmed. You can now use Claude to interact with your Unresigned posts by clicking the "Claude" button in the editor's settings panel.` };
     },
     resultComponentName: "EmailTokenResult",
     path: "api/agent/confirmClaudeAccess",

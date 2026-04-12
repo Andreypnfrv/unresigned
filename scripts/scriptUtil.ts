@@ -25,7 +25,7 @@ export const initGlobals = (isProd: boolean, globalOverrides?: Record<string, un
   });
 }
 
-const forumTypes = ["lw", "ea", "af"] as const;
+const forumTypes = ["lw", "ea", "af", "ur"] as const;
 export type ForumType = typeof forumTypes[number];
 const environmentTypes = ["dev", "local", "staging", "prod", "xpost", "test"] as const;
 export type EnvironmentType = typeof environmentTypes[number];
@@ -35,6 +35,7 @@ const getCredentialsBase = (forumType: ForumType): string => {
     lw: "..",
     af: "..",
     ea: "..",
+    ur: "..",
   };
   return process.env.GITHUB_WORKSPACE ?? memorizedBases[forumType];
 }
@@ -42,9 +43,10 @@ const getCredentialsBase = (forumType: ForumType): string => {
 const credentialsPath = (forumType: ForumType) => {
   const base = getCredentialsBase(forumType);
   const memorizedRepoNames: Record<ForumType, string> = {
-    lw: '/LessWrong-Credentials',
-    af: '/LessWrong-Credentials',
+    lw: '/Unresigned-Credentials',
+    af: '/Unresigned-Credentials',
     ea: '/ForumCredentials',
+    ur: '/Unresigned-Credentials',
   };
   const repoName = memorizedRepoNames[forumType];
   return `${base}${repoName}`;
@@ -88,6 +90,10 @@ export const getDatabaseConfigFromModeAndForumType = (mode: EnvironmentType, for
       db: `${credentialsPath(forumType)}/connectionConfigs/${mode}.json`,
       noSshTunnel: true, //workaround for a timing issue
     },
+    ur: {
+      db: `${credentialsPath(forumType)}/connectionConfigs/${mode}.json`,
+      noSshTunnel: true,
+    },
     ea: {
       postgresUrlFile: `${credentialsPath(forumType)}/${mode}-pg-conn.txt`,
     },
@@ -102,7 +108,7 @@ export const getSettingsFileName = (mode: string, forumType: ForumType) => {
     // an error condition, but it will be handled later, around L60
     return '';
   }
-  if (forumType === 'lw') {
+  if (forumType === 'lw' || forumType === 'ur') {
     if (mode === 'prod') {
       return 'settings-production-lesswrong.json';
     } else if (mode === 'local') {

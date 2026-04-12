@@ -26,7 +26,7 @@ SOFTWARE.
 
 Contains code derived from Proton WebClients (https://github.com/ProtonMail/WebClients).
 Copyright (c) Proton AG. Licensed under GPL-3.0 (see packages/lesswrong/lib/vendor/proton/LICENSE-GPL3).
-Modified by the LessWrong team, 2026.
+Modified by the Unresigned team, 2026.
 
 The derived code is located in:
 - packages/lesswrong/lib/vendor/proton/

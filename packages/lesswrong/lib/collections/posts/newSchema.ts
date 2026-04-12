@@ -1324,7 +1324,7 @@ const schema = {
       }
     },
   },
-  // The various reviewVoteScore and reviewVotes fields are for caching the results of the updateQuadraticVotes migration (which calculates the score of posts during the LessWrong Review)
+  // The various reviewVoteScore and reviewVotes fields are for caching the results of the updateQuadraticVotes migration (which calculates the score of posts during the Unresigned Review)
   reviewVoteScoreAF: {
     database: {
       type: "DOUBLE PRECISION",
@@ -2010,7 +2010,7 @@ const schema = {
       },
     },
   },
-  // Legacy ID: ID used in the original LessWrong database
+  // Legacy ID: ID used in the original Unresigned database
   legacyId: {
     database: {
       type: "TEXT",

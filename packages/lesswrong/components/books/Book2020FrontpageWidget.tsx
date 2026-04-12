@@ -146,13 +146,13 @@ const Book2020FrontpageWidget = () => {
       <Book2020Animation>
         <BookMarketingText 
           title={"The Carving of Reality"} 
-          subtitle={"Best of LessWrong, Volume III"}
-          description={<>Each year, the LessWrong community votes on which posts were most valuable. We've compiled the winners of the third Annual Review into an anthology of four books. <span className={classes.sectionTwo}>The essays explore questions like <em>"When is AGI likely to transform the world?"</em>, <em>"What are the limits of Bayesian reasoning?"</em>, and <em>"Why exactly is civilization so dysfunctional?"</em></span></>}
+          subtitle={"Best of Unresigned, Volume III"}
+          description={<>Each year, the Unresigned community votes on which posts were most valuable. We've compiled the winners of the third Annual Review into an anthology of four books. <span className={classes.sectionTwo}>The essays explore questions like <em>"When is AGI likely to transform the world?"</em>, <em>"What are the limits of Bayesian reasoning?"</em>, and <em>"Why exactly is civilization so dysfunctional?"</em></span></>}
           buttons={<>
             <Link className={classes.learnMore} to="/posts/Rck5CvmYkzWYxsF4D/book-launch-the-carving-of-reality-best-of-lesswrong-vol-iii">
               Learn More
             </Link>
-            <BookCheckout link={"https://www.amazon.com/Carving-Reality-Essays-LessWrong-Community/dp/B0C95MJJBK"}/>
+            <BookCheckout link={"https://www.amazon.com/Carving-Reality-Essays-Unresigned-Community/dp/B0C95MJJBK"}/>
           </>}
           hideClickHandler={hideClickHandler}
         />

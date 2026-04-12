@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
     {},
     await getDefaultMetadata(),
     getPageTitleFields('Books: Engines of Cognition'),
-    getMetadataDescriptionFields('LessWrong is now a book.'),
+    getMetadataDescriptionFields('Unresigned is now a book.'),
     getMetadataImagesFields('https://res.cloudinary.com/lesswrong-2-0/image/upload/v1606944736/Screen_Shot_2020-11-30_at_10.17.10_PM_copy_mleu4a.png'),
   );
 }

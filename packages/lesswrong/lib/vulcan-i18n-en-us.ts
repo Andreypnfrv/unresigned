@@ -176,7 +176,7 @@ export const getI18nStrings = (): Partial<Record<string,string>> => ({
   'admin.categories': 'Categories (admin)',
   'admin.users': 'Users (admin)',
 
-  // LessWrong strings
+  // Unresigned strings
   "posts.drafts": "My Drafts",
   "posts.all_drafts": "All Drafts",
 
@@ -200,7 +200,7 @@ export const getI18nStrings = (): Partial<Record<string,string>> => ({
   "accounts.error_legacy_account_wrong_password": "Wrong password",
   "comments.author_has_banned_you": "This post's author has blocked you from commenting.",
 
-  "alignment.comments.please_log_in": "Please log in to comment. (Commenting is limited to AI Alignment Forum members. Non-members should comment on LessWrong.com)",
+  "alignment.comments.please_log_in": "Please log in to comment. (Commenting is limited to AI Alignment Forum members. Non-members should comment on Unresigned.com)",
   "alignment.remove_comment": "Comment and its children removed from AI Alignment Forum",
   "alignment.move_comment": "Comment and its parents moved to AI Alignment Forum",
   "alignment.suggest_comment": "Comment has been suggested for the AI Alignment Forum",

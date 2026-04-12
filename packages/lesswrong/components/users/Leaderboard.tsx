@@ -224,7 +224,7 @@ const Leaderboard = () => {
       <div className={classes.pageContainer}>
         <h1 className={classes.header}>Leaderboard</h1>
         <p className={classes.subTitle}>
-          Here are our top users and donors to <a href="https://lightconeinfrastructure.com">Lightcone Infrastructure</a>, the organization maintaining LessWrong. Contribute to the site, or <a href="https://lightconeinfrastructure.com/donate">donate</a> to show up here! 
+          Here are our top users and donors to <a href="https://lightconeinfrastructure.com">Lightcone Infrastructure</a>, the organization maintaining Unresigned. Contribute to the site, or <a href="https://lightconeinfrastructure.com/donate">donate</a> to show up here! 
         </p>
 
         <div className={classes.columnsContainer}>

@@ -123,7 +123,7 @@ const NominationsPage = ({reviewYear}: { reviewYear: ReviewYear }) => {
           <Tab
             className={classes.tab}
             value="submitlinkposts"
-            label={<LWTooltip title={`Posts from other sites that are relevant to LessWrong or Alignment Forum`}>Submit LinkPosts</LWTooltip>}
+            label={<LWTooltip title={`Posts from other sites that are relevant to Unresigned or Alignment Forum`}>Submit LinkPosts</LWTooltip>}
           />
           <div className={classes.divider}/>
           <Tab 

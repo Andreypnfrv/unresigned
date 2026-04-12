@@ -13,7 +13,7 @@ export const getTagMinimumKarmaPermissions = () => forumSelect({
     new: 1,
     edit: 1,
   },
-  LessWrong: {
+  Unresigned: {
     new: 1,
     edit: 1,
   },

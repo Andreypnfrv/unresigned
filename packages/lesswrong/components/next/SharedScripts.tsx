@@ -6,13 +6,21 @@ import { getSsrInjectedGraphqlLoaderScript } from "@/components/hooks/ssrInjecte
 import { toEmbeddableJson } from "@/lib/utils/jsonUtils";
 import { getInstanceSettings } from "@/lib/getInstanceSettings";
 import { globalExternalStylesheets } from "@/themes/globalStyles/externalStyles";
-import { faviconUrlSetting } from '@/lib/instanceSettings';
+import { faviconUrlSetting, isUnresignedForum } from '@/lib/instanceSettings';
+
+const unresignedGoogleFonts =
+  "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap";
 
 // These exist as a client component to avoid the RSC rehydration protocol
 // putting them into the initial streamed response chunk twice.
 const SharedScriptsInner = () => {
   const { public: publicInstanceSettings } = getInstanceSettings();
   return (<>
+      {isUnresignedForum() && <>
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous"/>
+        <link rel="stylesheet" href={unresignedGoogleFonts}/>
+      </>}
       {globalExternalStylesheets.map(stylesheet => <link key={stylesheet} rel="stylesheet" type="text/css" href={stylesheet}/>)}
       <script dangerouslySetInnerHTML={{__html: `window.publicInstanceSettings = ${toEmbeddableJson(publicInstanceSettings)}`}}/>
       <script dangerouslySetInnerHTML={{__html: getEmbeddedStyleLoaderScript()}}/>

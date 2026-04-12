@@ -15,7 +15,7 @@ import { useCurrentTime } from '@/lib/utils/timeUtil';
 export const iconWidth = 30
 
 const getIconTransform = () => forumSelect({
-  LessWrong: "scale(0.8)",
+  Unresigned: "scale(0.8)",
   EAForum: "scale(0.7)",
   default: undefined,
 });
@@ -44,7 +44,7 @@ const styles = defineStyles('TabNavigationItem', (theme: ThemeType) => ({
       backgroundColor: 'transparent'
     },
     color: theme.palette.grey[800],
-    ...(theme.forumType === "LessWrong"
+    ...(theme.forumType === "Unresigned"
       ? {
         paddingTop: 7,
         paddingBottom: 8,

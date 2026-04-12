@@ -440,7 +440,7 @@ const ExternalPostImporter = ({defaultPostedAt}: { defaultPostedAt?: Date }) => 
           />
           <Typography variant="body2">
             To nominate a linkpost for the Annual Review, you must write your own review it.<br />
-            Please explain why you think this post or paper is significant to LessWrong's intellectual progress.
+            Please explain why you think this post or paper is significant to Unresigned's intellectual progress.
           </Typography>
           <CommentEditor
             onPublish={handlePublish}

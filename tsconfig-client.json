@@ -9,6 +9,7 @@
   "compilerOptions": {
     "paths": {
       "@/client/*": ["./packages/lesswrong/client/*"],
+      "@/server/settings/settings": ["./packages/lesswrong/stubs/server/settings/settings.ts"],
       "@/server/*": ["./packages/lesswrong/stubs/server/*"],
       "@/*": ["./packages/lesswrong/*"]
     }

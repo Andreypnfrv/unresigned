@@ -166,7 +166,7 @@ const RecentDiscussionMeetupsPoke = () => {
     return null;
   
   return <div className={classes.root}>
-    <div>Did you know that there are LessWrong meetups? To get email notification
+    <div>Did you know that there are Unresigned meetups? To get email notification
     of meetups near you, enter your location:</div>
     
     <div className={classes.locationInputWrapper}>

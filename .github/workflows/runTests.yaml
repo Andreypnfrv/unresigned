@@ -68,11 +68,11 @@ jobs:
       run: if [[ `git status --porcelain ./schema ./packages` ]]; then git status --porcelain ./schema ./packages; echo "Changes detected - run yarn generate"; exit 1; fi
     - name: Switch forum type
       run: |
-        sed -i -e 's/"forumType": "EAForum"/"forumType": "LessWrong"/g' settings-test.json
-    - name: Run code generation (LessWrong)
+        sed -i -e 's/"forumType": "EAForum"/"forumType": "Unresigned"/g' settings-test.json
+    - name: Run code generation (Unresigned)
       run: yarn generate test lw
     - name: Throw if forum schemas differ
-      run: if [[ `git status --porcelain ./schema ./packages` ]]; then git status --porcelain ./schema ./packages; echo "LessWrong/EA Forum database schemas differ"; exit 1; fi
+      run: if [[ `git status --porcelain ./schema ./packages` ]]; then git status --porcelain ./schema ./packages; echo "Unresigned/EA Forum database schemas differ"; exit 1; fi
 
   runPlaywrightTests:
     # Pin Ubuntu to 22.04 to avoid a problem installing browser dependencies.
@@ -101,7 +101,7 @@ jobs:
       NODE_OPTIONS: "--max_old_space_size=4096"
       SLOW_QUERY_REPORT_CUTOFF_MS: "-1"
       ENV_NAME: test
-      FORUM_TYPE: LessWrong
+      FORUM_TYPE: Unresigned
       PG_URL: postgres://postgres:password@localhost:5433/postgres
       E2E: true
     steps:
@@ -173,7 +173,7 @@ jobs:
       NODE_OPTIONS: "--max_old_space_size=4096"
       SLOW_QUERY_REPORT_CUTOFF_MS: "-1"
       ENV_NAME: test
-      FORUM_TYPE: LessWrong
+      FORUM_TYPE: Unresigned
       E2E: true
     steps:
       - name: Skip while broken
@@ -243,7 +243,7 @@ jobs:
       NODE_OPTIONS: "--max_old_space_size=4096"
       SLOW_QUERY_REPORT_CUTOFF_MS: "-1"
       ENV_NAME: test
-      FORUM_TYPE: LessWrong
+      FORUM_TYPE: Unresigned
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     steps:

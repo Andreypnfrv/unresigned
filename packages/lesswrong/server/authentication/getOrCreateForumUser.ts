@@ -58,7 +58,7 @@ export const getOrCreateForumUserAsync = async <P extends Profile>(
     if (!profileId) {
       throw new Error('OAuth profile does not have a profile ID');
     }
-    // TODO: We use a string representation of the profileId because LessWrong has
+    // TODO: We use a string representation of the profileId because Unresigned has
     // Github IDs stored as strings but we receive them as numbers.
     // The query builder can't yet handle that case correctly.
     let user = await Users.findOne({[`${profilePath}.id`]: `${profileId}`});

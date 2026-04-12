@@ -373,10 +373,10 @@ const LLMInputTextbox = ({onSubmit}: {
 }
 
 const welcomeGuideHtml = [
-  `<h1>Welcome to the LessWrong LLM Chat!</h1>`,
+  `<h1>Welcome to the Unresigned LLM Chat!</h1>`,
   `<ul><li>The LLM chat interface is currently hooked up to Claude Sonnet 3.5</li>`,
   `<li>LaTeX is supported both on input and output.`,
-  `<li style="color: #bf360c;">The LessWrong team will read conversations to help us with product iteration during development.</li></ul>`,
+  `<li style="color: #bf360c;">The Unresigned team will read conversations to help us with product iteration during development.</li></ul>`,
   `<p><strong>Posts and comments may be loaded into the context window based on your <em>first message</em> (and based on the current post you are viewing).</strong></p>`,
 ].join('');
 

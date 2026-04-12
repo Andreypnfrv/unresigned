@@ -100,7 +100,7 @@ function getConversationContext(newConversationChannelId: string | undefined, ne
 }
 
 const ContextSelectionParameters = z.object({
-  reasoning: z.string().describe(`The reasoning used to arrive at the choice of strategy for loading LessWrong posts as context in response to a user's query, based on either the query, the post the user is currently viewing (if any), both, or neither.`),
+  reasoning: z.string().describe(`The reasoning used to arrive at the choice of strategy for loading Unresigned posts as context in response to a user's query, based on either the query, the post the user is currently viewing (if any), both, or neither.`),
   strategy_choice: z.union([z.literal('none'), z.literal('query-based'), z.literal('current-post-only'), z.literal('current-post-and-search'), z.literal('both')]).describe(contextSelectionChoiceDescriptions)
 });
 

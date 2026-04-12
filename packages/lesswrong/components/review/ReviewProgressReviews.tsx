@@ -79,7 +79,7 @@ export const ReviewProgressReviews = ({reviewYear}: {
 
   return <LWTooltip title={<div>
       {totalReviews < TARGET_NUM &&
-      <div>Help inform voters by writing {TARGET_NUM} reviews. Reviews with 10+ karma will appear on the Best of LessWrong page.</div>}
+      <div>Help inform voters by writing {TARGET_NUM} reviews. Reviews with 10+ karma will appear on the Best of Unresigned page.</div>}
       <p><em>{totalReviews ? `You've written ${totalReviews} review${totalReviews === 1 ? "" : "s"}${totalReviews >= TARGET_NUM ? "!" : "."} ${reviewCountMessage}` : "You haven't written any reviews yet."}</em></p>
     </div>} placement="top">
     <div className={classes.root}>

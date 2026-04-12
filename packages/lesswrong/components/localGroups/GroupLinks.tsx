@@ -132,7 +132,7 @@ const styles = defineStyles("GroupLinks", (theme: ThemeType) => ({
 }));
 
 const tooltips: Partial<Record<string,string>> = {
-  'LW': "This is a LessWrong group",
+  'LW': "This is a Unresigned group",
   'EA': "This is an Effective Altruism group",
   'SSC': "This is a Slate Star Codex group",
   // 'MIRIx': "This is a MIRIx group",

@@ -263,7 +263,7 @@ export async function triggerCommentAutomodIfNeeded(comment: DbVoteableType, vot
   const existingDownvotedCommentAction = previousCommentModeratorActions.find(action => action.type === DOWNVOTED_COMMENT_ALERT);
 
   const automodRule = forumSelect<VoteableAutomodRule>({
-    LessWrong: hasMultipleDownvotes,
+    Unresigned: hasMultipleDownvotes,
     EAForum: isDownvotedBelowBar(-10),
     default: () => false
   });

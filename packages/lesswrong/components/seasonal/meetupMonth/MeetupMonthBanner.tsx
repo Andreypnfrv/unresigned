@@ -51,8 +51,8 @@ function getCarouselSections(classes: JssStyles) {
       shortButtonText: "Petrov"
     },
     {
-      minorTitle: "LessWrong Meetups",
-      subtitle: <div>Apart from the specific highlighted events this month, LessWrong has regular meetups in many cities. <Link to="/posts/mve2bunf6YfTeiAvd/meetup-month-1">Learn more here.</Link></div>,
+      minorTitle: "Unresigned Meetups",
+      subtitle: <div>Apart from the specific highlighted events this month, Unresigned has regular meetups in many cities. <Link to="/posts/mve2bunf6YfTeiAvd/meetup-month-1">Learn more here.</Link></div>,
       buttonText: "LW"
     }
   ]

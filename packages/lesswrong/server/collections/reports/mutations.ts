@@ -61,7 +61,7 @@ async function postReportsToSunshine(report: DbReport, context: ResolverContext)
                 type: "button",
                 text: {
                   type: "plain_text",
-                  text: `View ${contentSlug} on LessWrong`,
+                  text: `View ${contentSlug} on Unresigned`,
                   emoji: true,
                 },
                 value: `view_${contentSlug}_on_lesswrong`,

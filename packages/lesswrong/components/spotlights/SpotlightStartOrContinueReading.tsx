@@ -84,7 +84,7 @@ const SpotlightStartOrContinueReadingInner = ({spotlight}: {
   
   // Note: the firstPostUrl won't reliably generate a good reading experience for all
   // possible Collection type spotlights, although it happens to work for the existing 5 collections 
-  // on LessWrong. (if the first post of a collection has a canonical sequence that's not 
+  // on Unresigned. (if the first post of a collection has a canonical sequence that's not 
   // in that collection it wouldn't provide the right 'next post')
   // But, also, the real proper fix here is to integrate continue reading here.
   const firstPost = readPosts.length === 0 && posts[0]

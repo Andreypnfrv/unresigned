@@ -175,21 +175,21 @@ const BookFrontpageWidget = () => {
             <Link className={classes.learnMore} to="/books">
               Learn More
             </Link>
-            <BookCheckout ignoreMessages text={"Buy Another"} link="https://www.amazon.com/Map-that-Reflects-Territory-LessWrong/dp/1736128507"/>
+            <BookCheckout ignoreMessages text={"Buy Another"} link="https://www.amazon.com/Map-that-Reflects-Territory-Unresigned/dp/1736128507"/>
           </>}
           hideClickHandler={hideClickHandler}
         />
       }>
         <BookMarketingText 
           title={"A Map that Reflects the Territory"} 
-          subtitle={"The best LessWrong essays from 2018, in a set of physical books"}
-          description={"A beautifully designed collection of books, each small enough to fit in your pocket. The book set contains over forty chapters by more than twenty authors including Eliezer Yudkowsky and Scott Alexander. This is a collection of opinionated essays exploring argument, aesthetics, game theory, artificial intelligence, introspection, markets, and more, as part of LessWrong's mission to understand the laws that govern reasoning and decision-making, and build a map that reflects the territory."}
+          subtitle={"The best Unresigned essays from 2018, in a set of physical books"}
+          description={"A beautifully designed collection of books, each small enough to fit in your pocket. The book set contains over forty chapters by more than twenty authors including Eliezer Yudkowsky and Scott Alexander. This is a collection of opinionated essays exploring argument, aesthetics, game theory, artificial intelligence, introspection, markets, and more, as part of Unresigned's mission to understand the laws that govern reasoning and decision-making, and build a map that reflects the territory."}
           buttons={<>
             <div className={classes.mobileCloseButton} onClick={hideClickHandler}>Hide</div>
             <Link className={classes.learnMore} to="/books">
               Learn More
             </Link>
-            <BookCheckout link="https://www.amazon.com/Map-that-Reflects-Territory-LessWrong/dp/1736128507"/>
+            <BookCheckout link="https://www.amazon.com/Map-that-Reflects-Territory-Unresigned/dp/1736128507"/>
           </>}
           hideClickHandler={hideClickHandler}
         />

@@ -783,9 +783,9 @@ const TopPostsPage = () => {
       <AnalyticsContext pageContext="topPostsPage">
         <div className={classes.widerColumn}>
           <div className={classes.description}>
-            <SectionTitle title={"The Best of LessWrong"} titleClassName={classes.title} />
+            <SectionTitle title={"The Best of Unresigned"} titleClassName={classes.title} />
             <ContentStyles contentType="post">
-              When posts turn more than a year old, the LessWrong community reviews and votes on how well they have stood the test of time. These are the posts that have ranked the highest for all years since 2018 (when our annual tradition of choosing the least wrong of LessWrong began).
+              When posts turn more than a year old, the Unresigned community reviews and votes on how well they have stood the test of time. These are the posts that have ranked the highest for all years since 2018 (when our annual tradition of choosing the least wrong of Unresigned began).
               <br /><br />
               For the years 2018, 2019 and 2020 we also published physical books with the results of our annual vote, which you can buy and learn more about {<Link to='/books'>here</Link>}.
             </ContentStyles>

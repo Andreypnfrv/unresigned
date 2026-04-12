@@ -88,7 +88,7 @@ function toolError(message: string) {
 function createMcpServer(): McpServer {
   const server = new McpServer(
     {
-      name: "LessWrong",
+      name: "Unresigned",
       version: "1.0.0",
     },
     {
@@ -101,7 +101,7 @@ function createMcpServer(): McpServer {
   server.registerTool(
     "read_post",
     {
-      description: "Read the content of a LessWrong post draft in markdown format. Returns the post title and body as agent-friendly markdown.",
+      description: "Read the content of a Unresigned post draft in markdown format. Returns the post title and body as agent-friendly markdown.",
       inputSchema: {
         postId: z.string().describe("The ID of the post to read"),
         key: z.string().optional().describe("Optional link-sharing key for collaborative draft access"),

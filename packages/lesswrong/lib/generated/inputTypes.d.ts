@@ -5654,7 +5654,7 @@ interface ReviewWinnersReviewWinnerSingleInput {
 interface ReviewWinnerSelector {
   default: EmptyViewInput | null;
   reviewWinnerSingle: ReviewWinnersReviewWinnerSingleInput | null;
-  bestOfLessWrongAnnouncement: EmptyViewInput | null;
+  bestOfUnresignedAnnouncement: EmptyViewInput | null;
 }
 
 interface MultiReviewWinnerInput {

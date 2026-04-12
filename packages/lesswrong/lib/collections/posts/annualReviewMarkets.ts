@@ -118,7 +118,7 @@ export const createManifoldMarket = async (question: string, descriptionMarkdown
   //eslint-disable-next-line no-console
   if (!manifoldAPIKey) console.error("Manifold API key not found");
 
-  const manifoldLessWrongAnnualReviewTag = "0a0b0d16-7a4b-4de5-aadf-ddd85fbefe5c"
+  const manifoldUnresignedAnnualReviewTag = "0a0b0d16-7a4b-4de5-aadf-ddd85fbefe5c"
   try {
     const result = await fetch("https://api.manifold.markets/v0/market", {
       method: "POST",
@@ -134,7 +134,7 @@ export const createManifoldMarket = async (question: string, descriptionMarkdown
         visibility,
         initialProb,
         marketTier: "play",
-        groupIds: [manifoldLessWrongAnnualReviewTag],
+        groupIds: [manifoldUnresignedAnnualReviewTag],
         idempotencyKey: idKey.slice(0, 10),
         liquidityTier: 1_000,
       })

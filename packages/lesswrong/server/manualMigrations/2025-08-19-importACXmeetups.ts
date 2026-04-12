@@ -453,7 +453,7 @@ const acxData: ACXMeetup[] = [
     "Time": "02:00 PM",
     "Event Link": "",
     "Group Link": "https://www.lesswrong.com/events/PeTRNigqY2vSzdzcB/acx-fall-meetup-2025-klang-valley-malaysia",
-    "Notes": "Please RSVP by messaging on LessWrong or emailing me so I know who'll be joining us!",
+    "Notes": "Please RSVP by messaging on Unresigned or emailing me so I know who'll be joining us!",
     "GPS Coordinates": "3.1145625,101.6399375"
   },
   {
@@ -634,7 +634,7 @@ const acxData: ACXMeetup[] = [
     "Date": "9/13/2025",
     "Time": "01:00 PM",
     "Event Link": "",
-    "Group Link": "LessWrong group: https://www.lesswrong.com/groups/3nnqSgGbF8x3mTcia ; Mailing list: http://eepurl.com/io5vZM ; Discord: https://discord.gg/K8gMNzqPVG",
+    "Group Link": "Unresigned group: https://www.lesswrong.com/groups/3nnqSgGbF8x3mTcia ; Mailing list: http://eepurl.com/io5vZM ; Discord: https://discord.gg/K8gMNzqPVG",
     "Notes": "",
     "GPS Coordinates": "45.5151875,-73.5818125"
   },
@@ -732,7 +732,7 @@ const acxData: ACXMeetup[] = [
     "Date": "9/13/2025",
     "Time": "07:00 PM",
     "Event Link": "",
-    "Group Link": "https://t.me/LessWrong_Singapore",
+    "Group Link": "https://t.me/Unresigned_Singapore",
     "Notes": "partiful.com/e/6ghe2pwx2e2j4q9y2nyj",
     "GPS Coordinates": "1.3164375,103.9465625"
   },
@@ -803,7 +803,7 @@ const acxData: ACXMeetup[] = [
     "Time": "03:00 PM",
     "Event Link": "",
     "Group Link": "https://www.lesswrong.com/groups/xSLmmoudDGM2w8JEG",
-    "Notes": "Please RSVP on LessWrong so I can get a rough estimate of how many people to expect. ",
+    "Notes": "Please RSVP on Unresigned so I can get a rough estimate of how many people to expect. ",
     "GPS Coordinates": "33.4579375,-112.0721875"
   },
   {
@@ -831,7 +831,7 @@ const acxData: ACXMeetup[] = [
     "Time": "02:00 PM",
     "Event Link": "",
     "Group Link": "https://ACXAtlanta.com",
-    "Notes": "Please RSVP on LessWrong",
+    "Notes": "Please RSVP on Unresigned",
     "GPS Coordinates": "33.8022375,-84.4266719"
   },
   {
@@ -1153,7 +1153,7 @@ const acxData: ACXMeetup[] = [
     "Time": "06:30 PM",
     "Event Link": "",
     "Group Link": "https://www.lesswrong.com/groups/fE7wFrbHoAKAvw5bw",
-    "Notes": "Please RSVP on LessWrong for reservation purposes, and please do come even if you're shy/scared - we are very welcoming.",
+    "Notes": "Please RSVP on Unresigned for reservation purposes, and please do come even if you're shy/scared - we are very welcoming.",
     "GPS Coordinates": "56.95668749999999,24.1204375"
   },
   {
@@ -1489,7 +1489,7 @@ const acxData: ACXMeetup[] = [
     "Time": "11:00 AM",
     "Event Link": "",
     "Group Link": "",
-    "Notes": "Please RSVP on LessWrong so I know how much food to get",
+    "Notes": "Please RSVP on Unresigned so I know how much food to get",
     "GPS Coordinates": "40.0953125,-74.1839375"
   },
   {
@@ -2133,7 +2133,7 @@ const acxData: ACXMeetup[] = [
     "Time": "01:00 PM",
     "Event Link": "",
     "Group Link": "https://www.lesswrong.com/groups/qQkgmEeEreY6gjd7o",
-    "Notes": "Please RSVP on LessWrong so we can bring coffee and snacks",
+    "Notes": "Please RSVP on Unresigned so we can bring coffee and snacks",
     "GPS Coordinates": "37.7708125,-122.4199375"
   },
   {
@@ -2407,7 +2407,7 @@ const acxData: ACXMeetup[] = [
     "Name": "Silas Barta",
     "Email address": "sbarta@gmail.com",
     "City": "Austin",
-    "Location description": "The park by Central Market, 4001 North Lamar, Austin, Texas. We will be by the stone tables by the pond with tarps for shade. We will have a LessWrong and ACX sign and have some tents set up. You can also park in the parking lot at 3900 Guadalupe St (outside the fenced hospital area).",
+    "Location description": "The park by Central Market, 4001 North Lamar, Austin, Texas. We will be by the stone tables by the pond with tarps for shade. We will have a Unresigned and ACX sign and have some tents set up. You can also park in the parking lot at 3900 Guadalupe St (outside the fenced hospital area).",
     "Plus.Code Coordinates": "https://plus.codes/86248746+9C",
     "Date": "10/11/2025",
     "Time": "12:00 PM",
@@ -2469,7 +2469,7 @@ const acxData: ACXMeetup[] = [
     "Time": "06:30 PM",
     "Event Link": "",
     "Group Link": "https://www.facebook.com/groups/oxfordrationalish",
-    "Notes": "Please RSVP on LessWrong so I know how many tables to book",
+    "Notes": "Please RSVP on Unresigned so I know how many tables to book",
     "GPS Coordinates": "51.7494375,-1.2383125"
   },
   {
@@ -2623,7 +2623,7 @@ const acxData: ACXMeetup[] = [
     "Time": "03:00 PM",
     "Event Link": "",
     "Group Link": "https://www.lesswrong.com/events/JTEpLhhjAbK4jiuuJ/copenhagen-acx-risk-from-ai-community-conference",
-    "Notes": "RSVP on LessWrong. This meetup in particular is AI X-Risk themed, but feel free to show up and discuss other subjects.",
+    "Notes": "RSVP on Unresigned. This meetup in particular is AI X-Risk themed, but feel free to show up and discuss other subjects.",
     "GPS Coordinates": "55.6703625,12.4398906"
   },
   {
