@@ -6,7 +6,7 @@ export const prodUnresigned = merge({}, sharedSettings, {
   title: "Unresigned",
   tagline: "Longevity, immortalism, and the science and politics of ending aging.",
   siteNameWithArticle: "Unresigned",
-  siteUrl: "https://example.com",
+  siteUrl: process.env.SITE_URL ?? "https://example.com",
   faviconUrl: "/favicon.ico",
   forumSettings: {
     headerTitle: "Unresigned",

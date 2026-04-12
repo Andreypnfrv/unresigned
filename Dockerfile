@@ -1,5 +1,5 @@
-# Node 22.x is LTS
-FROM node:22.12.0
+# Keep in sync with package.json engines.node
+FROM node:24.13.0-bookworm
 ENV IS_DOCKER=true
 # Transcrypt dependency
 RUN apt-get update && apt-get install -y bsdmainutils
@@ -17,4 +17,5 @@ COPY scripts/postinstall.sh scripts/postinstall.sh
 RUN yarn install && yarn cache clean
 COPY . .
 EXPOSE 8080
-CMD [ "yarn", "run", "production" ]
+ENV PORT=8080
+CMD ["sh", "-c", "exec yarn next start -H 0.0.0.0 -p ${PORT}"]
