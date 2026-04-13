@@ -6,6 +6,8 @@ RUN apt-get update && apt-get install -y bsdmainutils
 # Install transcrypt for EA Forum
 RUN curl -sSLo /usr/local/bin/transcrypt https://raw.githubusercontent.com/elasticdog/transcrypt/2f905dce485114fec10fb747443027c0f9119caa/transcrypt && chmod +x /usr/local/bin/transcrypt
 WORKDIR /usr/src/app
+ENV HOME=/usr/src/app
+ENV YARN_ENABLE_GLOBAL_CACHE=false
 # Copy only files necessary for yarn install, to avoid spurious changes
 # triggering re-install
 COPY package.json package.json
