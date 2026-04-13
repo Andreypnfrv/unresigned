@@ -1,6 +1,7 @@
 {
   "name": "lesswrong",
   "version": "2.1.0",
+  "packageManager": "yarn@4.9.4",
   "scripts": {
     "start": "scripts/runDevInstance.sh",
     "dev:unresigned": "ENV_NAME=localUnresignedDevDb FORUM_TYPE=Unresigned SKIP_VERCEL_CODE_PULL=true scripts/runDevInstance.sh",

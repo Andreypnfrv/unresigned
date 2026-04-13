@@ -1,6 +1,8 @@
 # Keep in sync with package.json engines.node
 FROM node:24.13.0-bookworm
 ENV IS_DOCKER=true
+RUN corepack enable
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 # Transcrypt dependency
 RUN apt-get update && apt-get install -y bsdmainutils
 # Install transcrypt for EA Forum
