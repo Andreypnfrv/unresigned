@@ -59,7 +59,16 @@ function getWebpackConfig(mode) {
 			rules: [
 				{
 					test: /\.ts/,
-					use: [ 'ts-loader' ]
+					use: [ {
+						loader: 'ts-loader',
+						options: {
+							transpileOnly: true,
+							compilerOptions: {
+								types: [],
+								typeRoots: [ path.resolve( __dirname, 'node_modules/@types' ) ],
+							},
+						},
+					} ],
 				},
 				{
 					test: /\.svg$/,
