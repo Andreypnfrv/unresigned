@@ -21,9 +21,19 @@ COPY scripts/postinstall.sh scripts/postinstall.sh
 # save the layer diff
 RUN yarn install && yarn cache clean
 COPY . .
-RUN rm -rf node_modules/@types/mapbox-gl node_modules/@types/simpl-schema \
-  ckEditor/node_modules/@types/mapbox-gl ckEditor/node_modules/@types/simpl-schema \
-  && (cd ckEditor && yarn build) && yarn build
+RUN curl -fsSL https://github.com/yarnpkg/yarn/releases/download/v1.22.22/yarn-1.22.22.js -o /usr/local/lib/yarn-classic-1.22.22.js \
+  && rm -rf node_modules/@types/mapbox-gl node_modules/@types/simpl-schema \
+    ckEditor/node_modules/@types/mapbox-gl ckEditor/node_modules/@types/simpl-schema \
+  && bash -c 'set -euo pipefail; \
+    mv package.json package.json.docker-bk; mv yarn.lock yarn.lock.docker-bk; \
+    cleanup() { mv package.json.docker-bk package.json 2>/dev/null || true; mv yarn.lock.docker-bk yarn.lock 2>/dev/null || true; }; \
+    trap cleanup EXIT; \
+    (cd ckEditor && env -i HOME=/usr/src/app PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
+      node /usr/local/lib/yarn-classic-1.22.22.js install --frozen-lockfile); \
+    (cd ckEditor && env -i HOME=/usr/src/app PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
+      node /usr/local/lib/yarn-classic-1.22.22.js run build); \
+    trap - EXIT; cleanup; \
+    yarn build'
 EXPOSE 8080
 ENV PORT=8080
 CMD ["sh", "-c", "exec yarn next start -H 0.0.0.0 -p ${PORT}"]

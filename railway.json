@@ -2,7 +2,7 @@
   "$schema": "https://railway.com/railway.schema.json",
   "build": {
     "builder": "RAILPACK",
-    "buildCommand": "yarn install && (cd ckEditor && yarn build) && yarn build"
+    "buildCommand": "curl -fsSL https://github.com/yarnpkg/yarn/releases/download/v1.22.22/yarn-1.22.22.js -o /tmp/yarn-classic-1.22.22.js && yarn install && rm -rf node_modules/@types/mapbox-gl node_modules/@types/simpl-schema ckEditor/node_modules/@types/mapbox-gl ckEditor/node_modules/@types/simpl-schema && bash -c 'set -euo pipefail; mv package.json package.json.docker-bk; mv yarn.lock yarn.lock.docker-bk; cleanup() { mv package.json.docker-bk package.json 2>/dev/null || true; mv yarn.lock.docker-bk yarn.lock 2>/dev/null || true; }; trap cleanup EXIT; (cd ckEditor && env -i HOME=$HOME PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin node /tmp/yarn-classic-1.22.22.js install --frozen-lockfile); (cd ckEditor && env -i HOME=$HOME PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin node /tmp/yarn-classic-1.22.22.js run build); trap - EXIT; cleanup; yarn build'"
   },
   "deploy": {
     "startCommand": "yarn next start -H 0.0.0.0 -p ${PORT}"
