@@ -33,12 +33,12 @@
  */
 export const acceptsSchemaHash = "edca7fde4fce09bf9031f2f3f9b18fda";
 
-import { addField, dropField } from "./meta/utils"
-
 export const up = async ({db}: MigrationContext) => {
-  await addField(db, "ElectionVotes", "submissionComments")
-}
+  await db.none(
+    `ALTER TABLE "ElectionVotes" ADD COLUMN IF NOT EXISTS "submissionComments" JSONB`,
+  );
+};
 
 export const down = async ({db}: MigrationContext) => {
-  await dropField(db, "ElectionVotes", "submissionComments")
-}
+  await db.none(`ALTER TABLE "ElectionVotes" DROP COLUMN IF EXISTS "submissionComments"`);
+};

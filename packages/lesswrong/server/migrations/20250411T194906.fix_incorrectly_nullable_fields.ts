@@ -22,8 +22,9 @@ export const up = async ({db}: MigrationContext) => {
   // eslint-disable-next-line no-console
   console.log('Updating ElectionCandidates.inactive default value');
 
-  // ElectionCandidates.inactive - update default value
-  await updateDefaultValue(db, "ElectionCandidates", 'inactive');
+  await db.none(
+    `ALTER TABLE "ElectionCandidates" ALTER COLUMN "inactive" SET DEFAULT FALSE`,
+  );
 
   // eslint-disable-next-line no-console
   console.log('Updating ElectionCandidates.extendedScore, afBaseScore, afExtendedScore, and afVoteCount to nullable');

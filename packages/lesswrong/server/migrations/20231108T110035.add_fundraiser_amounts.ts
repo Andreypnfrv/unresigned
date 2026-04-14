@@ -35,18 +35,22 @@
  */
 export const acceptsSchemaHash = "ee6df59dfe7fc9440ca415ce5cb2d762";
 
-import { addField, dropField } from "./meta/utils";
-
 export const up = async ({db}: MigrationContext) => {
-  await addField(db, "ElectionCandidates", "gwwcId");
-  await addField(db, "ElectionCandidates", "amountRaised");
-  await addField(db, "ElectionCandidates", "targetAmount");
-  await addField(db, "ElectionCandidates", "isElectionFundraiser");
-}
+  await db.none(`ALTER TABLE "ElectionCandidates" ADD COLUMN IF NOT EXISTS "gwwcId" TEXT`);
+  await db.none(
+    `ALTER TABLE "ElectionCandidates" ADD COLUMN IF NOT EXISTS "amountRaised" DOUBLE PRECISION`,
+  );
+  await db.none(
+    `ALTER TABLE "ElectionCandidates" ADD COLUMN IF NOT EXISTS "targetAmount" DOUBLE PRECISION`,
+  );
+  await db.none(
+    `ALTER TABLE "ElectionCandidates" ADD COLUMN IF NOT EXISTS "isElectionFundraiser" BOOLEAN DEFAULT FALSE NOT NULL`,
+  );
+};
 
 export const down = async ({db}: MigrationContext) => {
-  await dropField(db, "ElectionCandidates", "gwwcId");
-  await dropField(db, "ElectionCandidates", "amountRaised");
-  await dropField(db, "ElectionCandidates", "targetAmount");
-  await dropField(db, "ElectionCandidates", "isElectionFundraiser");
-}
+  await db.none(`ALTER TABLE "ElectionCandidates" DROP COLUMN IF EXISTS "gwwcId"`);
+  await db.none(`ALTER TABLE "ElectionCandidates" DROP COLUMN IF EXISTS "amountRaised"`);
+  await db.none(`ALTER TABLE "ElectionCandidates" DROP COLUMN IF EXISTS "targetAmount"`);
+  await db.none(`ALTER TABLE "ElectionCandidates" DROP COLUMN IF EXISTS "isElectionFundraiser"`);
+};

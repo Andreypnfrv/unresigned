@@ -42,12 +42,24 @@
  */
 export const acceptsSchemaHash = "7db476f93913b50f646a44166768ced6";
 
-import { createTable, dropTable } from "./meta/utils";
-
 export const up = async ({db}: MigrationContext) => {
-  await createTable(db, "ElectionVotes");
-}
+  await db.none(`
+    CREATE TABLE IF NOT EXISTS "ElectionVotes" (
+      "_id" VARCHAR(27) PRIMARY KEY,
+      "electionName" TEXT NOT NULL,
+      "userId" VARCHAR(27),
+      "compareState" JSONB,
+      "vote" JSONB,
+      "submittedAt" TIMESTAMPTZ,
+      "userExplanation" TEXT,
+      "userOtherComments" TEXT,
+      "schemaVersion" DOUBLE PRECISION DEFAULT 1,
+      "createdAt" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+      "legacyData" JSONB
+    );
+  `);
+};
 
 export const down = async ({db}: MigrationContext) => {
-  await dropTable(db, "ElectionVotes");
-}
+  await db.none(`DROP TABLE IF EXISTS "ElectionVotes" CASCADE`);
+};

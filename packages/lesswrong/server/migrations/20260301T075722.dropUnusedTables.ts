@@ -1,17 +1,15 @@
-import { dropField, dropTable } from "./meta/utils";
-
 export const up = async ({db}: MigrationContext) => {
-  await dropTable(db, "AdvisorRequests");
-  await dropTable(db, "GardenCodes");
-  await dropTable(db, "ElectionCandidates");
-  await dropTable(db, "ElectionVotes");
-  await dropTable(db, "FeaturedResources");
-  await dropTable(db, "Surveys");
-  await dropTable(db, "SurveyQuestions");
-  await dropTable(db, "SurveyResponses");
-  await dropTable(db, "SurveySchedules");
-  await dropTable(db, "UserJobAds");
-  await dropTable(db, "UserEAGDetails");
+  await db.none(`DROP TABLE IF EXISTS "AdvisorRequests" CASCADE`);
+  await db.none(`DROP TABLE IF EXISTS "GardenCodes" CASCADE`);
+  await db.none(`DROP TABLE IF EXISTS "ElectionVotes" CASCADE`);
+  await db.none(`DROP TABLE IF EXISTS "ElectionCandidates" CASCADE`);
+  await db.none(`DROP TABLE IF EXISTS "FeaturedResources" CASCADE`);
+  await db.none(`DROP TABLE IF EXISTS "Surveys" CASCADE`);
+  await db.none(`DROP TABLE IF EXISTS "SurveyQuestions" CASCADE`);
+  await db.none(`DROP TABLE IF EXISTS "SurveyResponses" CASCADE`);
+  await db.none(`DROP TABLE IF EXISTS "SurveySchedules" CASCADE`);
+  await db.none(`DROP TABLE IF EXISTS "UserJobAds" CASCADE`);
+  await db.none(`DROP TABLE IF EXISTS "UserEAGDetails" CASCADE`);
   await db.none(`DROP TABLE IF EXISTS "DigestPosts" CASCADE`);
   await db.none(`DROP TABLE IF EXISTS "Digests" CASCADE`);
   

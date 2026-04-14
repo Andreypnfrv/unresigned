@@ -35,12 +35,14 @@ import { addField, addRemovedField, dropField, dropRemovedField } from "./meta/u
 
 export const up = async ({db}: MigrationContext) => {
   await addRemovedField(db, Users, "givingSeasonNotifyForVoting", new BoolType());
-  await addField(db, "ElectionCandidates", "fundraiserLink");
-  await addField(db, "ElectionCandidates", "gwwcLink");
-}
+  await db.none(
+    `ALTER TABLE "ElectionCandidates" ADD COLUMN IF NOT EXISTS "fundraiserLink" TEXT`,
+  );
+  await db.none(`ALTER TABLE "ElectionCandidates" ADD COLUMN IF NOT EXISTS "gwwcLink" TEXT`);
+};
 
 export const down = async ({db}: MigrationContext) => {
   await dropRemovedField(db, Users, "givingSeasonNotifyForVoting");
-  await dropField(db, "ElectionCandidates", "fundraiserLink");
-  await dropField(db, "ElectionCandidates", "gwwcLink");
-}
+  await db.none(`ALTER TABLE "ElectionCandidates" DROP COLUMN IF EXISTS "fundraiserLink"`);
+  await db.none(`ALTER TABLE "ElectionCandidates" DROP COLUMN IF EXISTS "gwwcLink"`);
+};
