@@ -21,6 +21,98 @@ import CreateTableQuery from "@/server/sql/CreateTableQuery";
 
 type SqlClientOrTx = SqlClient | ITask<{}>;
 
+const MIGRATION_ONLY_TABLE_SQL: Record<string, string> = {
+  ForumEvents: `
+CREATE TABLE IF NOT EXISTS "ForumEvents" (
+  "_id" VARCHAR(27) PRIMARY KEY,
+  "createdAt" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  "schemaVersion" DOUBLE PRECISION NOT NULL DEFAULT 1,
+  "title" TEXT,
+  "slug" TEXT,
+  "startDate" TIMESTAMPTZ,
+  "endDate" TIMESTAMPTZ,
+  "darkColor" TEXT NOT NULL,
+  "lightColor" TEXT NOT NULL,
+  "tagId" VARCHAR(27),
+  "bannerImageId" TEXT,
+  "frontpageDescription" JSONB,
+  "frontpageDescription_latest" TEXT,
+  "postPageDescription" JSONB,
+  "legacyData" JSONB,
+  "contrastColor" TEXT,
+  "includesPoll" BOOLEAN NOT NULL DEFAULT FALSE,
+  "publicData" JSONB,
+  "frontpageDescriptionMobile" JSONB,
+  "frontpageDescriptionMobile_latest" TEXT,
+  "postId" VARCHAR(27),
+  "customComponent" TEXT,
+  "eventFormat" TEXT,
+  "maxStickersPerUser" DOUBLE PRECISION,
+  "bannerTextColor" TEXT,
+  "commentPrompt" TEXT,
+  "pollQuestion_latest" TEXT,
+  "pollAgreeWording" TEXT,
+  "pollDisagreeWording" TEXT,
+  "isGlobal" BOOLEAN,
+  "commentId" VARCHAR(27)
+)`,
+  UserJobAds: `
+CREATE TABLE IF NOT EXISTS "UserJobAds" (
+  "_id" VARCHAR(27) PRIMARY KEY,
+  "userId" VARCHAR(27) NOT NULL,
+  "jobName" TEXT NOT NULL,
+  "adState" TEXT NOT NULL,
+  "lastUpdated" TIMESTAMPTZ NOT NULL,
+  "schemaVersion" DOUBLE PRECISION NOT NULL DEFAULT 1,
+  "createdAt" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  "legacyData" JSONB,
+  "reminderSetAt" TIMESTAMPTZ
+)`,
+  UserEAGDetails: `
+CREATE TABLE IF NOT EXISTS "UserEAGDetails" (
+  "_id" VARCHAR(27) PRIMARY KEY,
+  "userId" VARCHAR(27) NOT NULL,
+  "careerStage" TEXT[],
+  "countryOrRegion" TEXT,
+  "nearestCity" TEXT,
+  "willingnessToRelocate" JSONB,
+  "experiencedIn" TEXT[],
+  "interestedIn" TEXT[],
+  "lastUpdated" TIMESTAMPTZ NOT NULL,
+  "schemaVersion" DOUBLE PRECISION NOT NULL DEFAULT 1,
+  "createdAt" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  "legacyData" JSONB
+)`,
+  Surveys: `CREATE TABLE IF NOT EXISTS "Surveys" ("_id" VARCHAR(27) PRIMARY KEY)`,
+  SurveyQuestions: `CREATE TABLE IF NOT EXISTS "SurveyQuestions" ("_id" VARCHAR(27) PRIMARY KEY)`,
+  SurveyResponses: `CREATE TABLE IF NOT EXISTS "SurveyResponses" ("_id" VARCHAR(27) PRIMARY KEY)`,
+  SurveySchedules: `CREATE TABLE IF NOT EXISTS "SurveySchedules" ("_id" VARCHAR(27) PRIMARY KEY)`,
+};
+
+const MIGRATION_ONLY_ADD_COLUMNS: Record<string, Record<string, string>> = {
+  ForumEvents: {
+    contrastColor: "TEXT",
+    includesPoll: "BOOLEAN NOT NULL DEFAULT FALSE",
+    publicData: "JSONB",
+    frontpageDescriptionMobile: "JSONB",
+    frontpageDescriptionMobile_latest: "TEXT",
+    postId: "VARCHAR(27)",
+    customComponent: "TEXT",
+    eventFormat: "TEXT",
+    maxStickersPerUser: "DOUBLE PRECISION",
+    bannerTextColor: "TEXT",
+    commentPrompt: "TEXT",
+    pollQuestion_latest: "TEXT",
+    pollAgreeWording: "TEXT",
+    pollDisagreeWording: "TEXT",
+    isGlobal: "BOOLEAN",
+    commentId: "VARCHAR(27)",
+  },
+  UserJobAds: {
+    reminderSetAt: "TIMESTAMPTZ",
+  },
+};
+
 function getCollectionFromNameOrCollection<N extends CollectionNameString>(
   collectionOrCollectionName: CollectionBase<N>|string,
 ): CollectionBase<N> {
@@ -64,6 +156,16 @@ export const addField = async <N extends CollectionNameString>(
   collectionOrCollectionName: CollectionBase<N>|string,
   fieldName: string,
 ): Promise<void> => {
+  if (typeof collectionOrCollectionName === "string" && !isValidCollectionName(collectionOrCollectionName as CollectionNameString)) {
+    const tableName = collectionOrCollectionName;
+    const colTypes = MIGRATION_ONLY_ADD_COLUMNS[tableName];
+    const sqlType = colTypes?.[fieldName];
+    if (!sqlType) {
+      throw new Error(`addField: unregistered table "${tableName}" has no migration column type for "${fieldName}" (see MIGRATION_ONLY_ADD_COLUMNS in migrations/meta/utils.ts)`);
+    }
+    await db.none(`ALTER TABLE "${tableName}" ADD COLUMN IF NOT EXISTS "${fieldName}" ${sqlType}`);
+    return;
+  }
   const collection = getCollectionFromNameOrCollection(collectionOrCollectionName);
   const table = collection.getTable();
   const fieldType = table.getFields()[fieldName];
@@ -120,6 +222,9 @@ export const updateDefaultValue = async <N extends CollectionNameString>(
   collectionOrCollectionName: CollectionBase<N>|string,
   fieldName: string,
 ): Promise<void> => {
+  if (typeof collectionOrCollectionName === "string" && !isValidCollectionName(collectionOrCollectionName as CollectionNameString)) {
+    return;
+  }
   const collection = getCollectionFromNameOrCollection(collectionOrCollectionName);
   const table = collection.getTable();
   const fields = table.getFields();
@@ -195,6 +300,14 @@ export const createTable = async <N extends CollectionNameString>(
   collectionOrCollectionName: PgCollectionClass<N>|string,
   ifNotExists = true,
 ): Promise<void> => {
+  if (typeof collectionOrCollectionName === "string" && !isValidCollectionName(collectionOrCollectionName as CollectionNameString)) {
+    const sql = MIGRATION_ONLY_TABLE_SQL[collectionOrCollectionName];
+    if (!sql) {
+      throw new Error(`createTable: unregistered table "${collectionOrCollectionName}" — add DDL to MIGRATION_ONLY_TABLE_SQL in migrations/meta/utils.ts`);
+    }
+    await db.none(sql);
+    return;
+  }
   const collection = getPgCollectionFromNameOrCollection(collectionOrCollectionName);
   const table = collection.getTable();
   const {sql, args} = new CreateTableQuery(table, ifNotExists).compile();
@@ -233,6 +346,9 @@ export const updateFunctions = async (db: SqlClientOrTx) => {
 export const updateIndexes = async <N extends CollectionNameString>(
   collectionOrCollectionName: PgCollectionClass<N>|string,
 ): Promise<void> => {
+  if (typeof collectionOrCollectionName === "string" && !isValidCollectionName(collectionOrCollectionName as CollectionNameString)) {
+    return;
+  }
   const collection = getPgCollectionFromNameOrCollection(collectionOrCollectionName);
   const allIndexes = getAllIndexes();
   const indexesOnCollection = allIndexes.mongoStyleIndexes[collection.collectionName];
