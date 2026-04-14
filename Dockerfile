@@ -14,6 +14,7 @@ ENV YARN_ENABLE_GLOBAL_CACHE=false
 # triggering re-install
 COPY package.json package.json
 COPY yarn.lock yarn.lock
+COPY .yarnrc.yml .yarnrc.yml
 COPY ckEditor ckEditor
 COPY eslint-plugin-local eslint-plugin-local
 COPY scripts/postinstall.sh scripts/postinstall.sh
