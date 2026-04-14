@@ -29,7 +29,8 @@ RUN yarn install && yarn cache clean \
   && rm -rf node_modules/@types/mapbox-gl node_modules/@types/simpl-schema \
     ckEditor/node_modules/@types/mapbox-gl ckEditor/node_modules/@types/simpl-schema \
   && yarn workspace @lesswrong/lesswrong-editor run build \
-  && yarn build
+  && yarn build \
+  && chmod +x scripts/docker-entrypoint.sh
 EXPOSE 8080
 ENV PORT=8080
-CMD ["sh", "-c", "exec yarn next start -H 0.0.0.0"]
+CMD ["scripts/docker-entrypoint.sh"]
