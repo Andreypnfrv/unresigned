@@ -470,7 +470,6 @@ const fillInNullWithDefaultCommands = `
     "commentCount" = COALESCE("commentCount", 0),
     "deleted" = COALESCE("deleted", false),
     "frontpagePostCount" = COALESCE("frontpagePostCount", 0),
-    "givingSeasonNotifyForVoting" = COALESCE("givingSeasonNotifyForVoting", false),
     "hiddenPostsMetadata" = COALESCE("hiddenPostsMetadata", '{}'::jsonb[]),
     "hideAFNonMemberInitialWarning" = COALESCE("hideAFNonMemberInitialWarning", false),
     "hideCommunitySection" = COALESCE("hideCommunitySection", false),
@@ -545,7 +544,6 @@ const fillInNullWithDefaultCommands = `
     "commentCount" IS NULL OR
     "deleted" IS NULL OR
     "frontpagePostCount" IS NULL OR
-    "givingSeasonNotifyForVoting" IS NULL OR
     "hiddenPostsMetadata" IS NULL OR
     "hideAFNonMemberInitialWarning" IS NULL OR
     "hideCommunitySection" IS NULL OR
@@ -986,7 +984,6 @@ const setNotnullCommands = `
     ALTER COLUMN "commentCount" SET NOT NULL,
     ALTER COLUMN "deleted" SET NOT NULL,
     ALTER COLUMN "frontpagePostCount" SET NOT NULL,
-    ALTER COLUMN "givingSeasonNotifyForVoting" SET NOT NULL,
     ALTER COLUMN "hiddenPostsMetadata" SET NOT NULL,
     ALTER COLUMN "hideAFNonMemberInitialWarning" SET NOT NULL,
     ALTER COLUMN "hideCommunitySection" SET NOT NULL,
@@ -1460,8 +1457,6 @@ const dropNotnullCommands = `
     ALTER COLUMN "commentCount" DROP NOT NULL,
     ALTER COLUMN "deleted" DROP NOT NULL,
     ALTER COLUMN "frontpagePostCount" DROP NOT NULL,
-    ALTER COLUMN "givingSeason2023DonatedFlair" DROP NOT NULL,
-    ALTER COLUMN "givingSeasonNotifyForVoting" DROP NOT NULL,
     ALTER COLUMN "hiddenPostsMetadata" DROP NOT NULL,
     ALTER COLUMN "hideAFNonMemberInitialWarning" DROP NOT NULL,
     ALTER COLUMN "hideCommunitySection" DROP NOT NULL,
