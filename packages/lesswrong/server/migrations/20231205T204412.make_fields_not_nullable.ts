@@ -524,7 +524,6 @@ const fillInNullWithDefaultCommands = `
     "sequenceCount" = COALESCE("sequenceCount", 0),
     "sequenceDraftCount" = COALESCE("sequenceDraftCount", 0),
     "showCommunityInRecentDiscussion" = COALESCE("showCommunityInRecentDiscussion", false),
-    "subscribedToDigest" = COALESCE("subscribedToDigest", false),
     "sunshineFlagged" = COALESCE("sunshineFlagged", false),
     "sunshineNotes" = COALESCE("sunshineNotes", ''::text),
     "sunshineSnoozed" = COALESCE("sunshineSnoozed", false),
@@ -600,7 +599,6 @@ const fillInNullWithDefaultCommands = `
     "sequenceCount" IS NULL OR
     "sequenceDraftCount" IS NULL OR
     "showCommunityInRecentDiscussion" IS NULL OR
-    "subscribedToDigest" IS NULL OR
     "sunshineFlagged" IS NULL OR
     "sunshineNotes" IS NULL OR
     "sunshineSnoozed" IS NULL OR
@@ -1043,7 +1041,6 @@ const setNotnullCommands = `
     ALTER COLUMN "sequenceCount" SET NOT NULL,
     ALTER COLUMN "sequenceDraftCount" SET NOT NULL,
     ALTER COLUMN "showCommunityInRecentDiscussion" SET NOT NULL,
-    ALTER COLUMN "subscribedToDigest" SET NOT NULL,
     ALTER COLUMN "sunshineFlagged" SET NOT NULL,
     ALTER COLUMN "sunshineNotes" SET NOT NULL,
     ALTER COLUMN "sunshineSnoozed" SET NOT NULL,
@@ -1520,7 +1517,6 @@ const dropNotnullCommands = `
     ALTER COLUMN "sequenceCount" DROP NOT NULL,
     ALTER COLUMN "sequenceDraftCount" DROP NOT NULL,
     ALTER COLUMN "showCommunityInRecentDiscussion" DROP NOT NULL,
-    ALTER COLUMN "subscribedToDigest" DROP NOT NULL,
     ALTER COLUMN "sunshineFlagged" DROP NOT NULL,
     ALTER COLUMN "sunshineNotes" DROP NOT NULL,
     ALTER COLUMN "sunshineSnoozed" DROP NOT NULL,
