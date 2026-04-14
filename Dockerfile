@@ -32,4 +32,4 @@ RUN yarn install && yarn cache clean \
   && yarn build
 EXPOSE 8080
 ENV PORT=8080
-CMD ["sh", "-c", "exec yarn next start -H 0.0.0.0 -p ${PORT}"]
+CMD ["sh", "-c", "exec yarn next start -H 0.0.0.0"]

@@ -5,6 +5,6 @@
     "buildCommand": "yarn install && rm -rf node_modules/@types/mapbox-gl node_modules/@types/simpl-schema ckEditor/node_modules/@types/mapbox-gl ckEditor/node_modules/@types/simpl-schema && yarn workspace @lesswrong/lesswrong-editor run build && yarn build"
   },
   "deploy": {
-    "startCommand": "yarn next start -H 0.0.0.0 -p ${PORT}"
+    "startCommand": "yarn next start -H 0.0.0.0"
   }
 }
