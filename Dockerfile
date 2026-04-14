@@ -21,7 +21,8 @@ COPY scripts/postinstall.sh scripts/postinstall.sh
 # save the layer diff
 RUN yarn install && yarn cache clean
 COPY . .
-RUN rm -rf node_modules/@types/mapbox-gl node_modules/@types/simpl-schema \
+RUN yarn install && yarn cache clean \
+  && rm -rf node_modules/@types/mapbox-gl node_modules/@types/simpl-schema \
     ckEditor/node_modules/@types/mapbox-gl ckEditor/node_modules/@types/simpl-schema \
   && yarn workspace @lesswrong/lesswrong-editor run build \
   && yarn build
