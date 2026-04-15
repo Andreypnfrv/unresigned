@@ -97,6 +97,10 @@ const MIGRATION_ONLY_ADD_COLUMNS: Record<string, Record<string, string>> = {
     subscribedToNewsletter: "BOOL",
     userSurveyEmailSentAt: "TIMESTAMPTZ",
   },
+  Comments: {
+    forumEventId: "VARCHAR(27)",
+    forumEventMetadata: "JSONB",
+  },
   ForumEvents: {
     contrastColor: "TEXT",
     includesPoll: "BOOLEAN NOT NULL DEFAULT FALSE",
