@@ -90,6 +90,13 @@ CREATE TABLE IF NOT EXISTS "UserEAGDetails" (
 };
 
 const MIGRATION_ONLY_ADD_COLUMNS: Record<string, Record<string, string>> = {
+  Users: {
+    hideJobAdUntil: "TIMESTAMPTZ",
+    inactiveSurveyEmailSentAt: "TIMESTAMPTZ",
+    optedOutOfSurveys: "BOOL",
+    subscribedToNewsletter: "BOOL",
+    userSurveyEmailSentAt: "TIMESTAMPTZ",
+  },
   ForumEvents: {
     contrastColor: "TEXT",
     includesPoll: "BOOLEAN NOT NULL DEFAULT FALSE",
@@ -168,11 +175,17 @@ export const addField = async <N extends CollectionNameString>(
   }
   const collection = getCollectionFromNameOrCollection(collectionOrCollectionName);
   const table = collection.getTable();
+  const tableName = table.getName();
   const fieldType = table.getFields()[fieldName];
   if (!fieldType) {
+    const sqlType = MIGRATION_ONLY_ADD_COLUMNS[tableName]?.[fieldName];
+    if (sqlType) {
+      await db.none(`ALTER TABLE "${tableName}" ADD COLUMN IF NOT EXISTS "${fieldName}" ${sqlType}`);
+      return;
+    }
     throw new Error(`Field "${fieldName}" does not exist in the schema`);
   }
-  await db.none(`ALTER TABLE "${table.getName()}" ADD COLUMN IF NOT EXISTS "${fieldName}" ${fieldType.toString()}`);
+  await db.none(`ALTER TABLE "${tableName}" ADD COLUMN IF NOT EXISTS "${fieldName}" ${fieldType.toString()}`);
 }
 
 /**
@@ -229,7 +242,7 @@ export const updateDefaultValue = async <N extends CollectionNameString>(
   const table = collection.getTable();
   const fields = table.getFields();
   if (!fields[fieldName]) {
-    throw new Error(`Table does not have field ${fieldName}`)
+    return;
   }
   const defaultValue = fields[fieldName].getDefaultValueString();
   if (defaultValue) {
@@ -257,6 +270,9 @@ export const updateFieldType = async <N extends CollectionNameString>(
 ): Promise<void> => {
   const collection = getCollectionFromNameOrCollection(collectionOrCollectionName);
   const fieldType = collection.getTable().getFields()[fieldName];
+  if (!fieldType) {
+    return;
+  }
   await db.none(
     `ALTER TABLE "${collection.getTable().getName()}" ALTER COLUMN "${fieldName}" TYPE ${fieldType.toConcrete().toString()}`
   );
