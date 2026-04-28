@@ -9,8 +9,14 @@ import crypto from 'crypto';
 const port = parseInt(process.env.PORT ?? '8080');
 const e2eDebug = process.env.E2E === 'true';
 
+const databaseUrl = process.env.DATABASE_URL ?? process.env.PG_URL;
+if (!databaseUrl) {
+  console.error('[hocuspocus] DATABASE_URL or PG_URL is required');
+  process.exit(1);
+}
+
 const postgresExtension = new PostgresExtension({
-  connectionString: process.env.DATABASE_URL!,
+  connectionString: databaseUrl,
 });
 
 const extensions: Extension[] = [
