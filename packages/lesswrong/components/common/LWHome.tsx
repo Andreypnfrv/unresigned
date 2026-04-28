@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react';
 import { AnalyticsContext } from "../../lib/analyticsEvents";
 import { getReviewPhase, reviewIsActive, REVIEW_YEAR } from '../../lib/reviewUtils';
-import { showReviewOnFrontPageIfActive, ultraFeedEnabledSetting, isAF, isUnresignedForum } from '@/lib/instanceSettings';
+import { cloudinaryCloudNameSetting, showReviewOnFrontPageIfActive, ultraFeedEnabledSetting, isAF, isUnresignedForum } from '@/lib/instanceSettings';
 import { useCookiesWithConsent } from '../hooks/useCookiesWithConsent';
 import { LAST_VISITED_FRONTPAGE_COOKIE } from '../../lib/cookies/cookies';
 import moment from 'moment';
@@ -21,8 +21,6 @@ import { StructuredData } from './StructuredData';
 import { SuspenseWrapper } from './SuspenseWrapper';
 import DeferRender from './DeferRender';
 import { defineStyles, useStyles } from '../hooks/useStyles';
-import { useTheme } from '../themes/useTheme';
-
 import dynamic from 'next/dynamic';
 import { IsReturningVisitorContextProvider } from '@/components/layout/IsReturningVisitorContextProvider';
 const RecentDiscussionFeed = dynamic(() => import("../recentDiscussion/RecentDiscussionFeed"), { ssr: false });
@@ -88,8 +86,8 @@ const styles = defineStyles("LWHome", (theme: ThemeType) => ({
   },
 }));
 
-/** Bump when replacing PNGs in `public/unresigned/` so browsers skip stale cached URLs */
-const UNRESIGNED_HERO_ASSET_VER = "3";
+/** Bump cache when hero Cloudinary asset is replaced (`unresigned/PNGv3`). */
+const UNRESIGNED_HERO_CLOUD_CACHE = "v4";
 
 const LESSONLINE_MOBILE_SPOTLIGHT_ID = 'j4q2gcjowKqfpdjsR';
 const LESSONLINE_MOBILE_SPOTLIGHT_UNTIL = new Date('2026-03-26T00:00:00Z');
@@ -128,10 +126,9 @@ const getStructuredData = () => ({
 
 const LWHome = () => {
   const classes = useStyles(styles);
-  const theme = useTheme();
   const mobileSpotlightOverrideId = getLessOnlineMobileSpotlightOverrideId();
   const heroArtSrc =
-    `${theme.dark ? "/unresigned/hero-dark.png" : "/unresigned/hero-light.png"}?v=${UNRESIGNED_HERO_ASSET_VER}`;
+    `https://res.cloudinary.com/${cloudinaryCloudNameSetting.get()}/image/upload/v1768493724/unresigned/PNGv3?_cb=${UNRESIGNED_HERO_CLOUD_CACHE}`;
 
   return (
       <AnalyticsContext pageContext="homePage">

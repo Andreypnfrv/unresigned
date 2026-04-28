@@ -30,7 +30,6 @@ import { CommentOnSelectionPageWrapper } from "@/components/comments/CommentOnSe
 import SidebarsWrapper from "@/components/layout/SidebarsWrapper";
 import GlobalHotkeys from "@/components/common/GlobalHotkeys";
 import LlmChatWrapper from "@/components/languageModels/LlmChatWrapper";
-import LWBackgroundImage from "./LWBackgroundImage";
 import IntercomWrapper from "@/components/layout/IntercomWrapper";
 import CookieBanner from "@/components/common/CookieBanner/CookieBanner";
 import NavigationEventSender from '@/components/hooks/useOnNavigate';
@@ -222,7 +221,6 @@ const Layout = ({children}: {
                 <FlashMessages />
               </ErrorBoundary>
 
-              {isLW() && <LWBackgroundImage />}
               <div ref={searchResultsAreaRef} className={classes.searchResultsArea} />
 
               {children}
