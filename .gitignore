@@ -34,6 +34,8 @@ scratch
 tmp
 .vscode/*
 .cursor/*
+!.cursor/rules/
+!.cursor/rules/**
 .deploy
 .deploy/*
 ### Meteor template
