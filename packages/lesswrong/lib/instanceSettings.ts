@@ -169,8 +169,6 @@ const disableElastic = new PublicInstanceSetting<'true' | 'false'>(
   "optional",
 );
 
-export const isElasticEnabled = () => !isAnyTest && !isE2E && disableElastic.get() !== 'true';
-
 export const manifoldAPIKeySetting = new PublicInstanceSetting<string | null>('manifold.reviewBotKey', null, "optional")
 export const reviewUserBotSetting = new PublicInstanceSetting<string | null>('reviewBotId', null, "optional")
 
@@ -263,6 +261,11 @@ export const elasticCloudIdSetting = new PublicInstanceSetting<string | null>("e
 export const elasticUsernameSetting = new PublicInstanceSetting<string | null>("elasticsearch.username", null, "optional");
 
 export const elasticPasswordSetting = new PublicInstanceSetting<string | null>("elasticsearch.password", null, "optional");
+
+export const isElasticEnabled = (): boolean => {
+  if (isAnyTest || isE2E || disableElastic.get() === 'true') return false;
+  return !!(elasticCloudIdSetting.get() && elasticUsernameSetting.get() && elasticPasswordSetting.get());
+};
 
 export const searchOriginDate = new PublicInstanceSetting<string>("elasticsearch.searchOriginDate", "2014-06-01T01:00:00Z", "optional");
 

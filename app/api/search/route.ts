@@ -1,5 +1,6 @@
 import { queryRequestSchema, type SearchOptions, type SearchQuery } from "@/lib/search/NativeSearchClient";
 import ElasticService from "@/server/search/elastic/ElasticService";
+import { isElasticEnabled } from "@/lib/instanceSettings";
 import { getSiteUrlFromReq } from "@/server/utils/getSiteUrl";
 import uniq from "lodash/uniq";
 import type { NextRequest } from "next/server";
@@ -135,6 +136,12 @@ async function runMarkdownSearchQuery(
   req: NextRequest,
   searchQuery: string,
 ): Promise<Response> {
+  if (!isElasticEnabled()) {
+    return new Response("Search is not configured on this server.", {
+      status: 503,
+      headers: { "content-type": "text/plain; charset=utf-8" },
+    });
+  }
   const typeFilter = parseTypeFilter(req.nextUrl.searchParams.get("type"));
   const indexes = typeFilter ? [typeFilter] : [...SEARCH_INDEXES];
   const limitPerType = parseLimit(req.nextUrl.searchParams.get("limit"));
@@ -251,6 +258,9 @@ export async function POST(req: NextRequest) {
   }
 
   try {
+    if (!isElasticEnabled()) {
+      return new Response("Search is not configured on this server.", { status: 503 });
+    }
     const results = await Promise.all(queries.map(q => getSearchService().runQuery(q, searchOptions)));
     for (const result of results) {
       const resultIds = result.hits.map(r=>r._id);

@@ -40,7 +40,7 @@ class ElasticClient {
     if (!cloudId || !username || !password) {
       // eslint-disable-next-line no-console
       console.warn("Elastic is enabled, but credentials are missing");
-      return;
+      throw new Error("Elasticsearch credentials are not configured");
     }
 
     if (!globalClient) {
