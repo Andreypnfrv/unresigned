@@ -207,7 +207,7 @@ export function getDefaultHomePageBody(): string {
   return `
   <style>
     :root {
-      --paper: #f8f4ee;
+      --paper: #faf5f0;
       --paper-shadow: rgba(40, 28, 18, 0.12);
       --ink: #171411;
       --ink-soft: #4c433d;

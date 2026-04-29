@@ -324,11 +324,11 @@ export const defaultComponentPalette = (dark: boolean, isAF: boolean) => ({
     mentionsBaloon: "light-dark(#c4c4c4,#f5f5f5)",
   },
   background: {
-    default: isAF ? (dark ? grey[100] : grey[60]) : "light-dark(#f8f4ee,#262626)",
+    default: isAF ? (dark ? grey[100] : grey[60]) : "light-dark(#faf5f0,#262626)",
     paper: grey[0], //Used by MUI
     contrastInDarkMode: "light-dark(#ffffff,#f5f5f5)",
     pageActiveAreaBackground: grey[0],
-    profilePageBackground: "light-dark(#fcfbf8,#262626)",
+    profilePageBackground: "light-dark(#faf5f0,#262626)",
     hover: '#f0ebe6',
     translucentBackground: "light-dark(rgba(255,255,255,.5),rgba(0,0,0,.5))",
     translucentBackgroundHeavy: "light-dark(rgba(255,255,255,.75),rgba(0,0,0,.75))",
@@ -540,7 +540,7 @@ export const defaultComponentPalette = (dark: boolean, isAF: boolean) => ({
     imageGridHeaderHighlighted: 'rgba(241, 209, 150, .75)',
     imageGridHeader: 'rgba(241, 209, 150, .4)',
     highlightedPost: 'rgba(0,0,0,0.27)',
-    imageGridBackground: '#f8f4ee',
+    imageGridBackground: '#faf5f0',
     postBodyScrim: 'rgba(0,0,0,var(--top-posts-page-scrim-opacity))'
   },
   header: {

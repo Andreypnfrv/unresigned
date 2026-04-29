@@ -10,6 +10,7 @@ import { isFullscreenRoute, isHomeRoute, isRouteWithLeftNavigationColumn, isSuns
 import DeferRender from '../common/DeferRender';
 import NavigationStandalone from '../common/TabNavigationMenu/NavigationStandalone';
 import { isLW, isLWorAF } from '@/lib/forumTypeUtils';
+import { isUnresignedForum } from '@/lib/instanceSettings';
 import { usePrerenderablePathname } from '../next/usePrerenderablePathname';
 import { useCurrentUser } from '../common/withUser';
 import { userCanDo } from '@/lib/vulcan-users/permissions';
@@ -46,6 +47,18 @@ const styles = defineStyles("RouteRootClient", (theme: ThemeType) => ({
       paddingRight: 8,
     },
   },
+  centralColumnUnresignedHome: {
+    paddingTop: 15,
+    marginLeft: "auto",
+    marginRight: "auto",
+    minHeight: `calc(100vh - var(--header-height))`,
+    gridArea: 'main',
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: 10,
+      paddingLeft: 8,
+      paddingRight: 8,
+    },
+  },
   fullscreen: {
     height: "100%",
     padding: 0,
@@ -75,6 +88,7 @@ export const RouteRootClient = ({fullscreen, children}: {
   const hideNavigationSidebar = !!use(HideNavigationSidebarContext)?.hideNavigationSidebar;
 
   const isFullscreen = isFullscreenRoute(pathname);
+  const unresignedHomeTightTop = isUnresignedForum() && isHomeRoute(pathname);
 
   return <PopperPortalProvider>
     <div className={classNames(classes.main, {[classes.mainFullscreen]: isFullscreen})}>
@@ -103,7 +117,7 @@ export const RouteRootClient = ({fullscreen, children}: {
         </div>
       }
     >
-      <div className={classNames(classes.centralColumn, {
+      <div className={classNames(unresignedHomeTightTop ? classes.centralColumnUnresignedHome : classes.centralColumn, {
         [classes.fullscreen]: fullscreen,
       })}>
         <ErrorBoundary>

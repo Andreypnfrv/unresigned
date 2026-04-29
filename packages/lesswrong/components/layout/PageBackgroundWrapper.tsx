@@ -3,6 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { usePrerenderablePathname } from '../next/usePrerenderablePathname';
 import { routeHasWhiteBackground, routeHasCreamBackground } from '@/lib/routeChecks/routeBackgroundColors';
+import { isUnresignedForum } from '@/lib/instanceSettings';
 import { isClient } from '@/lib/executionEnvironment';
 import "./pageBackground.css";
 
@@ -55,6 +56,7 @@ export function BodyWithBackgroundColor({children}: {
     isGreyBackground && "greyBackground",
     isCreamBackground && "creamBackground",
     themeClassname,
+    isUnresignedForum() && "forum-unresigned",
   )}>
     <script>{themeSelectorScript}</script>
     {children}

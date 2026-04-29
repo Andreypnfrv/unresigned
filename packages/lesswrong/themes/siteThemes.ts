@@ -25,7 +25,7 @@ const unresignedHeader =
   '"Fraunces", "Spectral", "Palatino Linotype", Palatino, Georgia, serif';
 
 export const unresignedTheme: SiteThemeSpecification = {
-  componentPalette: () => ({
+  componentPalette: (dark: boolean) => ({
     fonts: {
       sansSerifStack: unresignedSans,
       serifStack: unresignedSerif,
@@ -41,8 +41,9 @@ export const unresignedTheme: SiteThemeSpecification = {
       recentDiscussionGreen: "#1A535C",
     },
     background: {
-      default: "light-dark(#f7f5f0,#262626)",
-      hover: "light-dark(#ebe8e0,#333)",
+      default: dark ? "#000614" : "#faf5f0",
+      hover: dark ? "#0d1529" : "#ebe8e0",
+      profilePageBackground: dark ? "#000614" : "#faf5f0",
     },
   }),
   make: (palette: ThemePalette) => ({

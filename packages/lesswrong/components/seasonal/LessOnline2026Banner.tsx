@@ -6,7 +6,7 @@ import { useCurrentTime } from '@/lib/utils/timeUtil';
 
 const styles = defineStyles("LessOnline2026Banner", (theme: ThemeType) => {
   const imageColumnMask = `linear-gradient(to bottom, light-dark(#000, #fff) 18%, light-dark(rgba(0, 0, 0, .82), rgba(255, 255, 255, .82)) 31%, light-dark(rgba(0, 0, 0, .48), rgba(255, 255, 255, .48)) 50%, light-dark(rgba(0, 0, 0, .22), rgba(255, 255, 255, .22)) 66%, light-dark(transparent, transparent) 83%)`;
-  const leftFadeGradient = `linear-gradient(to right, light-dark(#f8f4ee, #262626) 0%, light-dark(rgba(255, 255, 255, .75), rgba(0, 0, 0, .75)) 22%, light-dark(rgba(255, 255, 255, .5), rgba(0, 0, 0, .5)) 42%, light-dark(transparent, transparent) 67%)`;
+  const leftFadeGradient = `linear-gradient(to right, light-dark(#faf5f0, #262626) 0%, light-dark(rgba(255, 255, 255, .75), rgba(0, 0, 0, .75)) 22%, light-dark(rgba(255, 255, 255, .5), rgba(0, 0, 0, .5)) 42%, light-dark(transparent, transparent) 67%)`;
 
   return {
     root: {

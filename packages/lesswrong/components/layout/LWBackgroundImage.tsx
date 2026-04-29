@@ -45,29 +45,31 @@ const styles = defineStyles("LWBackgroundImage", (theme: ThemeType) => ({
     position: 'absolute',
     top: 0,
     right: 0,
-  },
-  backgroundImage: {
-    position: 'absolute',
-    width: '57vw',
-    maxWidth: '1000px',
-    top: '-70px',
-    right: '-334px',
-    '-webkit-mask-image': `radial-gradient(ellipse at center top, ${theme.palette.text.alwaysBlack} 55%, transparent 70%)`,
-    
-    [theme.breakpoints.up(2000)]: {
-      right: '0px',
-    }
+    boxSizing: 'border-box',
+    paddingTop: 'var(--header-height, 50px)',
+    overflow: 'visible',
+    width: 'max-content',
+    zIndex: theme.zIndexes.frontpageSplashImage,
+    pointerEvents: 'none',
+    [`@media (max-width: 380px)`]: {
+      display: 'none',
+    },
   },
   imageColumn: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    height: "100vh",
-    width: '57vw',
-    [theme.breakpoints.down('sm')]: {
-      display: 'none'
-    },
-    overflowX: 'clip',
+    position: 'relative',
+    boxSizing: 'border-box',
+    height: 'auto',
+    width: 'auto',
+    display: 'block',
+    pointerEvents: 'none',
+  },
+  backgroundImage: {
+    display: 'block',
+    width: 'auto',
+    height: '1000px',
+    maxWidth: 'none',
+    objectFit: 'contain',
+    objectPosition: 'top right',
   },
   showSolsticeButton: {
     position: 'fixed',
@@ -107,11 +109,32 @@ const styles = defineStyles("LWBackgroundImage", (theme: ThemeType) => ({
     right: '-334px',
     '-webkit-mask-image': `radial-gradient(ellipse at center top, ${theme.palette.text.alwaysBlack} 55%, transparent 70%)`,
     
+    [theme.breakpoints.down('xl')]: {
+      right: '-280px',
+    },
+    [theme.breakpoints.down('lg')]: {
+      right: '-220px',
+      width: '52vw',
+    },
+    [theme.breakpoints.down('md')]: {
+      right: '-160px',
+      width: '48vw',
+    },
+    [theme.breakpoints.down('sm')]: {
+      right: '-100px',
+      width: '44vw',
+    },
+    [`@media (max-width: 520px)`]: {
+      right: '-56px',
+      width: 'min(240px, 58vw)',
+    },
+    
     [theme.breakpoints.up(2000)]: {
       right: '0px',
     }
   },
   votingResultsLink: {
+    pointerEvents: 'auto',
     position: 'absolute',
     zIndex: theme.zIndexes.reviewVotingCanvas,
     top: 715,

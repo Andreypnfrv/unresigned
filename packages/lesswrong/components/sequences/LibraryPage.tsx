@@ -34,9 +34,9 @@ const LibraryPage = () => {
       <SingleColumnSection>
         <Typography variant="display3" className={classes.pageTitle}>The Library</Typography>
       </SingleColumnSection>
-      <SingleColumnSection>
+      {!isUnresignedForum() && <SingleColumnSection>
         <LWCoreReading />
-      </SingleColumnSection>
+      </SingleColumnSection>}
       {!isUnresignedForum() && <>
       <Divider />
       <SingleColumnSection>

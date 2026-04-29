@@ -10,22 +10,18 @@ export interface RecombeeViewPortionProps {
   recommId?: string;
 }
 
-const getRecombeeClientOrThrow = (() => {
-  let client: ApiClient;
+const getRecombeeClientOrNull = (() => {
+  let client: ApiClient | undefined;
 
-  return () => {
+  return (): ApiClient | null => {
+    const databaseId = recombeeDatabaseIdSetting.get();
+    const apiToken = recombeePublicApiTokenSetting.get();
+    if (!databaseId || !apiToken) {
+      return null;
+    }
     if (!client) {
-      const databaseId = recombeeDatabaseIdSetting.get();
-      const apiToken = recombeePublicApiTokenSetting.get();
-
-      if (!databaseId || !apiToken) {
-        throw new Error('Missing either databaseId or api token when initializing Recombee client!');
-      }
-      
-      // TODO - pull out client options like region to db settings?
       client = new ApiClient(databaseId, apiToken, { region: 'us-west' });
     }
-
     return client;
   };
 })();
@@ -90,7 +86,8 @@ const recombeeRequestHelpers = {
 
 const recombeeApi = {
   async createViewPortion(viewPortionProps: RecombeeViewPortionProps) {
-    const client = getRecombeeClientOrThrow();
+    const client = getRecombeeClientOrNull();
+    if (!client) return;
     const request = recombeeRequestHelpers.createViewPortionRequest(viewPortionProps);
 
     try {
@@ -103,7 +100,8 @@ const recombeeApi = {
   },
 
   async createDetailView(postId: string, userId: string, recommId?: string) {
-    const client = getRecombeeClientOrThrow();
+    const client = getRecombeeClientOrNull();
+    if (!client) return;
     const request = recombeeRequestHelpers.createDetailViewRequest(postId, userId, recommId);
 
     try {
@@ -116,7 +114,8 @@ const recombeeApi = {
   },
 
   async createRating(postId: string, userId: string, voteType: string, recommId?: string) {
-    const client = getRecombeeClientOrThrow();
+    const client = getRecombeeClientOrNull();
+    if (!client) return;
     const request = recombeeRequestHelpers.createRatingRequest(postId, userId, voteType, recommId);
     if (!request) {
       return;

@@ -70,7 +70,7 @@ export const SunshineNewUserPostItem = ({post}: {
     <div className={classes.row}>
       <div className={classes.row}>
         <Link to={postGetPageUrl(post)}>
-          <PostsTitle post={post} showIcons={false} wrap />
+          <PostsTitle post={post} showIcons={false} wrap isLink={false}/>
           {(post.status !== 2) && <MetaInfo>[Spam] {post.status}</MetaInfo>}
         </Link>
         <span className={classes.vote}>

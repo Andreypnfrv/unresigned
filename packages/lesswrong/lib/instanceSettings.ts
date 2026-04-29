@@ -311,10 +311,16 @@ export const ckEditorWebsocketUrlSetting = new PublicInstanceSetting<string | nu
 export const hideUnreviewedAuthorCommentsSettings = new PublicInstanceSetting<string | null>('hideUnreviewedAuthorComments', null, "optional"); // Hide comments by unreviewed authors after date provided (prevents spam / flaming / makes moderation easier, but delays new user engagement)
 export const cloudinaryCloudNameSetting = new PublicInstanceSetting<string>('cloudinary.cloudName', 'lesswrong-2-0', "optional"); // Cloud name for cloudinary hosting
 
-export const UNRESIGNED_HERO_ASSET_VER = "8";
+export const UNRESIGNED_HERO_ASSET_VER = "12";
 
 export function unresignedHeroImgSrc(themeDark: boolean): string {
-  return `${themeDark ? "/unresigned/hero-dark.png" : "/unresigned/hero-light.png"}?v=${UNRESIGNED_HERO_ASSET_VER}`;
+  return `${themeDark ? "/unresigned/hero-dark.webp" : "/unresigned/hero-light.webp"}?v=${UNRESIGNED_HERO_ASSET_VER}`;
+}
+
+export const UNRESIGNED_HERO_BANNER_ASSET_VER = "2";
+
+export function unresignedHeroBannerImgSrc(themeDark: boolean): string {
+  return `${themeDark ? "/unresigned/hero-banner-dark.webp" : "/unresigned/hero-banner-light.webp"}?v=${UNRESIGNED_HERO_BANNER_ASSET_VER}`;
 }
 
 export const nofollowKarmaThreshold = new PublicInstanceSetting<number>('nofollowKarmaThreshold', 10, "optional"); // Users with less than this much karma have their links marked as nofollow

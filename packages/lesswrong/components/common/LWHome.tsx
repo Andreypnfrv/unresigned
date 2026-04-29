@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react';
 import { AnalyticsContext } from "../../lib/analyticsEvents";
 import { getReviewPhase, reviewIsActive, REVIEW_YEAR } from '../../lib/reviewUtils';
-import { showReviewOnFrontPageIfActive, ultraFeedEnabledSetting, isAF, isUnresignedForum, unresignedHeroImgSrc } from '@/lib/instanceSettings';
+import { showReviewOnFrontPageIfActive, ultraFeedEnabledSetting, isAF, isUnresignedForum, unresignedHeroBannerImgSrc } from '@/lib/instanceSettings';
 import { useCookiesWithConsent } from '../hooks/useCookiesWithConsent';
 import { LAST_VISITED_FRONTPAGE_COOKIE } from '../../lib/cookies/cookies';
 import moment from 'moment';
@@ -23,57 +23,126 @@ import DeferRender from './DeferRender';
 import { defineStyles, useStyles } from '../hooks/useStyles';
 import dynamic from 'next/dynamic';
 import { IsReturningVisitorContextProvider } from '@/components/layout/IsReturningVisitorContextProvider';
-import { useTheme } from '@/components/themes/useTheme';
 const RecentDiscussionFeed = dynamic(() => import("../recentDiscussion/RecentDiscussionFeed"), { ssr: false });
+
+const UNRESIGNED_HERO_FEATURES = [
+  { title: "Rational discussion", body: "Evidence over dogma", icon: "Thought" as const },
+  { title: "Open collaboration", body: "Build the future together", icon: "Community" as const },
+  { title: "Long-term impact", body: "For people and animals", icon: "Impact" as const },
+] as const;
 
 const styles = defineStyles("LWHome", (theme: ThemeType) => ({
   hero: {
-    padding: "20px 24px",
+    position: "relative",
+    padding: "24px 28px",
     marginBottom: 8,
-    borderRadius: 4,
-    background: theme.palette.background.primaryTranslucent,
+    borderRadius: 12,
     border: theme.palette.border.faint,
+    overflow: "hidden",
+    backgroundColor: theme.palette.panelBackground.default,
+    backgroundImage: `url("${unresignedHeroBannerImgSrc(!!theme.dark)}")`,
+    backgroundSize: "cover",
+    backgroundPosition: "center right",
+    backgroundRepeat: "no-repeat",
   },
-  heroTitle: {
-    fontSize: "1.35rem",
-    fontWeight: 600,
-    marginBottom: 8,
-    fontFamily: theme.palette.fonts.sansSerifStack,
-  },
-  heroBody: {
-    fontSize: "1.05rem",
-    lineHeight: 1.5,
-    opacity: 0.92,
-  },
-  heroMain: {
+  heroInner: {
+    position: "relative",
     display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: "column",
     gap: 20,
-    ["@media (max-width: 700px)"]: {
-      flexDirection: "column-reverse",
-      alignItems: "stretch",
-    },
   },
-  heroText: {
+  heroCopy: {
     flex: 1,
     minWidth: 0,
+    maxWidth: 720,
+    display: "flex",
+    flexDirection: "column",
+    gap: 20,
   },
-  heroArt: {
-    flexShrink: 0,
-    width: "clamp(100px, 28vw, 220px)",
-    height: "auto",
-    maxHeight: 260,
-    objectFit: "contain",
-    objectPosition: "right center",
-    alignSelf: "center",
-    opacity: 0.97,
-    ["@media (max-width: 700px)"]: {
-      width: "min(200px, 70vw)",
-      maxHeight: 180,
-      marginLeft: "auto",
-      marginRight: "auto",
+  heroTitle: {
+    width: "100%",
+    boxSizing: "border-box",
+    fontSize: "clamp(1.95rem, 4.5vw, 2.45rem)",
+    fontWeight: 600,
+    lineHeight: 1.15,
+    fontFamily: theme.palette.fonts.serifStack,
+    color: theme.palette.text.primary,
+  },
+  heroBody: {
+    fontSize: "clamp(1.15rem, 2.35vw, 1.35rem)",
+    lineHeight: 1.7,
+    fontFamily: theme.palette.fonts.serifStack,
+    color: theme.palette.text.primary,
+  },
+  heroFeatures: {
+    display: "grid",
+    gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+    gap: "16px 20px",
+    ["@media (max-width: 900px)"]: {
+      gridTemplateColumns: "1fr",
     },
+  },
+  heroFeature: {
+    display: "grid",
+    gridTemplateColumns: "68px minmax(0, 1fr)",
+    gap: "0 16px",
+    alignItems: "center",
+    minWidth: 0,
+  },
+  heroFeatureIcon: {
+    flexShrink: 0,
+    width: 68,
+    height: 68,
+    padding: 4,
+    borderRadius: 10,
+    border: theme.palette.border.faint,
+    outline: "none",
+    ...(theme.palette.type === "light"
+      ? {
+        backgroundColor: "#f7f6f1",
+      }
+      : {
+        backgroundColor: "#252f36",
+      }),
+    boxSizing: "border-box",
+    boxShadow: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  heroFeatureIconImg: {
+    width: "100%",
+    height: "100%",
+    objectFit: "contain",
+    display: "block",
+    border: "none",
+    outline: "none",
+    margin: 0,
+    padding: 0,
+    backgroundColor: "transparent",
+    ...(theme.palette.type === "dark" && {
+      filter: "brightness(1.15)",
+      opacity: 0.92,
+    }),
+  },
+  heroFeatureText: {
+    minWidth: 0,
+    display: "flex",
+    flexDirection: "column",
+    gap: 2,
+    justifyContent: "center",
+  },
+  heroFeatureTitle: {
+    fontSize: "0.95rem",
+    fontWeight: 600,
+    fontFamily: theme.palette.fonts.sansSerifStack,
+    color: theme.palette.text.primary,
+  },
+  heroFeatureDesc: {
+    fontSize: "0.875rem",
+    lineHeight: 1.45,
+    fontFamily: theme.palette.fonts.sansSerifStack,
+    color: theme.palette.text.secondary,
   },
   desktopSpotlight: {
     ['@media(max-width: 1199.95px)']: {
@@ -124,9 +193,7 @@ const getStructuredData = () => ({
 
 const LWHome = () => {
   const classes = useStyles(styles);
-  const theme = useTheme();
   const mobileSpotlightOverrideId = getLessOnlineMobileSpotlightOverrideId();
-  const heroArtSrc = unresignedHeroImgSrc(theme.dark);
 
   return (
       <AnalyticsContext pageContext="homePage">
@@ -134,14 +201,34 @@ const LWHome = () => {
         <UpdateLastVisitCookie />
         {isUnresignedForum() && <SingleColumnSection>
           <div className={classes.hero}>
-            <div className={classes.heroMain}>
-              <div className={classes.heroText}>
-                <div className={classes.heroTitle}>Unresigned</div>
+            <div className={classes.heroInner}>
+              <div className={classes.heroTitle}>Those who unresign to die salute you!</div>
+              <div className={classes.heroCopy}>
                 <div className={classes.heroBody}>
-                  Longevity science, policy, advocacy, and community — replace placeholder text in admin when ready.
+                  A community for extending life by resisting aging and death
+                  <br />
+                  through reason, science and action.
+                </div>
+                <div className={classes.heroFeatures}>
+                  {UNRESIGNED_HERO_FEATURES.map(({ title, body, icon }) =>
+                    <div key={title} className={classes.heroFeature}>
+                      <div className={classes.heroFeatureIcon} aria-hidden>
+                        <img
+                          className={classes.heroFeatureIconImg}
+                          src={`/icons/${icon}.png`}
+                          alt=""
+                          width={60}
+                          height={60}
+                        />
+                      </div>
+                      <div className={classes.heroFeatureText}>
+                        <div className={classes.heroFeatureTitle}>{title}</div>
+                        <div className={classes.heroFeatureDesc}>{body}</div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
-              <img className={classes.heroArt} src={heroArtSrc} alt="" decoding="async"/>
             </div>
           </div>
         </SingleColumnSection>}

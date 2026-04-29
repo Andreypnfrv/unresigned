@@ -4,9 +4,10 @@ import React, { Suspense } from "react";
 import ClientAppGenerator from "@/components/layout/ClientAppGenerator";
 import { cookies } from "next/headers";
 import ClientIDAssigner from "@/components/analytics/ClientIDAssigner";
-import { CLIENT_ID_COOKIE, CLIENT_ID_NEW_COOKIE, TIMEZONE_COOKIE } from "@/lib/cookies/cookies";
+import { CLIENT_ID_COOKIE, CLIENT_ID_NEW_COOKIE } from "@/lib/cookies/cookies";
 import { SharedScripts } from "@/components/next/SharedScripts";
 import { getDefaultMetadata } from "@/server/pageMetadata/sharedMetadata";
+import { getSettings } from "@/server/settings/settings";
 import type { Metadata } from "next";
 import { BodyWithBackgroundColor } from "@/components/layout/PageBackgroundWrapper";
 import PageBackgroundColorSwitcher from "@/components/layout/PageBackgroundColorSwitcher";
@@ -20,33 +21,26 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const { getRequestIdForServerComponentOrGenerateMetadata } = await import("@/server/rendering/requestId");
+  const requestId = await getRequestIdForServerComponentOrGenerateMetadata();
+  const { public: publicInstanceSettings } = getSettings();
+
   return (
     <html>
       <head>
-        <SharedScripts/>
+        <SharedScripts publicInstanceSettings={publicInstanceSettings}/>
       </head>
       <BodyWithBackgroundColor>
-        <Suspense>
+        <Suspense fallback={null}>
           <ClientIDAssignerServer/>
-          <PageBackgroundColorSwitcher/>
         </Suspense>
-        <ClientAppGeneratorWithRequestId>
+        <PageBackgroundColorSwitcher/>
+        <ClientAppGenerator abTestGroupsUsed={{}} requestId={requestId}>
           {children}
-        </ClientAppGeneratorWithRequestId>
+        </ClientAppGenerator>
       </BodyWithBackgroundColor>
     </html>
   );
-}
-
-const ClientAppGeneratorWithRequestId = async ({ children }: {
-  children: React.ReactNode,
-}) => {
-  const { getRequestIdForServerComponentOrGenerateMetadata } = await import("@/server/rendering/requestId");
-  const requestId = await getRequestIdForServerComponentOrGenerateMetadata();
-
-  return <ClientAppGenerator abTestGroupsUsed={{}} requestId={requestId}>
-    {children}
-  </ClientAppGenerator>
 }
 
 const ClientIDAssignerServer = async () => {
@@ -55,5 +49,5 @@ const ClientIDAssignerServer = async () => {
   const clientId = cookieStore.get(CLIENT_ID_COOKIE)?.value ?? null;
   const clientIdNewCookieExists = !!cookieStore.get(CLIENT_ID_NEW_COOKIE)?.value;
   const clientIdInvalidated = clientId && await new ClientIdsRepo().isClientIdInvalidated(clientId); // TODO Move off the critical path
-  return <ClientIDAssigner clientIdNewCookieExists={clientIdNewCookieExists} clientIdInvalidated={!!clientIdInvalidated}/>
-}
+  return <ClientIDAssigner clientIdNewCookieExists={clientIdNewCookieExists} clientIdInvalidated={!!clientIdInvalidated}/>;
+};
