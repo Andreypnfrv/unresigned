@@ -364,9 +364,21 @@ async function findStatusCodeInStream(stream: ReadableStream<Uint8Array<ArrayBuf
 // get an X-Forwarded-Proto header of "https". This causes req.nextUrl to be
 // "https://localhost:3000", which doesn't work (because it shouldn't be https).
 // Work around this by dropping the "s".
+//
+// Railway: edge fetch to the public HTTPS URL often fails (TLS vs internal proxy).
+// Call the same Next process via loopback HTTP instead.
 function fixForwardUrl(forwardUrl: string): string {
   if (forwardUrl.startsWith("https://localhost")) {
     return forwardUrl.replace("https://localhost", "http://localhost");
+  }
+  if (process.env.RAILWAY_ENVIRONMENT) {
+    try {
+      const u = new URL(forwardUrl);
+      const port = process.env.PORT ?? "3000";
+      return `http://127.0.0.1:${port}${u.pathname}${u.search}`;
+    } catch {
+      return forwardUrl;
+    }
   }
   return forwardUrl;
 }
