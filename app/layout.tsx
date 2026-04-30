@@ -12,6 +12,8 @@ import type { Metadata } from "next";
 import { BodyWithBackgroundColor } from "@/components/layout/PageBackgroundWrapper";
 import PageBackgroundColorSwitcher from "@/components/layout/PageBackgroundColorSwitcher";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata(): Promise<Metadata> {
   return getDefaultMetadata();
 }

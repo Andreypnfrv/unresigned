@@ -89,12 +89,6 @@ export const prodUnresigned = {
       siteName: null,
       baseUrl: null,
     },
-    elasticsearch: {
-      searchAvailable: !!(
-        process.env.ELASTICSEARCH_NODE?.trim() ||
-        process.env.ELASTICSEARCH_CLOUD_ID?.trim()
-      ),
-    },
   }),
   defaultVisibilityTags: [] as typeof sharedSettings.defaultVisibilityTags,
 };

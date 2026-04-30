@@ -49,7 +49,15 @@ function getPublicSettings() {
     case "localUnresignedDevDb":
       return localUnresignedDevDb;
     case "prodUnresigned":
-      return prodUnresigned;
+      return {
+        ...prodUnresigned,
+        elasticsearch: {
+          searchAvailable: !!(
+            process.env.ELASTICSEARCH_NODE?.trim() ||
+            process.env.ELASTICSEARCH_CLOUD_ID?.trim()
+          ),
+        },
+      };
     // TODO: figure out what to do about preview environments (i.e. whether they should hit the prod db).
     // Even if they do, they should probably not run with "prod" settings (rather "local prod").
     case "prodLw": {

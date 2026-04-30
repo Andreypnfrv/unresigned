@@ -415,6 +415,9 @@ const elasticSearchConfig: () => Record<SearchIndexCollectionName, IndexConfig> 
       bannerImageId: keywordMapping,
       parentTagId: keywordMapping,
       slug: keywordMapping,
+      core: { type: "boolean" },
+      baseScore: { type: "long" },
+      postCount: { type: "integer" },
     },
     privateFields: [
       "deleted",
