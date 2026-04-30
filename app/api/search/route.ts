@@ -245,6 +245,12 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
+  if (req.headers.get("x-search-config-probe") === "1") {
+    return NextResponse.json(
+      { available: isElasticEnabled() },
+      { headers: { "Cache-Control": "private, no-store, max-age=0" } },
+    );
+  }
   const body = await req.json();
   let searchOptions: SearchOptions;
   let queries: SearchQuery[] = [];

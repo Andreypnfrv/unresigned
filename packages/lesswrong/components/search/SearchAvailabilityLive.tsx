@@ -30,13 +30,25 @@ export function SearchAvailabilityLiveProvider({ children }: { children: ReactNo
       return;
     }
     let canceled = false;
-    void fetch("/api/search?elasticsearchAvailable=1", {
+    void fetch("/api/search", {
+      method: "POST",
       cache: "no-store",
-      headers: { Accept: "application/json" },
+      headers: {
+        Accept: "application/json",
+        "X-Search-Config-Probe": "1",
+      },
     })
-      .then((res) => (res.ok ? res.json() : { available: false }))
-      .then((data: { available?: boolean }) => {
-        if (canceled || data.available !== true) return;
+      .then(async (res) => {
+        if (canceled) return;
+        const ct = res.headers.get("content-type") ?? "";
+        if (!res.ok || !ct.includes("application/json")) return;
+        let data: { available?: boolean };
+        try {
+          data = await res.json();
+        } catch {
+          return;
+        }
+        if (data.available !== true) return;
         patchSearchAvailableOnWindow();
         setLiveFromProbe(true);
       })
