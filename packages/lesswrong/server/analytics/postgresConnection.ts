@@ -2,7 +2,7 @@ import { isAnyTest } from "../../lib/executionEnvironment";
 import pgp, { IDatabase } from "pg-promise";
 import type { IClient } from "pg-promise/typescript/pg-subset";
 import { connectionStringSetting, mirrorConnectionSettingString } from "../databaseSettings";
-import { isEAForum } from "../../lib/instanceSettings";
+import { isEAForum, isPlaceholderInfrastructureHostname } from "../../lib/instanceSettings";
 
 export type AnalyticsConnectionPool = IDatabase<{}, IClient>;
 declare global {
@@ -18,18 +18,43 @@ export const getPgPromiseLib = () => {
 }
 
 let missingConnectionStringWarned = false;
+let skippedInvalidAnalyticsUrlLogged = false;
+
+function postgresAnalyticsUrlLooksResolvable(connectionString: string): boolean {
+  const raw = connectionString.trim();
+  if (!raw) return false;
+  try {
+    const forUrl = raw.replace(/^(postgresql|postgres):\/\//i, "http://");
+    const u = new URL(forUrl);
+    if (!u.hostname) return false;
+    return !isPlaceholderInfrastructureHostname(u.hostname);
+  } catch {
+    return false;
+  }
+}
 
 function getAnalyticsConnectionFromString(connectionString: string | null): AnalyticsConnectionPool | null {
   if (isAnyTest && !isEAForum()) {
     return null;
   }
-  if (!connectionString) {
+  if (!connectionString?.trim()) {
     if (!missingConnectionStringWarned) {
       missingConnectionStringWarned = true;
       if (!isAnyTest) {
         //eslint-disable-next-line no-console
         console.log("Analytics logging disabled: no analytics connectionString passed in");
       }
+    }
+    return null;
+  }
+
+  if (!postgresAnalyticsUrlLooksResolvable(connectionString)) {
+    if (!skippedInvalidAnalyticsUrlLogged && !isAnyTest) {
+      skippedInvalidAnalyticsUrlLogged = true;
+      //eslint-disable-next-line no-console
+      console.warn(
+        '[analytics] Ignoring analytics connection string: invalid URL or hostname "base" placeholder (analytics uses a separate pool from PG_URL)',
+      );
     }
     return null;
   }

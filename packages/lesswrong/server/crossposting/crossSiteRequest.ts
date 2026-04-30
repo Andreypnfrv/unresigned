@@ -1,7 +1,11 @@
 import { ZodType, z } from "zod"
 import { FMCrosspostRoute } from "@/lib/fmCrosspost/routes"
 import { combineUrls } from "@/lib/vulcan-lib/utils.ts";
-import { fmCrosspostBaseUrlSetting } from "@/lib/instanceSettings";
+import { isUnresignedForum } from "@/lib/forumTypeUtils";
+import {
+  fmCrosspostBaseUrlSetting,
+  isConfiguredHttpOriginUrl,
+} from "@/lib/instanceSettings";
 import { crosspostUserAgent } from "@/lib/apollo/constants";
 import { fmCrosspostTimeoutMsSetting } from "../databaseSettings";
 import {
@@ -9,6 +13,16 @@ import {
   TOS_NOT_ACCEPTED_ERROR,
   TOS_NOT_ACCEPTED_REMOTE_ERROR,
 } from "@/server/fmCrosspost/errors";
+
+export function networkErrorDnsFailure(e: unknown): boolean {
+  let cur: unknown = e;
+  for (let i = 0; i < 5 && cur && typeof cur === "object"; i++) {
+    const code = (cur as { code?: string }).code;
+    if (code === "ENOTFOUND" || code === "EAI_AGAIN") return true;
+    cur = (cur as { cause?: unknown }).cause;
+  }
+  return false;
+}
 
 export const makeV2CrossSiteRequest = async <
   RequestSchema extends ZodType,
@@ -19,13 +33,28 @@ export const makeV2CrossSiteRequest = async <
   body: RequestData,
   onErrorMessage: string,
 ) => {
+  if (isUnresignedForum()) {
+    throw new ApiError(
+      503,
+      `${onErrorMessage} (FM crosspost is not used on Unresigned)`,
+    );
+  }
+
+  const crosspostBase = fmCrosspostBaseUrlSetting.get();
+  if (!isConfiguredHttpOriginUrl(crosspostBase)) {
+    throw new ApiError(
+      503,
+      `${onErrorMessage} (foreign forum base URL missing or unresolved placeholder hostname)`,
+    );
+  }
+
   const controller = new AbortController();
   const timeoutId = setTimeout(
     () => controller.abort(),
     fmCrosspostTimeoutMsSetting.get(),
   );
 
-  const url = combineUrls(fmCrosspostBaseUrlSetting.get() ?? "", route.getPath());
+  const url = combineUrls(crosspostBase ?? "", route.getPath());
 
   let result: Response;
   try {
@@ -50,6 +79,8 @@ export const makeV2CrossSiteRequest = async <
       // eslint-disable-next-line no-console
       console.warn("Dev crosspost server is not running");
       return {} as z.infer<ResponseSchema>;
+    } else if (networkErrorDnsFailure(e)) {
+      throw new ApiError(503, `${onErrorMessage} (foreign forum host unreachable)`);
     } else {
       throw new Error("Failed to make cross-site request", {cause: e});
     }

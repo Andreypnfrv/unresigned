@@ -1,6 +1,6 @@
 import { getSiteUrl } from "@/lib/vulcan-lib/utils";
 import type { MailgunMessageData } from "mailgun.js/definitions";
-import { getMailgunClient, MAILGUN_DOMAIN } from "./mailgunClient";
+import { getMailgunClient, getMailgunDomain } from "./mailgunClient";
 import { defaultEmailSetting } from "../databaseSettings";
 
 export function renderUnsubscribeLinkTemplateForBulk(htmlOrText: string): string {
@@ -45,7 +45,7 @@ export async function sendMailgunBatchEmail(args: {
       "recipient-variables": JSON.stringify(args.recipientVariables),
     } as MailgunMessageData;
 
-    const result = await client.messages.create(MAILGUN_DOMAIN, messageData);
+    const result = await client.messages.create(getMailgunDomain(), messageData);
 
     return { ok: true, status: result.status, json: result };
   } catch (e) {

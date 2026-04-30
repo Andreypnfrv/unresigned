@@ -2,7 +2,8 @@
 
 import { OnDropDocument } from "@elastic/elasticsearch/lib/helpers";
 import { htmlToTextDefault } from "../../../lib/htmlToText";
-import ElasticClient from "./ElasticClient";
+import ElasticClient, { resetElasticSdkClientCache } from "./ElasticClient";
+import { isElasticEnabled } from "../../../lib/instanceSettings";
 import { collectionNameToConfig, Mappings } from "./ElasticConfig";
 import {
   SearchIndexCollectionName,
@@ -186,6 +187,15 @@ export class ElasticExporter {
         index: newIndexName,
         name: aliasName,
       });
+      const verify = await client.indices.getAlias({name: aliasName});
+      const vKeys = Object.keys(verify ?? {});
+      if (vKeys.length < 1) {
+        throw new Error(
+          `After putAlias("${aliasName}" -> ${newIndexName}), getAlias returned nothing. ` +
+            "The server at ELASTICSEARCH_NODE is not a working Elasticsearch API " +
+            "(empty cluster health / no indices). Fix the URL and credentials, then retry.",
+        );
+      }
     }
   }
 
@@ -261,22 +271,37 @@ export class ElasticExporter {
     collectionName: SearchIndexCollectionName,
     documentId: string,
   ): Promise<void> {
-    const index = collectionName.toLowerCase();
-    const repo = this.getRepoByCollectionName(collectionName);
-    const searchDocument = await repo.getSearchDocumentById(documentId);
-    await this.client.getClient().index({
-      index,
-      ...this.formatDocument(searchDocument),
-    });
+    if (!isElasticEnabled()) return;
+    try {
+      const index = collectionName.toLowerCase();
+      const repo = this.getRepoByCollectionName(collectionName);
+      const searchDocument = await repo.getSearchDocumentById(documentId);
+      await this.client.getClient().index({
+        index,
+        ...this.formatDocument(searchDocument),
+      });
+    } catch (e) {
+      console.error(`[ElasticExporter] updateDocument ${collectionName} ${documentId}:`, e);
+      resetElasticSdkClientCache();
+    }
   }
 
   private async getExistingAliasTarget(aliasName: string): Promise<string | null> {
     try {
       const client = this.client.getClient();
-      const existing = await client.indices.getAlias({name: aliasName});
-      const oldIndexName = Object.keys(existing ?? {})[0];
-      return oldIndexName ?? null;
-    } catch {
+      const existing = await client.indices.getAlias({name: aliasName}) as Record<string, unknown>;
+      let indexKeys = Object.keys(existing ?? {});
+      if (
+        indexKeys.length === 1 &&
+        indexKeys[0] === "body" &&
+        typeof existing.body === "object" &&
+        existing.body !== null
+      ) {
+        indexKeys = Object.keys(existing.body as Record<string, unknown>);
+      }
+      return indexKeys[0] ?? null;
+    } catch (e) {
+      console.error(`[ElasticExporter] getAlias "${aliasName}":`, e);
       return null;
     }
   }
@@ -511,23 +536,39 @@ export class ElasticExporter {
   }
 
   async getExistingSynonyms(): Promise<string[]> {
-    const client = this.client.getClient();
-    const settings = await client.indices.getSettings({
-      index: "posts", // All the indexes use the same synonym list
-    });
-    const indexName = Object.keys(settings)[0]; // Get the alias target
-    const filters = settings[indexName]?.settings?.index?.analysis?.filter;
-    const synonymFilter = filters?.fm_synonym_filter;
-    if (typeof synonymFilter === "string" || synonymFilter?.type !== "synonym") {
-      throw new Error("Invalid synonym filter");
+    if (!isElasticEnabled()) return [];
+    try {
+      const client = this.client.getClient();
+      const settings = await client.indices.getSettings({
+        index: "posts", // All the indexes use the same synonym list
+      });
+      const indexName = Object.keys(settings)[0];
+      const filters = settings[indexName]?.settings?.index?.analysis?.filter;
+      const synonymFilter = filters?.fm_synonym_filter;
+      if (
+        typeof synonymFilter === "string" ||
+        synonymFilter?.type !== "synonym"
+      ) {
+        return [];
+      }
+      return synonymFilter.synonyms ?? [];
+    } catch (e) {
+      console.error("[ElasticExporter] getExistingSynonyms:", e);
+      resetElasticSdkClientCache();
+      return [];
     }
-    return synonymFilter.synonyms ?? [];
   }
 
   async updateSynonyms(synonyms: string[]): Promise<void> {
-    await Promise.all(searchIndexedCollectionNames.map(
-      (collectionName) => this.updateSynonymsForCollection(collectionName, synonyms),
-    ));
+    try {
+      await Promise.all(searchIndexedCollectionNames.map(
+        (collectionName) => this.updateSynonymsForCollection(collectionName, synonyms),
+      ));
+    } catch (e) {
+      console.error("[ElasticExporter] updateSynonyms:", e);
+      resetElasticSdkClientCache();
+      throw e;
+    }
   }
 
   private async updateSynonymsForCollection(

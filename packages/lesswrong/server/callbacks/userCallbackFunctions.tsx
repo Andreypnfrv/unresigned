@@ -586,22 +586,27 @@ export async function reindexDeletedUserContent(newUser: DbUser, oldUser: DbUser
   if (!isElasticEnabled()) return;
   
   if (!!newUser.deleted !== !!oldUser.deleted) {
-    const [
-      postIds,
-      commentIds,
-      sequenceIds,
-    ] = await Promise.all([
-      repos.users.getAllUserPostIds(newUser._id),
-      repos.users.getAllUserCommentIds(newUser._id),
-      repos.users.getAllUserSequenceIds(newUser._id),
-    ]);
+    try {
+      const [
+        postIds,
+        commentIds,
+        sequenceIds,
+      ] = await Promise.all([
+        repos.users.getAllUserPostIds(newUser._id),
+        repos.users.getAllUserCommentIds(newUser._id),
+        repos.users.getAllUserSequenceIds(newUser._id),
+      ]);
 
-    const client = new ElasticClient();
-    const exporter = new ElasticExporter(client);
-    await Promise.all([
-      ...postIds.map((id) => exporter.updateDocument("Posts", id)),
-      ...commentIds.map((id) => exporter.updateDocument("Comments", id)),
-      ...sequenceIds.map((id) => exporter.updateDocument("Sequences", id)),
-    ]);
+      const client = new ElasticClient();
+      const exporter = new ElasticExporter(client);
+      await Promise.all([
+        ...postIds.map((id) => exporter.updateDocument("Posts", id)),
+        ...commentIds.map((id) => exporter.updateDocument("Comments", id)),
+        ...sequenceIds.map((id) => exporter.updateDocument("Sequences", id)),
+      ]);
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error("[reindexDeletedUserContent]", e);
+    }
   }
 }

@@ -13,14 +13,16 @@ import { makeApiUrl, PostRequestTypes, PostResponseTypes, ValidatedPostRouteName
 import { ConnectCrossposterArgs, GetCrosspostRequest } from "./types";
 import stringify from "json-stringify-deterministic";
 import LRU from "lru-cache";
+import { isUnresignedForum } from "@/lib/forumTypeUtils";
 import { isE2E } from "@/lib/executionEnvironment";
 import { connectCrossposterToken } from "../crossposting/tokens";
-import { makeV2CrossSiteRequest } from "../crossposting/crossSiteRequest";
+import { makeV2CrossSiteRequest, networkErrorDnsFailure } from "../crossposting/crossSiteRequest";
 import {
   connectCrossposterRoute,
   unlinkCrossposterRoute,
 } from "@/lib/fmCrosspost/routes";
 import gql from "graphql-tag";
+import { fmCrosspostBaseUrlSetting, isConfiguredHttpOriginUrl } from "@/lib/instanceSettings";
 import { fmCrosspostTimeoutMsSetting } from "../databaseSettings";
 
 const foreignPostCache = new LRU<string, Promise<AnyBecauseHard>>({
@@ -41,6 +43,16 @@ export const makeCrossSiteRequest = async <RouteName extends ValidatedPostRouteN
   onErrorMessage: string,
 ): Promise<PostResponseTypes<RouteName>> => {
   const route: ValidatedPostRoutes[RouteName] = validatedPostRoutes[routeName];
+
+  if (isUnresignedForum()) {
+    return { document: {} } as PostResponseTypes<RouteName>;
+  }
+
+  const crosspostBase = fmCrosspostBaseUrlSetting.get();
+  if (!isConfiguredHttpOriginUrl(crosspostBase)) {
+    return { document: {} } as PostResponseTypes<RouteName>;
+  }
+
   const apiUrl = makeApiUrl(route.path);
   let result: Response;
 
@@ -68,6 +80,8 @@ export const makeCrossSiteRequest = async <RouteName extends ValidatedPostRouteN
     if (e.cause?.code === 'ECONNREFUSED' && e.cause?.port === 4000) {
       // We're testing locally, and the x-post server isn't running
       return { document: {} }
+    } else if (networkErrorDnsFailure(e)) {
+      return { document: {} } as PostResponseTypes<RouteName>;
     } else {
       throw e
     }
@@ -149,16 +163,19 @@ export const fmCrosspostGraphQLMutations = {
 export const fmCrosspostGraphQLQueries = {
   getCrosspost: async (_root: void, {args}: {args: GetCrosspostRequest}) => {
     const key = stringify(args);
-    let promise = isE2E ? null : foreignPostCache.get(key);
-    if (!promise) {
-      promise = makeCrossSiteRequest(
-        'getCrosspost',
-        args,
-        'Failed to get crosspost'
-      );
+    const cached = isE2E ? undefined : foreignPostCache.get(key);
+    const promise = cached ?? makeCrossSiteRequest(
+      'getCrosspost',
+      args,
+      'Failed to get crosspost',
+    );
+    if (!isE2E && !cached) {
       foreignPostCache.set(key, promise);
+      void promise.catch(() => {
+        foreignPostCache.del(key);
+      });
     }
-    const {document} = await promise;
+    const { document } = await promise;
     return document;
-  }
+  },
 }

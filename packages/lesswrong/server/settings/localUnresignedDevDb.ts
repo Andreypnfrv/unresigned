@@ -55,6 +55,15 @@ export const localUnresignedDevDb = {
     googleDocImport: {
       enabled: false,
     },
+    fmCrosspost: {
+      siteName: null,
+      baseUrl: null,
+    },
+    disableElastic:
+      process.env.DISABLE_ELASTIC?.trim().toLowerCase() === "false"
+      || process.env.ENABLE_ELASTICSEARCH?.trim().toLowerCase() === "true"
+        ? "false"
+        : "true",
     elasticsearch: {
       searchAvailable: !!(
         process.env.ELASTICSEARCH_NODE?.trim() ||

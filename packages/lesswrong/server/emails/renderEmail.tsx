@@ -4,7 +4,7 @@ import React from 'react';
 import { getUserEmail, userEmailAddressIsVerified} from '../../lib/collections/users/helpers';
 import { forumTitleSetting, isLWorAF } from '../../lib/instanceSettings';
 import { getForumTheme } from '../../themes/forumTheme';
-import { defaultEmailSetting, enableDevelopmentEmailsSetting } from '../databaseSettings';
+import { defaultEmailSetting } from '../databaseSettings';
 import { computeContextFromUser } from '../vulcan-lib/apollo-server/context';
 import { emailTokenTypesByName } from '../emails/emailTokens';
 import { captureException } from '@/lib/sentryWrapper';
@@ -306,24 +306,12 @@ export const wrapAndSendEmail = async ({
 
 async function sendEmail(renderedEmail: RenderedEmail): Promise<boolean>
 {
-  if (process.env.NODE_ENV === 'production' || enableDevelopmentEmailsSetting.get()) {
-    console.log("//////// Sending email..."); //eslint-disable-line
-    console.log("to: " + renderedEmail.to); //eslint-disable-line
-    console.log("subject: " + renderedEmail.subject); //eslint-disable-line
-    console.log("from: " + renderedEmail.from); //eslint-disable-line
-    
-    return sendMailgunEmail(renderedEmail);
-  } else {
-    console.log("//////// Pretending to send email (not production and enableDevelopmentEmails is false)"); //eslint-disable-line
-    console.log("to: " + renderedEmail.to); //eslint-disable-line
-    console.log("subject: " + renderedEmail.subject); //eslint-disable-line
-    console.log("from: " + renderedEmail.from); //eslint-disable-line
-    console.log("//////// HTML version"); //eslint-disable-line
-    console.log(renderedEmail.html); //eslint-disable-line
-    console.log("//////// Plain-text version"); //eslint-disable-line
-    console.log(renderedEmail.text); //eslint-disable-line
-    return false;
-  }
+  console.log("//////// Sending email..."); //eslint-disable-line
+  console.log("to: " + renderedEmail.to); //eslint-disable-line
+  console.log("subject: " + renderedEmail.subject); //eslint-disable-line
+  console.log("from: " + renderedEmail.from); //eslint-disable-line
+
+  return sendMailgunEmail(renderedEmail);
 }
 
 async function logSentEmail(renderedEmail: RenderedEmail, user: DbUser | null, additionalFields: any) {

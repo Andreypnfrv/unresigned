@@ -1,4 +1,4 @@
-import ElasticClient, { ElasticSearchHit } from "./ElasticClient";
+import ElasticClient, { type HitsOnlySearchResponse, ElasticSearchHit } from "./ElasticClient";
 import type { SearchResult } from "./SearchResult";
 import { algoliaPrefixSetting } from '@/lib/instanceSettings';
 import { indexNameToConfig } from "./ElasticConfig";
@@ -44,35 +44,49 @@ class ElasticService {
     const hitsPerPage = params.hitsPerPage ?? 10;
     const page = params.page ?? 0;
     const skipSearch = search==="" && options.emptyStringSearchResults==="empty";
-    const result = skipSearch
-      ? {hits: {
-          total: 0,
-          hits: [],
-        }}
-      : await (
-        Array.isArray(index)
-          ? this.client.multiSearch({
-            indexes: index,
-            search,
-            offset: page * hitsPerPage,
-            limit: hitsPerPage,
-          })
-          : this.client.search({
-            index,
-            sorting,
-            search,
-            offset: page * hitsPerPage,
-            limit: hitsPerPage,
-            preTag: params.highlightPreTag,
-            postTag: params.highlightPostTag,
-            filters: this.parseFilters(params.facetFilters, params.numericFilters, params.existsFilters),
-            coordinates: this.parseLatLng(params.aroundLatLng),
-          })
-      );
+    const filters = skipSearch
+      ? []
+      : this.parseFilters(params.facetFilters, params.numericFilters, params.existsFilters);
 
-    const nbHits = typeof result.hits.total === "number"
-      ? result.hits.total
-      : result.hits.total?.value ?? 0;
+    let rawResult: HitsOnlySearchResponse;
+    if (skipSearch) {
+      rawResult = { hits: { total: 0, hits: [] } };
+    } else {
+      try {
+        rawResult = await (
+          Array.isArray(index)
+            ? this.client.multiSearch({
+              indexes: index,
+              search,
+              offset: page * hitsPerPage,
+              limit: hitsPerPage,
+            })
+            : this.client.search({
+              index,
+              sorting,
+              search,
+              offset: page * hitsPerPage,
+              limit: hitsPerPage,
+              preTag: params.highlightPreTag,
+              postTag: params.highlightPostTag,
+              filters,
+              coordinates: this.parseLatLng(params.aroundLatLng),
+            })
+        );
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error("[ElasticService] runQuery elasticsearch call failed:", e);
+        rawResult = { hits: { total: 0, hits: [] } };
+      }
+    }
+
+    const result = rawResult;
+
+    const hb = result.hits;
+    const nbHits =
+      typeof hb.total === "number"
+        ? hb.total
+        : hb.total?.value ?? hb.hits.length;
 
     const end = Date.now();
     const timeMS = end - start;
@@ -83,7 +97,7 @@ class ElasticService {
     const pastYear = moment().subtract(1, "years").valueOf();
 
     return {
-      hits: this.getHits(index, result.hits.hits),
+      hits: this.getHits(index, hb.hits),
       nbHits,
       page,
       nbPages: Math.ceil(nbHits / hitsPerPage),

@@ -285,6 +285,17 @@ export function isPlaceholderInfrastructureHostname(hostname: string): boolean {
   return hostname.toLowerCase() === "base";
 }
 
+export function isConfiguredHttpOriginUrl(urlString: string | null | undefined): boolean {
+  if (!urlString?.trim()) return false;
+  try {
+    const u = new URL(urlString.trim());
+    if (u.protocol !== "http:" && u.protocol !== "https:") return false;
+    return !isPlaceholderInfrastructureHostname(u.hostname);
+  } catch {
+    return false;
+  }
+}
+
 export function isValidHocuspocusWsUrl(wsUrl: string | undefined | null): boolean {
   if (!wsUrl?.trim()) return false;
   try {
@@ -323,7 +334,7 @@ export function getElasticResolvedConnection(): ElasticResolvedConnection | null
         const u = new URL(t.includes("://") ? t : `http://${t}`);
         if (isPlaceholderInfrastructureHostname(u.hostname)) node = null;
       } catch {
-        // opaque string passthrough (@elastic/elasticsearch accepts node option flexibly)
+        node = null;
       }
     }
   }

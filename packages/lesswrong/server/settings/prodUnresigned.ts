@@ -85,6 +85,10 @@ export const prodUnresigned = {
     googleDocImport: {
       enabled: false,
     },
+    fmCrosspost: {
+      siteName: null,
+      baseUrl: null,
+    },
     elasticsearch: {
       searchAvailable: !!(
         process.env.ELASTICSEARCH_NODE?.trim() ||

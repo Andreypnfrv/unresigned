@@ -56,4 +56,14 @@ describe("elastic - parseQuery", () => {
       isAdvanced: true,
     });
   });
+  it("preserves non-latin letters in tokens", () => {
+    expect(parseQuery("долголетие")).toStrictEqual({
+      tokens: [{type: "should", token: "долголетие"}],
+      isAdvanced: false,
+    });
+    expect(parseQuery(`"долголетие"`)).toStrictEqual({
+      tokens: [{type: "must", token: "долголетие"}],
+      isAdvanced: true,
+    });
+  });
 });

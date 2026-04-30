@@ -227,8 +227,6 @@ export const logGraphqlMutationsSetting = new ParsedServerSetting<boolean>("logG
 export const swrCachingEnabledSetting = new ParsedServerSetting<boolean>('swrCaching.enabled', false)
 export const swrCachingInvalidationIntervalMsSetting = new ParsedServerSetting<number>('swrCaching.invalidationIntervalMs', 30_000)
 
-export const enableDevelopmentEmailsSetting = new ParsedServerSetting<boolean>('enableDevelopmentEmails', false)
-
 export const petrovFalseAlarmMissileCount = new ParsedServerSetting<number[]>('petrovFalseAlarmMissileCount', [])
 export const petrovRealAttackMissileCount = new ParsedServerSetting<number[]>('petrovRealAttackMissileCount', [])
 
