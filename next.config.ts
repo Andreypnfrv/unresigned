@@ -38,6 +38,16 @@ function loadTsConfig(configPath: string) {
 
 const isE2E = (process.env.E2E === "true");
 
+function hocuspocusUrlOkForBundler(wsUrl: string | undefined | null): boolean {
+  if (!wsUrl?.trim()) return false;
+  try {
+    const u = new URL(wsUrl.trim().replace(/^ws(s?):\/\//, "http$1://"));
+    return u.hostname.toLowerCase() !== "base";
+  } catch {
+    return false;
+  }
+}
+
 /** @type {NextConfig} */
 const nextConfig: NextConfig = {
   cacheComponents: !isE2E,
@@ -48,7 +58,9 @@ const nextConfig: NextConfig = {
       ...(isE2E ? { 'process.env.E2E': 'true' } : {}),
       'process.env.FORUM_TYPE': process.env.FORUM_TYPE ?? 'Unresigned',
       ...(process.env.VERCEL_DEPLOYMENT_ID ? { 'process.env.VERCEL_DEPLOYMENT_ID': 'true' } : {}),
-      ...(process.env.HOCUSPOCUS_URL ? { 'process.env.NEXT_PUBLIC_HOCUSPOCUS_URL': process.env.HOCUSPOCUS_URL } : {}),
+      ...(process.env.HOCUSPOCUS_URL && hocuspocusUrlOkForBundler(process.env.HOCUSPOCUS_URL)
+        ? { 'process.env.NEXT_PUBLIC_HOCUSPOCUS_URL': process.env.HOCUSPOCUS_URL }
+        : {}),
     },
   },
   productionBrowserSourceMaps: true,

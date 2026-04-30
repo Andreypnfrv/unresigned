@@ -5,7 +5,7 @@ import { useCurrentUser } from '../common/withUser';
 import KeyboardArrowDownIcon from '@/lib/vendor/@material-ui/icons/src/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@/lib/vendor/@material-ui/icons/src/KeyboardArrowRight';
 import withErrorBoundary from '../common/withErrorBoundary';
-import { isLWorAF } from '../../lib/instanceSettings';
+import { hasCuratedPostsSetting, isLWorAF } from '../../lib/instanceSettings';
 import SunshineNewUsersList from "./SunshineNewUsersList";
 import SunshineNewCommentsList from "./SunshineNewCommentsList";
 import SunshineNewTagsList from "./SunshineNewTagsList";
@@ -65,7 +65,7 @@ const SunshineSidebar = () => {
     <div className={classes.root}>
       {showInitialSidebar && <div className={classes.background}>
         <SunshineGoogleServiceAccount />
-        <SunshineCuratedSuggestionsList limit={7}/>
+        {hasCuratedPostsSetting.get() && <SunshineCuratedSuggestionsList limit={7}/>}
         <SunshineNewPostsList/>
         <SunshineNewUsersList terms={{view:"sunshineNewUsers", limit: 10}} currentUser={currentUser}/>
         <SunshineReportedContentList currentUser={currentUser}/>
@@ -77,7 +77,7 @@ const SunshineSidebar = () => {
           <AFSuggestCommentsList />
           <AFSuggestUsersList />
         </div>}
-        <SunshineCuratedSuggestionsList limit={7} atBottom/>
+        {hasCuratedPostsSetting.get() && <SunshineCuratedSuggestionsList limit={7} atBottom/>}
       </div>}
 
       { userCanDo(currentUser, 'posts.moderate.all') && <div>

@@ -12,6 +12,7 @@ import {HocuspocusProvider} from '@hocuspocus/provider';
 import {Doc, encodeStateAsUpdate} from 'yjs';
 import {IndexeddbPersistence} from 'y-indexeddb';
 import { type CollaborativeEditingAccessLevel, accessLevelCan } from '@/lib/collections/posts/collabEditingPermissions';
+import { isValidHocuspocusWsUrl } from '@/lib/instanceSettings';
 
 export interface CollaborationConfig {
   postId: string;
@@ -204,7 +205,7 @@ export function createWebsocketProviderWithDoc(id: string, doc: Doc): Provider &
   }
 
   const wsUrl = process.env.NEXT_PUBLIC_HOCUSPOCUS_URL;
-  if (!wsUrl) {
+  if (!isValidHocuspocusWsUrl(wsUrl)) {
     throw new Error('[Collaboration] HOCUSPOCUS_URL is not configured. Set the HOCUSPOCUS_URL environment variable at build time.');
   }
 

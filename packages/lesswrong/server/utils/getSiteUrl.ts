@@ -11,7 +11,7 @@ export function getSiteUrlFromReq(req: NextRequest): string {
   let url: string;
   if (forwardedFor && forwardedHost) {
     const forwardedHostWithoutPort = forwardedHost.split(":")[0].trim();
-    const proto = forwardedProto ?? "http";
+    const proto = forwardedProto ?? (forwardedHostWithoutPort.includes("localhost") ? "http" : "https");
     const port = getPortFromForwardedHeaders(forwardedFor, forwardedPort);
     url = `${proto}://${forwardedHostWithoutPort}${port ? `:${port}` : ""}`;
   } else {

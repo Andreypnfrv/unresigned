@@ -19,6 +19,7 @@ import { commentOnDraftToolSchema } from "../toolSchemas";
 import { captureException } from "@/lib/sentryWrapper";
 import { captureAgentApiEvent, captureAgentApiFailure } from "../captureAgentAnalytics";
 import { getHocuspocusToken } from "../getHocuspocusToken";
+import { isValidHocuspocusWsUrl } from "@/lib/instanceSettings";
 
 export function createCollabComment({
   content,
@@ -150,7 +151,7 @@ export async function insertDraftCommentThread({
 }> {
   const documentName = `post-${postId}/comments`;
   const wsUrl = process.env.HOCUSPOCUS_URL;
-  if (!wsUrl) {
+  if (!isValidHocuspocusWsUrl(wsUrl)) {
     throw new Error("HOCUSPOCUS_URL is not configured");
   }
 

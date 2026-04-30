@@ -10,6 +10,7 @@ import { constantTimeCompare } from '../../lib/helpers';
 import isEqual from 'lodash/isEqual';
 import YjsDocuments from '@/server/collections/yjsDocuments/collection';
 import { captureException } from '@/lib/sentryWrapper';
+import { isValidHocuspocusWsUrl } from '@/lib/instanceSettings';
 
 const COLLAB_AUTOSAVE_COMMIT_MESSAGE = 'Collaborative editor autosave';
 
@@ -170,7 +171,7 @@ export async function saveOrUpdateLexicalRevision(
  */
 function getHocuspocusHttpUrl(): string | null {
   const wsUrl = process.env.HOCUSPOCUS_URL;
-  if (!wsUrl) return null;
+  if (!wsUrl || !isValidHocuspocusWsUrl(wsUrl)) return null;
   return wsUrl.replace(/^ws(s?):\/\//, 'http$1://');
 }
 

@@ -3,7 +3,7 @@ import Conversations from "@/server/collections/conversations/collection";
 import Users from "@/server/collections/users/collection";
 import { getUserEmail, userGetLocation, userShortformPostTitle } from "@/lib/collections/users/helpers";
 import { isAnyTest } from "@/lib/executionEnvironment";
-import { forumTitleSetting, isEAForum, isLW, isLWorAF, recombeeEnabledSetting } from '@/lib/instanceSettings';
+import { forumTitleSetting, isEAForum, isElasticEnabled, isLW, isLWorAF, recombeeEnabledSetting } from '@/lib/instanceSettings';
 import { encodeIntlError } from "@/lib/vulcan-lib/utils";
 import { userIsAdminOrMod, userOwns } from "@/lib/vulcan-users/permissions";
 import { captureException } from "@/lib/sentryWrapper";
@@ -582,6 +582,8 @@ export async function closeReviewTriggerModeratorActionsOnReview(newUser: DbUser
 
 export async function reindexDeletedUserContent(newUser: DbUser, oldUser: DbUser, context: ResolverContext) {
   const { repos } = context;
+
+  if (!isElasticEnabled()) return;
   
   if (!!newUser.deleted !== !!oldUser.deleted) {
     const [

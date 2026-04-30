@@ -10,6 +10,7 @@ import { replyToCommentToolSchema } from "../toolSchemas";
 import { captureException } from "@/lib/sentryWrapper";
 import { captureAgentApiEvent, captureAgentApiFailure } from "../captureAgentAnalytics";
 import { getHocuspocusToken } from "../getHocuspocusToken";
+import { isValidHocuspocusWsUrl } from "@/lib/instanceSettings";
 
 function findThreadCommentsArray(
   commentsArray: YArray<unknown>,
@@ -58,7 +59,7 @@ export async function POST(req: NextRequest) {
     }
 
     const wsUrl = process.env.HOCUSPOCUS_URL;
-    if (!wsUrl) {
+    if (!isValidHocuspocusWsUrl(wsUrl)) {
       captureAgentApiEvent({ route: "replyToComment", postId, userId: context.currentUser?._id, agentName, status: "internal_error", errorCategory: "missing_config" });
       return NextResponse.json(
         { error: "HOCUSPOCUS_URL is not configured" },

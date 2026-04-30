@@ -4,6 +4,7 @@ import { createHeadlessEditor, getLexicalCompatibleProvider, waitForProviderFlus
 
 import { CommentStore } from "@/components/lexical/commenting";
 import { createSuggestionThreadController } from "@/components/editor/lexicalPlugins/suggestions/createSuggestionThreadController";
+import { isValidHocuspocusWsUrl } from "@/lib/instanceSettings";
 import type { SuggestionSummaryItem } from "@/components/editor/lexicalPlugins/suggestedEdits/suggestionSummaryUtils";
 
 export async function createSuggestionThreadInCommentsDoc({
@@ -22,7 +23,7 @@ export async function createSuggestionThreadInCommentsDoc({
   authorId: string
 }): Promise<void> {
   const wsUrl = process.env.HOCUSPOCUS_URL;
-  if (!wsUrl) {
+  if (!isValidHocuspocusWsUrl(wsUrl)) {
     throw new Error("HOCUSPOCUS_URL is not configured");
   }
 

@@ -1,6 +1,5 @@
 import pick from "lodash/pick";
 import type { AnyFormApi } from "@tanstack/react-form";
-import mapValues from "lodash/mapValues";
 import isPlainObject from "lodash/isPlainObject";
 
 type EditableFieldsOf<T> = {
@@ -40,7 +39,14 @@ export function recursivelyRemoveTypenameFrom<T>(json: T): T {
   } else if (Array.isArray(json)) {
     return json.map((el) => recursivelyRemoveTypenameFrom(el)) as unknown as T;
   } else if (typeof json === 'object' && isPlainObject(json)) {
-    const clone = mapValues(json as Record<string, unknown>, (v) => recursivelyRemoveTypenameFrom(v));
+    const obj = json as Record<string, unknown>;
+    const clone = {} as Record<string, unknown>;
+    for (const key of Object.keys(obj)) {
+      if (key === 'utc_offset') {
+        continue;
+      }
+      clone[key] = recursivelyRemoveTypenameFrom(obj[key]);
+    }
     if ('__typename' in clone) {
       delete clone.__typename;
     }

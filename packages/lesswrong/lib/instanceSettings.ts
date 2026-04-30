@@ -258,6 +258,12 @@ export const ckEditorApiSecretKeyOverrideSetting = new PublicInstanceSetting<str
 
 export const elasticCloudIdSetting = new PublicInstanceSetting<string | null>("elasticsearch.cloudId", null, "optional");
 
+/** Client-only hint: search UI when cloud/node creds exist on server (env is not visible in the browser). */
+export const elasticSearchAvailableSetting = new PublicInstanceSetting<boolean>("elasticsearch.searchAvailable", false, "optional");
+
+/** Self-hosted ES URL (`https://host:9200`). Non-empty ENV overrides DB. */
+export const elasticNodeSetting = new PublicInstanceSetting<string | null>("elasticsearch.node", null, "optional");
+
 export const elasticUsernameSetting = new PublicInstanceSetting<string | null>("elasticsearch.username", null, "optional");
 
 export const elasticPasswordSetting = new PublicInstanceSetting<string | null>("elasticsearch.password", null, "optional");
@@ -269,21 +275,78 @@ function pickElasticEnv(first: string | undefined, fallback: () => string | null
   return v && typeof v === "string" && v.trim() !== "" ? v : null;
 }
 
-export function getElasticResolvedCredentials(): {
-  cloudId: string;
-  username: string;
-  password: string;
-} | null {
-  const cloudId = pickElasticEnv(process.env.ELASTICSEARCH_CLOUD_ID, () => elasticCloudIdSetting.get());
+function tlsInsecureFromEnv(): boolean {
+  const v = process.env.ELASTICSEARCH_TLS_INSECURE;
+  return v !== undefined && v.trim().toLowerCase() === "true";
+}
+
+/** Dummy host from templates/Railway (dns ENOTFOUND), not a real infra hostname. */
+export function isPlaceholderInfrastructureHostname(hostname: string): boolean {
+  return hostname.toLowerCase() === "base";
+}
+
+export function isValidHocuspocusWsUrl(wsUrl: string | undefined | null): boolean {
+  if (!wsUrl?.trim()) return false;
+  try {
+    const u = new URL(wsUrl.trim().replace(/^ws(s?):\/\//, "http$1://"));
+    return !isPlaceholderInfrastructureHostname(u.hostname);
+  } catch {
+    return false;
+  }
+}
+
+export type ElasticResolvedConnection =
+  | { kind: "cloud"; cloudId: string; username: string; password: string }
+  | {
+      kind: "node";
+      node: string;
+      auth?: { username: string; password: string };
+      tlsInsecure: boolean;
+    };
+
+export function getElasticConnectionFingerprint(resolved: ElasticResolvedConnection): string {
+  return JSON.stringify(resolved);
+}
+
+export function getElasticResolvedConnection(): ElasticResolvedConnection | null {
+  const rawNode = pickElasticEnv(process.env.ELASTICSEARCH_NODE, () => elasticNodeSetting.get());
   const username = pickElasticEnv(process.env.ELASTICSEARCH_USERNAME, () => elasticUsernameSetting.get());
   const password = pickElasticEnv(process.env.ELASTICSEARCH_PASSWORD, () => elasticPasswordSetting.get());
+
+  let node = rawNode;
+  if (node) {
+    const t = node.trim();
+    if (!t || isPlaceholderInfrastructureHostname(t)) {
+      node = null;
+    } else {
+      try {
+        const u = new URL(t.includes("://") ? t : `http://${t}`);
+        if (isPlaceholderInfrastructureHostname(u.hostname)) node = null;
+      } catch {
+        // opaque string passthrough (@elastic/elasticsearch accepts node option flexibly)
+      }
+    }
+  }
+
+  if (node) {
+    let auth: { username: string; password: string } | undefined;
+    if (username && password) auth = { username, password };
+    else if (username || password) return null;
+    return { kind: "node", node, ...(auth ? { auth } : {}), tlsInsecure: tlsInsecureFromEnv() };
+  }
+
+  const rawCloudId = pickElasticEnv(process.env.ELASTICSEARCH_CLOUD_ID, () => elasticCloudIdSetting.get());
+  const cloudId = rawCloudId && isPlaceholderInfrastructureHostname(rawCloudId.trim()) ? null : rawCloudId;
   if (!cloudId || !username || !password) return null;
-  return { cloudId, username, password };
+  return { kind: "cloud", cloudId, username, password };
 }
 
 export const isElasticEnabled = (): boolean => {
   if (isAnyTest || isE2E || disableElastic.get() === 'true') return false;
-  return getElasticResolvedCredentials() !== null;
+  if (!isServer) {
+    return elasticSearchAvailableSetting.get() === true;
+  }
+  return getElasticResolvedConnection() !== null;
 };
 
 export const searchOriginDate = new PublicInstanceSetting<string>("elasticsearch.searchOriginDate", "2014-06-01T01:00:00Z", "optional");

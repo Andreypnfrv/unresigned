@@ -62,7 +62,7 @@ async function validateEmailWithMailgun(email: string): Promise<MailgunValidatio
     return {
       status: "error",
       validatedAt: new Date(),
-      error: "MAILGUN_VALIDATION_API_KEY is not set",
+      error: "Mailgun API key not configured (MAILGUN_API_KEY or MAILGUN_LESSWRONG_API_KEY)",
     };
   }
 
@@ -249,14 +249,14 @@ async function getNextEmailsToValidate(limit: number): Promise<NextEmailRow[]> {
 
 /**
  * Validate and store a single email (used on new user creation).
- * No-ops if `MAILGUN_VALIDATION_API_KEY` is not set.
+ * No-ops if Mailgun API key is not set.
  */
 export async function validateAndStoreMailgunValidation(args: {
   email: string;
   sourceUserId?: string | null;
 }): Promise<void> {
   if (!getMailgunClient()) {
-    logger("MAILGUN_VALIDATION_API_KEY is not set, skipping validating email");
+    logger("Mailgun API key not set, skipping validating email");
     return;
   };
 
@@ -295,7 +295,7 @@ export async function runMailgunValidationsBatch(args?: {
   const logger = loggerConstructor("script-mailgunValidationsBatch");
 
   if (!getMailgunClient()) {
-    logger("MAILGUN_VALIDATION_API_KEY is not set, skipping");
+    logger("Mailgun API key not set, skipping");
     return { processed: 0, succeeded: 0, failed: 0 };
   }
 

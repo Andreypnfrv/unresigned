@@ -3,6 +3,7 @@
 import { filterWhereFieldsNotNull } from '@/lib/utils/typeGuardUtils';
 import { unflattenComments } from '@/lib/utils/unflatten';
 import { userIsAdminOrMod } from '@/lib/vulcan-users/permissions.ts';
+import { hasCuratedPostsSetting } from '../../lib/instanceSettings';
 import React, { useState } from 'react';
 import { useCurrentUser } from '../common/withUser';
 import { CurationNoticesForm } from './CurationNoticesForm';
@@ -46,13 +47,16 @@ export const CurationPage = () => {
   const currentUser = useCurrentUser()
   const [post, setPost] = useState<PostsList|null>(null)
 
-  const { data, loading } = useQuery(CurationNoticesFragmentMultiQuery, {
+  const curatedEnabled = hasCuratedPostsSetting.get();
+
+  const { data } = useQuery(CurationNoticesFragmentMultiQuery, {
     variables: {
       selector: { curationNoticesPage: {} },
       limit: 20,
       enableTotal: false,
     },
     notifyOnNetworkStatusChange: true,
+    skip: !curatedEnabled,
   });
 
   const curationNotices = data?.curationNotices?.results ?? [];
@@ -63,6 +67,10 @@ export const CurationPage = () => {
   
   if (!currentUser || !userIsAdminOrMod(currentUser)) {
     return <ErrorAccessDenied/>
+  }
+
+  if (!curatedEnabled) {
+    return <SingleColumnSection>Curated posts are disabled.</SingleColumnSection>
   }
 
   return <div>

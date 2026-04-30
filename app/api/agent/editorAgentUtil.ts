@@ -14,6 +14,7 @@ import { randomId } from "@/lib/random";
 import { sleep } from "@/lib/utils/asyncUtils";
 import { getLatestRev } from "@/server/editor/utils";
 import { captureException } from "@/lib/sentryWrapper";
+import { isValidHocuspocusWsUrl } from "@/lib/instanceSettings";
 
 const HOCUSPOCUS_SYNC_TIMEOUT_MS = 15_000;
 const INITIAL_SYNC_SETTLE_MS = 25;
@@ -165,7 +166,7 @@ export async function withMainDocEditorSession<T>({
   }) => Promise<T>
 }): Promise<T> {
   const wsUrl = process.env.HOCUSPOCUS_URL;
-  if (!wsUrl) {
+  if (!isValidHocuspocusWsUrl(wsUrl)) {
     throw new Error("HOCUSPOCUS_URL is not configured");
   }
 

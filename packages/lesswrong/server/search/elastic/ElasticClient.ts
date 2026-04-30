@@ -7,7 +7,11 @@ import type {
 import ElasticQuery, { QueryData } from "./ElasticQuery";
 import type { MultiQueryData } from "./ElasticMultiQuery";
 import sortBy from "lodash/sortBy";
-import { getElasticResolvedCredentials } from "../../../lib/instanceSettings";
+import {
+  getElasticConnectionFingerprint,
+  getElasticResolvedConnection,
+  type ElasticResolvedConnection,
+} from "../../../lib/instanceSettings";
 import take from "lodash/take";
 
 export type ElasticDocument = Exclude<SearchDocument, "_id">;
@@ -24,37 +28,46 @@ export type HitsOnlySearchResponse = {
 const DEBUG_LOG_ELASTIC_QUERIES = false;
 
 let globalClient: Client | null = null;
+let globalClientFingerprint: string | null = null;
+
+function createElasticClientFromResolved(resolved: ElasticResolvedConnection): Client {
+  if (resolved.kind === "cloud") {
+    return new Client({
+      requestTimeout: 600000,
+      cloud: { id: resolved.cloudId },
+      auth: { username: resolved.username, password: resolved.password },
+    });
+  }
+  return new Client({
+    requestTimeout: 600000,
+    node: resolved.node,
+    ...(resolved.auth ? { auth: resolved.auth } : {}),
+    ...(resolved.tlsInsecure ? { tls: { rejectUnauthorized: false } } : {}),
+  });
+}
 
 class ElasticClient {
-  private client: Client;
-
-  constructor() {
-    const resolved = getElasticResolvedCredentials();
+  private getClientOrThrow(): Client {
+    const resolved = getElasticResolvedConnection();
     if (!resolved) {
+      globalClient = null;
+      globalClientFingerprint = null;
       throw new Error("Elasticsearch is not enabled");
     }
-
-    const { cloudId, username, password } = resolved;
-
-    if (!globalClient) {
-      globalClient = new Client({
-        requestTimeout: 600000,
-        cloud: {id: cloudId},
-        auth: {
-          username,
-          password,
-        },
-      });
-      if (!globalClient) {
-        throw new Error("Failed to connect to Elasticsearch");
-      }
+    const fp = getElasticConnectionFingerprint(resolved);
+    if (!globalClient || globalClientFingerprint !== fp) {
+      globalClient = createElasticClientFromResolved(resolved);
+      globalClientFingerprint = fp;
     }
+    return globalClient;
+  }
 
-    this.client = globalClient;
+  constructor() {
+    this.getClientOrThrow();
   }
 
   getClient() {
-    return this.client;
+    return this.getClientOrThrow();
   }
 
   search(queryData: QueryData): Promise<HitsOnlySearchResponse> {
@@ -64,14 +77,15 @@ class ElasticClient {
       // eslint-disable-next-line no-console
       console.log("Elastic query:", JSON.stringify(request, null, 2));
     }
-    return this.client.search(request);
+    return this.getClientOrThrow().search(request);
   }
 
   async multiSearch(queryData: MultiQueryData): Promise<HitsOnlySearchResponse> {
+    const client = this.getClientOrThrow();
     // Perform the same search against each index
     const resultsBySearchIndex = await Promise.all(
       queryData.indexes.map((searchIndex) =>
-        this.client.search(new ElasticQuery({
+        client.search(new ElasticQuery({
           index: searchIndex,
           filters: [],
           limit: queryData.limit,

@@ -71,7 +71,11 @@ export const UnreadNotificationsContextProvider: FC<{
   const apolloClient = useApolloClient();
 
   const [latestUnreadCount, setLatestUnreadCount] = useState<number | null>(null);
-  
+  const [notificationEffectsMounted, setNotificationEffectsMounted] = useState(false);
+  useEffect(() => {
+    setNotificationEffectsMounted(true);
+  }, []);
+
   //function updateFavicon(unreadNotificationCounts: NotificationCountsResult) {
     /*
      * TODO: this is disabled right now because it's not a great experience showing up on all tabs for all notifications.
@@ -147,12 +151,12 @@ export const UnreadNotificationsContextProvider: FC<{
 
   return (
     <unreadNotificationsContext.Provider value={providedContext}>
-      {unreadNotificationCountsQueryRef && <ErrorBoundary hideMessage>
+      {children}
+      {notificationEffectsMounted && unreadNotificationCountsQueryRef && <ErrorBoundary hideMessage>
         <SuspenseWrapper name="useUnreadNotifications">
           <NotificationsEffects queryRef={unreadNotificationCountsQueryRef} refetchCounts={refetchCounts} refetchBoth={refetchBoth} latestUnreadCount={latestUnreadCount} onCountChanged={setLatestUnreadCount} />
         </SuspenseWrapper>
       </ErrorBoundary>}
-      {children}
     </unreadNotificationsContext.Provider>
   );
 }
@@ -177,8 +181,11 @@ const NotificationsEffects = ({queryRef, refetchCounts, refetchBoth, latestUnrea
   // Update the latest unread count when the query is rerun or the cache
   // is manually updated (i.e. by user clicking on the bell), if it's changed
   useEffect(() => {
-    if (latestUnreadCount !== unreadNotificationCounts.data.unreadNotificationCounts.unreadNotifications) {
-      onCountChanged(unreadNotificationCounts.data.unreadNotificationCounts.unreadNotifications);
+    const nextCount = unreadNotificationCounts.data.unreadNotificationCounts.unreadNotifications;
+    if (latestUnreadCount !== nextCount) {
+      startTransition(() => {
+        onCountChanged(nextCount);
+      });
     }
   }, [latestUnreadCount, unreadNotificationCounts.data.unreadNotificationCounts.unreadNotifications, onCountChanged]);
 

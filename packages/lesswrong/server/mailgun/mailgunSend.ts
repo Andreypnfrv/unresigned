@@ -22,7 +22,9 @@ export async function sendMailgunBatchEmail(args: {
 }): Promise<{ ok: boolean; status: number; json: unknown }> {
   const client = getMailgunClient();
   if (!client) {
-    throw new Error("MAILGUN_VALIDATION_API_KEY is not set");
+    throw new Error(
+      "Mailgun is not configured (set MAILGUN_API_KEY or MAILGUN_LESSWRONG_API_KEY)",
+    );
   }
   const from = args.from ?? defaultEmailSetting.get();
 

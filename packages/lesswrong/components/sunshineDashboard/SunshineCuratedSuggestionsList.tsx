@@ -73,9 +73,11 @@ const styles = defineStyles('SunshineCuratedSuggestionsList', (theme: ThemeType)
 const shouldShow = (atBottom: boolean, timeForCuration: boolean, currentUser: UsersCurrent | null, hasCurationDrafts: boolean) => {
   if (isEAForum()) {
     return !atBottom && (currentUser?.isAdmin || userIsMemberOf(currentUser, 'canSuggestCuration'));
-  } else {
-    return (atBottom === hasCurationDrafts) || timeForCuration;
   }
+  if (timeForCuration) {
+    return !atBottom;
+  }
+  return atBottom === hasCurationDrafts;
 }
 
 const hasCurationDrafts = (results: SunshineCurationPostsList[] | undefined): boolean => {

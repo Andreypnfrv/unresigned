@@ -6,3 +6,7 @@ yarn-debug.log
 .git
 .gitignore
 .meteor
+.cursor
+**/agent-transcripts
+deploy/elasticsearch/Dockerfile
+deploy/elasticsearch/railway.json

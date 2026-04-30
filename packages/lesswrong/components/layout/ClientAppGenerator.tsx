@@ -142,26 +142,28 @@ const ClientAppGenerator = ({ abTestGroupsUsed, requestId, children }: {
   children: React.ReactNode,
 }) => {
   return <TimeProvider>
-    <Suspense>
-    <ApolloWrapper requestId={requestId}>
-      <CookiesProvider>
-        <UserContextProvider>
-          <ThemeContextProvider>
-            <ABTestGroupsUsedContext.Provider value={abTestGroupsUsed}>
+    <Suspense fallback={null}>
+      <ApolloWrapper requestId={requestId}>
+        <CookiesProvider>
+          <UserContextProvider>
+            <ThemeContextProvider>
+              <ABTestGroupsUsedContext.Provider value={abTestGroupsUsed}>
                 <HelmetProvider>
-                  <LocationContextProvider>
-                    <MessageContextProvider>
-                      <Layout>
-                        {children}
-                      </Layout>
-                    </MessageContextProvider>
-                  </LocationContextProvider>
+                  <Suspense fallback={null}>
+                    <LocationContextProvider>
+                      <MessageContextProvider>
+                        <Layout>
+                          {children}
+                        </Layout>
+                      </MessageContextProvider>
+                    </LocationContextProvider>
+                  </Suspense>
                 </HelmetProvider>
-            </ABTestGroupsUsedContext.Provider>
-          </ThemeContextProvider>
-        </UserContextProvider>
-      </CookiesProvider>
-    </ApolloWrapper>
+              </ABTestGroupsUsedContext.Provider>
+            </ThemeContextProvider>
+          </UserContextProvider>
+        </CookiesProvider>
+      </ApolloWrapper>
     </Suspense>
   </TimeProvider>
 };

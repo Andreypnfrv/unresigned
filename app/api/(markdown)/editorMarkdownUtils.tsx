@@ -17,6 +17,7 @@ import { HocuspocusProvider } from "@hocuspocus/provider";
 import { Doc, Array as YArray, Map as YMap } from "yjs";
 import type { ThreadType, ThreadStatus } from "@/components/lexical/commenting";
 import { captureException } from "@/lib/sentryWrapper";
+import { isValidHocuspocusWsUrl } from "@/lib/instanceSettings";
 
 export function normalizeImportedTopLevelNodes(nodes: LexicalNode[]): LexicalNode[] {
   const normalized: LexicalNode[] = [];
@@ -143,7 +144,7 @@ async function readOpenCommentThreads({
   token: string
 }): Promise<SerializedThread[]> {
   const wsUrl = process.env.HOCUSPOCUS_URL;
-  if (!wsUrl) return [];
+  if (!isValidHocuspocusWsUrl(wsUrl)) return [];
 
   const doc = new Doc();
   const provider = new HocuspocusProvider({

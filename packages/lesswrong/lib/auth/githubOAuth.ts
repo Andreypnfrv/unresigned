@@ -36,10 +36,27 @@ export function generateOAuthState(): string {
   return crypto.randomBytes(32).toString('hex');
 }
 
+function githubOAuthFromEnv(): { clientId: string | null; clientSecret: string | null } {
+  return {
+    clientId:
+      process.env.GITHUB_CLIENT_ID?.trim() ||
+      process.env.GITHUB_OAUTH_CLIENT_ID?.trim() ||
+      null,
+    clientSecret:
+      process.env.GITHUB_CLIENT_SECRET?.trim() ||
+      process.env.GITHUB_OAUTH_CLIENT_SECRET?.trim() ||
+      null,
+  };
+}
+
 export function getGitHubCredentials() {
-  const clientId = isAF() ? afGithubClientIdSetting.get() : githubClientIdSetting.get();
-  const clientSecret = isAF() ? afGithubOAuthSecretSetting.get() : githubOAuthSecretSetting.get();
-  
+  let clientId = isAF() ? afGithubClientIdSetting.get() : githubClientIdSetting.get();
+  let clientSecret = isAF() ? afGithubOAuthSecretSetting.get() : githubOAuthSecretSetting.get();
+  if (!clientId || !clientSecret) {
+    const env = githubOAuthFromEnv();
+    clientId = clientId || env.clientId;
+    clientSecret = clientSecret || env.clientSecret;
+  }
   return { clientId, clientSecret };
 }
 
