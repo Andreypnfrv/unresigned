@@ -37,6 +37,7 @@ function loadTsConfig(configPath: string) {
 }
 
 const isE2E = (process.env.E2E === "true");
+const isDockerBuild = process.env.IS_DOCKER === 'true';
 
 function hocuspocusUrlOkForBundler(wsUrl: string | undefined | null): boolean {
   if (!wsUrl?.trim()) return false;
@@ -50,7 +51,7 @@ function hocuspocusUrlOkForBundler(wsUrl: string | undefined | null): boolean {
 
 /** @type {NextConfig} */
 const nextConfig: NextConfig = {
-  cacheComponents: !isE2E,
+  cacheComponents: !isE2E && !isDockerBuild,
   reactStrictMode: false,
 
   compiler: {
