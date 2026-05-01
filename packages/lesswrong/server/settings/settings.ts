@@ -44,7 +44,10 @@ function getPublicSettings() {
     return localLwDevDb;
   }
 
-  const validEnvName = parsedEnvName.data;
+  let validEnvName = parsedEnvName.data;
+  if (process.env.FORUM_TYPE === "Antimortality" && validEnvName === "prodUnresigned") {
+    validEnvName = "prodAntimortality";
+  }
 
   switch (validEnvName) {
     case "test":

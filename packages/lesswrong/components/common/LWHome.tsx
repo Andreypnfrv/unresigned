@@ -205,7 +205,7 @@ const LWHome = () => {
             <div className={classes.heroInner}>
               <div className={classes.heroTitle}>{forumSelect({
                 Unresigned: "Those who unresign to die salute you!",
-                Antimortality: "Those who refuse mortality salute life!",
+                Antimortality: "Those who refuse mortality salute you!",
               })}</div>
               <div className={classes.heroCopy}>
                 <div className={classes.heroBody}>
