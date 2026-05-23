@@ -153,15 +153,24 @@ export function newToLegacyNotificationTypeSettings(newFormat: LegacyNotificatio
   };
 }
 
-export const dailyEmailBatchNotificationSettingOnCreate = {
+export const dailyEmailBatchAt13NotificationTypeSettings: NotificationTypeSettings = {
   onsite: defaultNotificationTypeSettings.onsite,
-  email: { ...defaultNotificationTypeSettings.email, enabled: true, batchingFrequency: "daily" },
+  email: {
+    enabled: true,
+    batchingFrequency: "daily",
+    timeOfDayGMT: 13,
+    dayOfWeekGMT: "Monday",
+  },
 };
 
-export const emailEnabledNotificationSettingOnCreate = {
-  onsite: defaultNotificationTypeSettings.onsite,
-  email: { ...defaultNotificationTypeSettings.email, enabled: true },
+export const dailyOnsiteDailyEmailAt13NotificationTypeSettings: NotificationTypeSettings = {
+  onsite: { ...defaultNotificationTypeSettings.onsite, batchingFrequency: "daily" },
+  email: dailyEmailBatchAt13NotificationTypeSettings.email,
 };
+
+export const dailyEmailBatchNotificationSettingOnCreate = dailyEmailBatchAt13NotificationTypeSettings;
+
+export const emailEnabledNotificationSettingOnCreate = dailyEmailBatchAt13NotificationTypeSettings;
 
 export type NotificationChannel = "onsite" | "email";
 

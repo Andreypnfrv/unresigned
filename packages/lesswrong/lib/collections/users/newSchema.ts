@@ -32,7 +32,7 @@ import { getKarmaChangeDateRange, getKarmaChangeNextBatchDate, getKarmaChanges }
 import { rateLimitDateWhenUserNextAbleToComment, rateLimitDateWhenUserNextAbleToPost, getRecentKarmaInfo } from "@/server/rateLimitUtils";
 import { getSqlClientOrThrow } from "@/server/sql/sqlClient";
 import GraphQLJSON from "@/lib/vendor/graphql-type-json";
-import { bothChannelsEnabledNotificationTypeSettings, dailyEmailBatchNotificationSettingOnCreate, defaultNotificationTypeSettings, emailEnabledNotificationSettingOnCreate, notificationTypeSettingsSchema } from "./notificationFieldHelpers";
+import { dailyEmailBatchAt13NotificationTypeSettings, dailyEmailBatchNotificationSettingOnCreate, dailyOnsiteDailyEmailAt13NotificationTypeSettings, defaultNotificationTypeSettings, emailEnabledNotificationSettingOnCreate, notificationTypeSettingsSchema } from "./notificationFieldHelpers";
 import { getWithLoader, loadByIds } from "@/lib/loaders";
 import { VOTING_DISABLED } from "../moderatorActions/constants";
 import { isActionActive } from "../moderatorActions/helpers";
@@ -1721,7 +1721,7 @@ const schema = {
   notificationCommentsOnSubscribedPost: {
     database: {
       type: "JSONB",
-      defaultValue: defaultNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1733,7 +1733,7 @@ const schema = {
   notificationShortformContent: {
     database: {
       type: "JSONB",
-      defaultValue: defaultNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1745,7 +1745,7 @@ const schema = {
   notificationRepliesToMyComments: {
     database: {
       type: "JSONB",
-      defaultValue: bothChannelsEnabledNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1757,7 +1757,7 @@ const schema = {
   notificationRepliesToSubscribedComments: {
     database: {
       type: "JSONB",
-      defaultValue: defaultNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1769,7 +1769,7 @@ const schema = {
   notificationSubscribedUserPost: {
     database: {
       type: "JSONB",
-      defaultValue: defaultNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1781,7 +1781,7 @@ const schema = {
   notificationSubscribedUserComment: {
     database: {
       type: "JSONB",
-      defaultValue: defaultNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1793,7 +1793,7 @@ const schema = {
   notificationPostsInGroups: {
     database: {
       type: "JSONB",
-      defaultValue: bothChannelsEnabledNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1802,7 +1802,7 @@ const schema = {
   notificationSubscribedTagPost: {
     database: {
       type: "JSONB",
-      defaultValue: defaultNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1811,7 +1811,7 @@ const schema = {
   notificationSubscribedSequencePost: {
     database: {
       type: "JSONB",
-      defaultValue: bothChannelsEnabledNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1820,7 +1820,7 @@ const schema = {
   notificationPrivateMessage: {
     database: {
       type: "JSONB",
-      defaultValue: bothChannelsEnabledNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1829,7 +1829,7 @@ const schema = {
   notificationSharedWithMe: {
     database: {
       type: "JSONB",
-      defaultValue: bothChannelsEnabledNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1838,7 +1838,7 @@ const schema = {
   notificationAlignmentSubmissionApproved: {
     database: {
       type: "JSONB",
-      defaultValue: bothChannelsEnabledNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1847,7 +1847,7 @@ const schema = {
   notificationEventInRadius: {
     database: {
       type: "JSONB",
-      defaultValue: bothChannelsEnabledNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1856,7 +1856,7 @@ const schema = {
   notificationKarmaPowersGained: {
     database: {
       type: "JSONB",
-      defaultValue: defaultNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1868,7 +1868,7 @@ const schema = {
   notificationRSVPs: {
     database: {
       type: "JSONB",
-      defaultValue: bothChannelsEnabledNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1877,7 +1877,7 @@ const schema = {
   notificationGroupAdministration: {
     database: {
       type: "JSONB",
-      defaultValue: bothChannelsEnabledNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1886,7 +1886,7 @@ const schema = {
   notificationCommentsOnDraft: {
     database: {
       type: "JSONB",
-      defaultValue: bothChannelsEnabledNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1895,7 +1895,7 @@ const schema = {
   notificationPostsNominatedReview: {
     database: {
       type: "JSONB",
-      defaultValue: bothChannelsEnabledNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1904,10 +1904,7 @@ const schema = {
   notificationSubforumUnread: {
     database: {
       type: "JSONB",
-      defaultValue: {
-        onsite: { ...defaultNotificationTypeSettings.onsite, batchingFrequency: "daily" },
-        email: defaultNotificationTypeSettings.email,
-      },
+      defaultValue: dailyOnsiteDailyEmailAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1916,7 +1913,7 @@ const schema = {
   notificationNewMention: {
     database: {
       type: "JSONB",
-      defaultValue: defaultNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1928,7 +1925,7 @@ const schema = {
   notificationDialogueMessages: {
     database: {
       type: "JSONB",
-      defaultValue: bothChannelsEnabledNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1937,7 +1934,7 @@ const schema = {
   notificationTypoSuggestions: {
     database: {
       type: "JSONB",
-      defaultValue: defaultNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1946,7 +1943,7 @@ const schema = {
   notificationPublishedDialogueMessages: {
     database: {
       type: "JSONB",
-      defaultValue: defaultNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1955,7 +1952,7 @@ const schema = {
   notificationAddedAsCoauthor: {
     database: {
       type: "JSONB",
-      defaultValue: bothChannelsEnabledNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1965,10 +1962,7 @@ const schema = {
   notificationDebateCommentsOnSubscribedPost: {
     database: {
       type: "JSONB",
-      defaultValue: {
-        onsite: { ...defaultNotificationTypeSettings.onsite, batchingFrequency: "daily" },
-        email: defaultNotificationTypeSettings.email,
-      },
+      defaultValue: dailyOnsiteDailyEmailAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1977,7 +1971,7 @@ const schema = {
   notificationDebateReplies: {
     database: {
       type: "JSONB",
-      defaultValue: defaultNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },
@@ -1986,7 +1980,7 @@ const schema = {
   notificationDialogueMatch: {
     database: {
       type: "JSONB",
-      defaultValue: bothChannelsEnabledNotificationTypeSettings,
+      defaultValue: dailyEmailBatchAt13NotificationTypeSettings,
       canAutofillDefault: true,
       nullable: false,
     },

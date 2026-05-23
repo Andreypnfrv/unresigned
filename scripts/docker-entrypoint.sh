@@ -45,4 +45,20 @@ fi
 echo "Running migrations"
 yarn migrate up prod ur
 
+# Railway has no Vercel-style cron; dispatch notification emails via debouncer.
+if [ -n "${CRON_SECRET:-}" ]; then
+  (
+    PORT="${PORT:-3000}"
+    for _ in $(seq 1 120); do
+      curl -sf "http://127.0.0.1:${PORT}/" >/dev/null 2>&1 && break
+      sleep 1
+    done
+    while true; do
+      curl -sf -H "Authorization: Bearer ${CRON_SECRET}" \
+        "http://127.0.0.1:${PORT}/api/cron/every-minute" >/dev/null 2>&1 || true
+      sleep 60
+    done
+  ) &
+fi
+
 exec yarn next start -H 0.0.0.0
