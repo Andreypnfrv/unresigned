@@ -141,3 +141,17 @@ export function getPostPageMetadataFunction<Params>(paramsToPostIdConverter: (pa
     }
   }
 }
+
+export function getPostPageMetadataBySlugFunction<Params>(paramsToSlugConverter: (params: Params) => string, options?: PostPageMetadataOptions) {
+  return async function generateMetadata({ params, searchParams }: { params: Promise<Params>, searchParams: Promise<{ commentId?: string }> }): Promise<Metadata> {
+    const [paramValues, searchParamsValues] = await Promise.all([params, searchParams]);
+    const slug = decodeURIComponent(paramsToSlugConverter(paramValues));
+    const resolverContext = await getResolverContextForGenerateMetadata(searchParamsValues);
+    const post = await resolverContext.Posts.findOne({ slug });
+    if (!post) return notFound();
+    return getPostPageMetadataFunction<{ _id: string }>(({ _id }) => _id, options)({
+      params: Promise.resolve({ _id: post._id }),
+      searchParams: Promise.resolve(searchParamsValues),
+    });
+  };
+}

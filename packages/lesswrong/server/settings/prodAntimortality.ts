@@ -53,6 +53,8 @@ export const prodAntimortality = {
     tagline: "Longevity, immortalism, and the science and politics of ending aging.",
     siteNameWithArticle: "Antimortality",
     siteUrl: productionSiteUrl(),
+    siteImage: `${productionSiteUrl()}/favicon.ico`,
+    llmWritingPolicyPostId: "FywqpgTCGKrabZeHo",
     faviconUrl: "/favicon.ico",
     forumSettings: {
       headerTitle: "Antimortality",

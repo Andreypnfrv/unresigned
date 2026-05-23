@@ -245,6 +245,7 @@ export const allowTypeIIIPlayerSetting = new PublicInstanceSetting<boolean>('all
 
 export const faqPostIdSetting = new PublicInstanceSetting<string>('faqPostId', '2rWKkWuPrgTMpLRbp', "warning"); // Post ID for the /faq route
 export const contactPostIdSetting = new PublicInstanceSetting<string>('contactPostId', "ehcYkvyz7dh9L7Wt8", "warning");
+export const llmWritingPolicyPostIdSetting = new PublicInstanceSetting<string>('llmWritingPolicyPostId', 'KXujJjnmP85u8eM6B', "optional");
 export const introPostIdSetting = new PublicInstanceSetting<string | null>('introPostId', null, "optional");
 
 export const instanceDebuggersSetting = new PublicInstanceSetting<string[]>('instanceDebuggers', [], 'optional');

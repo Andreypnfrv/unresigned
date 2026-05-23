@@ -47,7 +47,7 @@ export async function getDefaultMetadata() {
     },
     openGraph: {
       title: tabLongTitleSetting.get() || tabTitleSetting.get(),
-      type: 'article',
+      type: 'website',
       url: getSiteUrl(),
       description: taglineSetting.get(),
       images: siteImageSetting.get(),

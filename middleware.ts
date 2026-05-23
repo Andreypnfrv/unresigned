@@ -429,10 +429,10 @@ export const config: MiddlewareConfig = {
      * The rest of these were copied from their docs:
      * - _next/static (static files)
      * - _next/image (image optimization files)
-     * - favicon.ico, sitemap.xml, robots.txt (metadata files)
+     * - favicon.ico, sitemap.xml, llms.txt, robots.txt (metadata files)
      */
     {
-      source: "/((?!api|$|auth|graphql|graphql2|hocuspocusWebhook|analyticsEvent|public|ckeditor-token|ckeditor-webhook|feed.xml|reactionImages|_next/static|_next/image|favicon.ico|sitemap.xml|.well-known|oauth|logout|admin/debugHeaders|robots.txt).*)",
+      source: "/((?!api|$|auth|graphql|graphql2|hocuspocusWebhook|analyticsEvent|public|ckeditor-token|ckeditor-webhook|feed.xml|reactionImages|_next/static|_next/image|favicon.ico|sitemap.xml|llms.txt|.well-known|oauth|logout|admin/debugHeaders|robots.txt).*)",
       missing: [
         { type: 'header', key: 'next-router-state-tree' },
       ],

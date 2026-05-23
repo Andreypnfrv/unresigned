@@ -8,6 +8,7 @@ import { HOME_DESIGN_SHARED_PROMPT } from "@/lib/homeDesignPrompt";
 import { backgroundTask } from "@/server/utils/backgroundTask";
 import { NextRequest } from "next/server";
 import { aiFeaturesEnabled } from "@/lib/betas";
+import { forumTitleSetting, taglineSetting } from "@/lib/instanceSettings";
 
 async function generateDesignTitle(
   messages: UIMessage[],
@@ -31,10 +32,12 @@ async function generateDesignTitle(
   }
 }
 
-const SYSTEM_PROMPT = `You are a home page designer for Unresigned, a discussion forum about rationality and AI safety. Users describe their ideal home page and you build it as **body content only** that runs inside a sandboxed iframe.
+function getHomeDesignSystemPrompt(): string {
+  return `You are a home page designer for ${forumTitleSetting.get()}, a discussion forum about ${taglineSetting.get()}. Users describe their ideal home page and you build it as **body content only** that runs inside a sandboxed iframe.
 ${HOME_DESIGN_SHARED_PROMPT}
 
 When the user asks you to apply, preview, or submit a design, call the submitHomePageDesign tool with the body content. Always call this tool proactively after creating or modifying a design — don't just show code, apply it.`;
+}
 
 export async function POST(req: NextRequest) {
   const { messages, publicId: clientPublicId }: { messages: UIMessage[], publicId?: string } = await req.json();
@@ -127,7 +130,7 @@ export async function POST(req: NextRequest) {
 
   const result = streamText({
     model: modelId,
-    system: { role: 'system', content: SYSTEM_PROMPT, providerOptions: { anthropic: { cacheControl: { type: 'ephemeral' } } } },
+    system: { role: 'system', content: getHomeDesignSystemPrompt(), providerOptions: { anthropic: { cacheControl: { type: 'ephemeral' } } } },
     messages: await convertToModelMessages(messages),
     tools: {
       submitHomePageDesign: {

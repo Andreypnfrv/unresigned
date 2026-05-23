@@ -16,5 +16,7 @@ export async function GET(req: NextRequest) {
     description: taglineSetting.get(),
     url: siteUrl,
     documentationUrl: `${siteUrl}/api/SKILL.md`,
+    llmsTxtUrl: `${siteUrl}/llms.txt`,
+    sitemapUrl: `${siteUrl}/sitemap.xml`,
   });
 }

@@ -206,7 +206,31 @@ const getForumDomainWhitelist = (): ForumOptions<DomainList> => ({
   }
 })
 
-const getDomainWhitelist = (): DomainList => forumSelect(getForumDomainWhitelist())
+function getSiteHostnameForWhitelist(): string | null {
+  try {
+    return new URLClass(siteUrlSetting.get()).hostname.replace(/^www\./, "");
+  } catch {
+    return null;
+  }
+}
+
+const getDomainWhitelist = (): DomainList => {
+  const base = forumSelect(getForumDomainWhitelist());
+  const siteHost = getSiteHostnameForWhitelist();
+  if (!siteHost) {
+    return base;
+  }
+  const alreadyListed = base.onsiteDomains.some(
+    (domain) => domain === siteHost || domain === `www.${siteHost}` || `www.${domain}` === siteHost
+  );
+  if (alreadyListed) {
+    return base;
+  }
+  return {
+    ...base,
+    onsiteDomains: [...base.onsiteDomains, siteHost],
+  };
+}
 
 export const classifyHost = (host: string): "onsite"|"offsite"|"mirrorOfUs" => {
   let urlType: "onsite"|"offsite"|"mirrorOfUs" = "offsite";

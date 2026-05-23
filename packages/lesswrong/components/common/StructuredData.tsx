@@ -11,7 +11,7 @@ const StructuredDataInner = ({generate}: {
 export const StructuredData = ({generate}: {
   generate: () => Record<string,AnyBecauseHard>
 }) => {
-  return <DeferRender ssr={false}>
+  return <DeferRender ssr={true}>
     <StructuredDataInner generate={generate} />
   </DeferRender>;
 }

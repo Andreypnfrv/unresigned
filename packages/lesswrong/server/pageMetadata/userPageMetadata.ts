@@ -3,7 +3,7 @@ import { getDefaultMetadata, getMetadataDescriptionFields, getMetadataImagesFiel
 import type { Metadata } from "next";
 import merge from "lodash/merge";
 import { cloudinaryCloudNameSetting, siteNameWithArticleSetting, taglineSetting } from "@/lib/instanceSettings";
-import { userGetDisplayName } from "@/lib/collections/users/helpers";
+import { userGetDisplayName, userGetProfileUrlFromSlug } from "@/lib/collections/users/helpers";
 import { captureException } from "@/lib/sentryWrapper";
 import { notFound } from "next/navigation";
 import { runQuery } from "@/server/vulcan-lib/query";
@@ -58,8 +58,15 @@ export async function generateUserPageMetadata({ params, searchParams }: {
   
     const noIndexUser = (!user.postCount && !user.commentCount) || user.karma <= 0 || user.noindex;
     const noIndexFields = noIndexUser ? noIndexMetadata : {};
-  
-    return merge({}, defaultMetadata, descriptionFields, titleFields, imageFields, noIndexFields);  
+
+    return merge({}, defaultMetadata, descriptionFields, titleFields, imageFields, noIndexFields, {
+      openGraph: {
+        url: userGetProfileUrlFromSlug(user.slug, true),
+      },
+      alternates: {
+        canonical: userGetProfileUrlFromSlug(user.slug, true),
+      },
+    });
   } catch (error) {
     return handleMetadataError('Error generating user page metadata', error);
   }

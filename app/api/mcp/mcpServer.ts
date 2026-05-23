@@ -1,6 +1,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { AuthInfo } from "@modelcontextprotocol/sdk/server/auth/types.js";
 import { z } from "zod";
+import { forumTitleSetting } from "@/lib/instanceSettings";
 import { validateAccessToken, OAuthError } from "@/server/oauth/oauthProvider";
 import { computeContextFromUser } from "@/server/vulcan-lib/apollo-server/context";
 import { runQuery } from "@/server/vulcan-lib/query";
@@ -88,7 +89,7 @@ function toolError(message: string) {
 function createMcpServer(): McpServer {
   const server = new McpServer(
     {
-      name: "Unresigned",
+      name: forumTitleSetting.get(),
       version: "1.0.0",
     },
     {

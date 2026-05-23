@@ -1,13 +1,13 @@
 import React from "react";
 import UserCommentsReplies from '@/components/comments/UserCommentsReplies';
-import { getDefaultMetadata, getPageTitleFields } from "@/server/pageMetadata/sharedMetadata";
+import { getDefaultMetadata, getPageTitleFields, noIndexMetadata } from "@/server/pageMetadata/sharedMetadata";
 import type { Metadata } from "next";
 import merge from "lodash/merge";
 import RouteRoot from "@/components/layout/RouteRoot";
 import { assertRouteAttributes } from "@/lib/routeChecks/assertRouteAttributes";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return merge({}, await getDefaultMetadata(), getPageTitleFields('User Comment Replies'));
+  return merge({}, await getDefaultMetadata(), getPageTitleFields('User Comment Replies'), noIndexMetadata);
 }
 
 assertRouteAttributes("/users/[slug]/replies", {
