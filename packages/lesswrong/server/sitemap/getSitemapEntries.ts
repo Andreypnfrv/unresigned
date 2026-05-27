@@ -25,6 +25,10 @@ export async function getSitemapEntries(): Promise<MetadataRoute.Sitemap> {
     priority,
   }));
 
+  if (!process.env.PG_URL) {
+    return entries;
+  }
+
   const [posts, tags, sequences] = await Promise.all([
     Posts.find(
       { draft: false, rejected: { $ne: true }, noIndex: { $ne: true } },
