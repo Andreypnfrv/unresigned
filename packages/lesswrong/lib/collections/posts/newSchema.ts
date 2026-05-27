@@ -2364,7 +2364,8 @@ const schema = {
       outputType: "SocialPreviewType!",
       canRead: ["guests"],
       resolver: async (post, args, context): Promise<SocialPreviewType> => {
-        const { imageId = null, text = null } = post.socialPreview || {};
+        const { text = null } = post.socialPreview || {};
+        const imageId = post.socialPreview?.imageId ?? post.eventImageId ?? null;
         const imageUrl = getSocialPreviewImage(post);
         return {
           _id: post._id,

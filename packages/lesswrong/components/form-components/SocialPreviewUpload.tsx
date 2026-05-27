@@ -259,7 +259,7 @@ export const SocialPreviewUpload = ({
       <div className={classes.card}>
         <ImageUpload2
           name={"socialPreviewImageId"}
-          value={post.socialPreviewData?.imageId}
+          value={post.socialPreview?.imageId ?? post.eventImageId ?? post.socialPreviewData?.imageId}
           updateValue={updateImageId}
           clearField={() => updateImageId(undefined)}
           label={fallbackImageUrl ? "Change preview image" : "Upload preview image"}

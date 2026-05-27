@@ -167,14 +167,12 @@ const getSocialImagePreviewPrefix = () =>
   `https://res.cloudinary.com/${cloudinaryCloudNameSetting.get()}/image/upload/c_fill,ar_1.91,g_auto/`;
 
 // Select the social preview image for the post.
-// For events, we use their event image if that is set.
-// For other posts, we use the manually-set cloudinary image if available,
-// or the auto-set from the post contents. If neither of those are available,
-// it will return null.
+// Uses an explicit social preview image if set, otherwise the post header image,
+// otherwise the auto-set image from post contents.
 export const getSocialPreviewImage = (post: DbPost): string => {
   // Note: in case of bugs due to failed migration of socialPreviewImageId -> socialPreview.imageId,
   // edit this to support the old field "socialPreviewImageId", which still has the old data
-  const manualId = (post.isEvent && post.eventImageId) ? post.eventImageId : post.socialPreview?.imageId
+  const manualId = post.socialPreview?.imageId ?? post.eventImageId
   if (manualId) {
     return getSocialImagePreviewPrefix() + manualId;
   }
@@ -185,10 +183,10 @@ export const getSocialPreviewImage = (post: DbPost): string => {
 export const getSocialPreviewSql = (tablePrefix: string) => `JSON_BUILD_OBJECT(
   'imageUrl',
   CASE
-    WHEN ${tablePrefix}."isEvent" AND ${tablePrefix}."eventImageId" IS NOT NULL
-      THEN '${getSocialImagePreviewPrefix()}' || ${tablePrefix}."eventImageId"
     WHEN ${tablePrefix}."socialPreview"->>'imageId' IS NOT NULL
       THEN '${getSocialImagePreviewPrefix()}' || (${tablePrefix}."socialPreview"->>'imageId')
+    WHEN ${tablePrefix}."eventImageId" IS NOT NULL
+      THEN '${getSocialImagePreviewPrefix()}' || ${tablePrefix}."eventImageId"
     ELSE COALESCE(${tablePrefix}."socialPreviewImageAutoUrl", '')
   END
 )`;

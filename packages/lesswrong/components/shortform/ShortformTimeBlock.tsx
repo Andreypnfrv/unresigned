@@ -47,8 +47,8 @@ const ShortformItem: FC<{comment: ShortformComments}> = ({comment}) => {
   );
 }
 
-const ShortformTimeBlock  = ({reportEmpty, before, after, terms}: {
-  reportEmpty: () => void,
+const ShortformTimeBlock  = ({onLoadComplete, before, after, terms}: {
+  onLoadComplete: (isEmpty: boolean) => void,
   before: string
   after: string
   terms: CommentsViewTerms,
@@ -71,10 +71,10 @@ const ShortformTimeBlock  = ({reportEmpty, before, after, terms}: {
   const totalCount = data?.comments?.totalCount ?? 0;
 
   useEffect(() => {
-    if (!loading && !comments?.length && reportEmpty) {
-      reportEmpty()
+    if (!loading) {
+      onLoadComplete(!comments?.length);
     }
-  }, [loading, comments, reportEmpty]);
+  }, [loading, comments, onLoadComplete]);
 
   if (!comments?.length) return null
 

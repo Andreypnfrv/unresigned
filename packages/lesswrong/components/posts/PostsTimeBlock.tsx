@@ -89,6 +89,8 @@ const postTypes: PostTypeOptions[] = [
 
 export type PostsTimeBlockShortformOption = "all" | "none" | "frontpage";
 
+type SectionStatus = 'unknown' | 'empty' | 'hasContent';
+
 const PostsTimeBlock = ({terms, timeBlockLoadComplete, dateForTitle, getTitle, before, after, hideIfEmpty, timeframe, shortform = "all", includeTags=true}: {
   terms: PostsViewTerms,
   timeBlockLoadComplete: () => void,
@@ -102,8 +104,12 @@ const PostsTimeBlock = ({terms, timeBlockLoadComplete, dateForTitle, getTitle, b
   includeTags?: boolean,
 }) => {
   const classes = useStyles(styles);
-  const [noShortform, setNoShortform] = useState(false);
-  const [noTags, setNoTags] = useState(false);
+  const [shortformStatus, setShortformStatus] = useState<SectionStatus>(
+    shortform === "none" ? 'empty' : 'unknown',
+  );
+  const [tagsStatus, setTagsStatus] = useState<SectionStatus>(
+    timeframe === "daily" && includeTags ? 'unknown' : 'empty',
+  );
 
   const [tagFilter, setTagFilter] = useState<string|null>(null)
   const {query} = useLocation()
@@ -142,18 +148,28 @@ const PostsTimeBlock = ({terms, timeBlockLoadComplete, dateForTitle, getTitle, b
   // like nothing has changed, to signal loading is complete
   });
 
-  // Child component needs a way to tell us about the presence of shortforms
-  const reportEmptyShortform = useCallback(() => {
-    setNoShortform(true);
+  const onShortformLoadComplete = useCallback((isEmpty: boolean) => {
+    setShortformStatus(isEmpty ? 'empty' : 'hasContent');
   }, []);
-  const reportEmptyTags = useCallback(() => {
-    setNoTags(true);
+  const onTagsLoadComplete = useCallback((isEmpty: boolean) => {
+    setTagsStatus(isEmpty ? 'empty' : 'hasContent');
   }, []);
+
   const noPosts = !loading && (!filteredPosts || (filteredPosts.length === 0));
-  // The most recent timeBlock is hidden if there are no posts or shortforms
-  // on it, to avoid having an awkward empty partial timeBlock when it's close
-  // to midnight.
-  if (noPosts && noShortform && noTags && hideIfEmpty) {
+  const hasOtherContent = shortformStatus === 'hasContent' || tagsStatus === 'hasContent';
+  const shortformResolved = shortform === "none" || shortformStatus !== 'unknown';
+  const tagsResolved = !(timeframe === "daily" && includeTags) || tagsStatus !== 'unknown';
+  const waitingForOtherSections =
+    hideIfEmpty &&
+    noPosts &&
+    !hasOtherContent &&
+    (!shortformResolved || !tagsResolved);
+
+  if (hideIfEmpty && loading) {
+    return null;
+  }
+
+  if (hideIfEmpty && noPosts && !hasOtherContent && shortformResolved && tagsResolved) {
     return null;
   }
 
@@ -161,6 +177,32 @@ const PostsTimeBlock = ({terms, timeBlockLoadComplete, dateForTitle, getTitle, b
     ...type,
     filteredPosts: filteredPosts?.filter(type.postIsType) || []
   }));
+
+  const shortformBlock = shortform !== "none" && (
+    <ShortformTimeBlock
+      onLoadComplete={onShortformLoadComplete}
+      before={before.toString()}
+      after={after.toString()}
+      terms={{
+        view: "topShortform",
+        shortformFrontpage: shortform === "frontpage" ? true : undefined,
+      }}
+    />
+  );
+  const tagsBlock = timeframe === "daily" && includeTags && (
+    <TagEditsTimeBlock
+      before={before.toDate()}
+      after={after.toDate()}
+      onLoadComplete={onTagsLoadComplete}
+    />
+  );
+
+  if (waitingForOtherSections) {
+    return <>
+      {shortformBlock}
+      {tagsBlock}
+    </>;
+  }
   
   return (
     <div className={classes.root}>
@@ -185,7 +227,7 @@ const PostsTimeBlock = ({terms, timeBlockLoadComplete, dateForTitle, getTitle, b
       </QueryLink>
 
       <div>
-        { noPosts && <div className={classes.noPosts}>
+        { noPosts && !hideIfEmpty && <div className={classes.noPosts}>
           No posts for {
           timeframe === 'daily'
             ? dateForTitle.format('MMMM Do YYYY')
@@ -225,21 +267,9 @@ const PostsTimeBlock = ({terms, timeBlockLoadComplete, dateForTitle, getTitle, b
           />
         </div>}
 
-        {shortform !== "none" && <ShortformTimeBlock
-          reportEmpty={reportEmptyShortform}
-          before={before.toString()}
-          after={after.toString()}
-          terms={{
-            view: "topShortform",
-            shortformFrontpage: shortform === "frontpage" ? true : undefined,
-          }}
-        />}
+        {shortformBlock}
 
-        {timeframe==="daily" && includeTags && <TagEditsTimeBlock
-          before={before.toDate()}
-          after={after.toDate()}
-          reportEmpty={reportEmptyTags}
-        />}
+        {tagsBlock}
       </div>
       {!loading && <div className={classes.divider}>
         <Divider wings={false} />
@@ -249,5 +279,3 @@ const PostsTimeBlock = ({terms, timeBlockLoadComplete, dateForTitle, getTitle, b
 };
 
 export default PostsTimeBlock;
-
-

@@ -102,7 +102,7 @@ const PostsTimeframeList = ({after, before, timeframe, numTimeBlocks, postListPa
   
   return (
     <div className={classNames({[classes.loading]: dim})}>
-      {orderedDates.slice(0, displayedNumTimeBlocks).map((date, index) => {
+      {orderedDates.slice(0, displayedNumTimeBlocks).map((date) => {
         const startDate = moment.tz(date, timezone);
         const { before, after } = timeframeToRange({startDate, timeBlock, timezone});
         return <PostsTimeBlock
@@ -116,7 +116,7 @@ const PostsTimeframeList = ({after, before, timeframe, numTimeBlocks, postListPa
             ...postListParameters,
           }}
           timeBlockLoadComplete={timeBlockLoadComplete}
-          hideIfEmpty={index===0}
+          hideIfEmpty={true}
           shortform={shortform}
           includeTags={includeTags}
         />

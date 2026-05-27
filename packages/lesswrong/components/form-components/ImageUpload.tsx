@@ -218,6 +218,7 @@ interface ImageUploadProps {
   horizontal?: boolean;
   /** Full-width stacked preview + actions (post edit header hero). */
   variant?: "default" | "postHeaderEditor";
+  onImageIdChange?: (imageId: string | null) => void;
 }
 
 
@@ -228,6 +229,7 @@ export const ImageUpload = ({
   croppingAspectRatio,
   horizontal = false,
   variant = "default",
+  onImageIdChange,
 }: ImageUploadProps) => {
   const classes = useStyles(styles);
   const imageType = field.name as ImageType;
@@ -240,6 +242,7 @@ export const ImageUpload = ({
     imageType,
     onUploadSuccess: (publicImageId: string) => {
       field.handleChange(publicImageId);
+      onImageIdChange?.(publicImageId);
     },
     onUploadError: (error: Error) => {
       // eslint-disable-next-line no-console
@@ -253,6 +256,7 @@ export const ImageUpload = ({
 
   const removeImg = () => {
     field.handleChange(null);
+    onImageIdChange?.(null);
   };
 
   const formPreviewSize = formPreviewSizeByImageType[imageType];
@@ -298,7 +302,10 @@ export const ImageUpload = ({
                 openDialog({
                   name: "ImageUploadDefaultsDialog",
                   contents: ({ onClose }) => (
-                    <ImageUploadDefaultsDialog onClose={onClose} onSelect={(id: string) => field.handleChange(id)} />
+                    <ImageUploadDefaultsDialog onClose={onClose} onSelect={(id: string) => {
+                      field.handleChange(id);
+                      onImageIdChange?.(id);
+                    }} />
                   ),
                 })
               }
@@ -345,7 +352,10 @@ export const ImageUpload = ({
           variant="outlined"
           onClick={() => openDialog({
             name: "ImageUploadDefaultsDialog",
-            contents: ({onClose}) => <ImageUploadDefaultsDialog onClose={onClose} onSelect={(id: string) => field.handleChange(id)} />
+            contents: ({onClose}) => <ImageUploadDefaultsDialog onClose={onClose} onSelect={(id: string) => {
+              field.handleChange(id);
+              onImageIdChange?.(id);
+            }} />
           })}
         >
           Choose from ours

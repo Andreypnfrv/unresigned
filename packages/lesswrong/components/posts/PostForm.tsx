@@ -616,6 +616,15 @@ const PostForm = ({
   // changes go through the collaborative editing protocol, not the form mutation.
   const { isSaving, awaitPendingSaves } = useAutoSavePostFields(form, canEditMetadata ? initialData?._id : undefined, mutate);
 
+  const syncHeaderImageToSocialPreview = useCallback((imageId: string | null) => {
+    if (!imageId) return;
+    const currentSocialPreview = form.state.values.socialPreview;
+    form.setFieldValue('socialPreview', {
+      ...currentSocialPreview,
+      imageId,
+    });
+  }, [form]);
+
   useEffect(() => {
     if (sidebarPanel) {
       setShowComments(false);
@@ -680,6 +689,7 @@ const PostForm = ({
                   field={field}
                   label="header image"
                   variant="postHeaderEditor"
+                  onImageIdChange={syncHeaderImageToSocialPreview}
                 />
               </LWTooltip>
             )}
@@ -1206,6 +1216,7 @@ const PostForm = ({
                 <ImageUpload
                   field={field}
                   label="Event Image"
+                  onImageIdChange={syncHeaderImageToSocialPreview}
                 />
               </LWTooltip>
             )}

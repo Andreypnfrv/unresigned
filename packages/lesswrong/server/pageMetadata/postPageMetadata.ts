@@ -1,5 +1,5 @@
 import { gql } from "@/lib/generated/gql-codegen";
-import { isEAForum, cloudinaryCloudNameSetting } from '@/lib/instanceSettings';
+import { isEAForum } from '@/lib/instanceSettings';
 import type { Metadata } from "next";
 import merge from "lodash/merge";
 import { CommentPermalinkMetadataQuery, getCommentDescription, getDefaultMetadata, getMetadataDescriptionFields, getMetadataImagesFields, getPageTitleFields, getResolverContextForGenerateMetadata, handleMetadataError, noIndexMetadata } from "./sharedMetadata";
@@ -51,9 +51,6 @@ const PostMetadataQuery = gql(`
 `);
 
 function getSocialPreviewImageUrl(post: PostMetadataQuery_post_SinglePostOutput_result_Post) {
-  if (post.isEvent && post.eventImageId) {
-    return `https://res.cloudinary.com/${cloudinaryCloudNameSetting.get()}/image/upload/c_fill,g_auto,ar_191:100/${post.eventImageId}`
-  }
   return post.socialPreviewData?.imageUrl ?? "";
 }
 

@@ -144,9 +144,14 @@ const sidebarsWrapperStyles = defineStyles("LeftAndRightSidebarsWrapper", theme 
     gridArea: 'navSidebar',
     position: 'relative',
     zIndex: theme.zIndexes.tabNavigation,
-    minHeight: `calc(100vh - var(--header-height))`,
     display: 'flex',
     flexDirection: 'column',
+    [theme.breakpoints.up(isLW() ? 'sm' : 'md')]: {
+      minHeight: `calc(100vh - var(--header-height))`,
+    },
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
   },
   spacedGridActivated: {
     '@supports (grid-template-areas: "title")': {

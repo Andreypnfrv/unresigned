@@ -25,10 +25,10 @@ const styles = defineStyles('TagEditsTimeBlock', (theme: ThemeType) => ({
 // the server will just refuse / no-op.
 const MAX_TAG_UPDATES_WINDOW_HOURS = 30;
 
-const TagEditsTimeBlock = ({before, after, reportEmpty}: {
+const TagEditsTimeBlock = ({before, after, onLoadComplete}: {
   before: Date,
   after: Date,
-  reportEmpty: () => void,
+  onLoadComplete: (isEmpty: boolean) => void,
 }) => {
   const classes = useStyles(styles);
 
@@ -76,10 +76,12 @@ const TagEditsTimeBlock = ({before, after, reportEmpty}: {
   });
 
   useEffect(() => {
-    if (windowTooWide || (!loading && !data?.TagUpdatesInTimeBlock?.length)) {
-      reportEmpty();
+    if (windowTooWide) {
+      onLoadComplete(true);
+    } else if (!loading) {
+      onLoadComplete(!data?.TagUpdatesInTimeBlock?.length);
     }
-  }, [windowTooWide, loading, data, reportEmpty]);
+  }, [windowTooWide, loading, data, onLoadComplete]);
   const [expanded, setExpanded] = useState(false)
 
   if (windowTooWide) {
