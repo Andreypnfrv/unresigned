@@ -83,6 +83,7 @@ export const prodUnresigned = {
         },
       ],
     },
+    commentPermalinkStyle: "in-context",
     ultraFeedEnabled: false,
     intercomAppId: "",
     lightconeFundraiser: {

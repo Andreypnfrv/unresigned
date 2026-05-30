@@ -49,17 +49,17 @@ export const prodAntimortality = {
   ...merge({}, sharedSettings, {
     cloudinary: cloudinaryOverrides,
     forumType: "Antimortality",
-    title: "Antimortality",
+    title: "AntiMortality",
     tagline: "Longevity, immortalism, and the science and politics of ending aging.",
-    siteNameWithArticle: "Antimortality",
+    siteNameWithArticle: "AntiMortality",
     siteUrl: productionSiteUrl(),
     siteImage: `${productionSiteUrl()}/favicon.ico`,
     llmWritingPolicyPostId: "FywqpgTCGKrabZeHo",
     faviconUrl: "/favicon.ico",
     forumSettings: {
-      headerTitle: "Antimortality",
-      shortForumTitle: "Antimortality",
-      tabTitle: "Antimortality",
+      headerTitle: "AntiMortality",
+      shortForumTitle: "AntiMortality",
+      tabTitle: "AntiMortality",
     },
     analytics: {
       environment: "production",
@@ -88,6 +88,7 @@ export const prodAntimortality = {
         },
       ],
     },
+    commentPermalinkStyle: "in-context",
     ultraFeedEnabled: false,
     intercomAppId: "",
     lightconeFundraiser: {

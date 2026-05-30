@@ -34,14 +34,14 @@ const cloudinaryOverrides = merge({}, sharedSettings.cloudinary, {
 export const localUnresignedDevDb = {
   ...merge({}, sharedSettings, {
     forumType: "Antimortality",
-    title: "Antimortality",
+    title: "AntiMortality",
     tagline: "Longevity, immortalism, and the science and politics of ending aging.",
-    siteNameWithArticle: "Antimortality",
+    siteNameWithArticle: "AntiMortality",
     faviconUrl: "/favicon.ico",
     forumSettings: {
-      headerTitle: "Antimortality",
-      shortForumTitle: "Antimortality",
-      tabTitle: "Antimortality",
+      headerTitle: "AntiMortality",
+      shortForumTitle: "AntiMortality",
+      tabTitle: "AntiMortality",
     },
     analytics: {
       environment: "localhost",
@@ -77,6 +77,7 @@ export const localUnresignedDevDb = {
         },
       ],
     },
+    commentPermalinkStyle: "in-context",
     ultraFeedEnabled: false,
     intercomAppId: "",
     lightconeFundraiser: {

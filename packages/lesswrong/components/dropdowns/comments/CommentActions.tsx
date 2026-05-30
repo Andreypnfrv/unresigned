@@ -1,8 +1,10 @@
 import React from 'react';
 import { userCanModeratePost } from '../../../lib/collections/users/helpers';
+import { commentGetPageUrlFromIds } from '../../../lib/collections/comments/helpers';
 import { useQuery } from "@/lib/crud/useQuery";
 import { gql } from "@/lib/generated/gql-codegen";
 import EditCommentDropdownItem from "./EditCommentDropdownItem";
+import DropdownItem from "../DropdownItem";
 import ReportCommentDropdownItem from "./ReportCommentDropdownItem";
 import DeleteCommentDropdownItem from "./DeleteCommentDropdownItem";
 import RetractCommentDropdownItem from "./RetractCommentDropdownItem";
@@ -20,6 +22,7 @@ import { CommentSubscriptionsDropdownItem } from "./CommentSubscriptionsDropdown
 import BanUserFromPostDropdownItem from "./BanUserFromPostDropdownItem";
 import LockThreadDropdownItem from "./LockThreadDropdownItem";
 import { useCurrentUser } from '@/components/common/withUser';
+import { useMessages } from '../../common/withMessages';
 import BookmarkDropdownItem from "../posts/BookmarkDropdownItem";
 
 
@@ -40,12 +43,27 @@ const CommentActions = ({comment, post, tag, showEdit}: {
   showEdit: () => void,
 }) => {
   const currentUser = useCurrentUser();
+  const { flash } = useMessages();
   const { data } = useQuery(PostsDetailsQuery, {
     variables: { documentId: post?._id },
     skip: !post,
     fetchPolicy: "cache-first",
   });
   const postDetails = data?.post?.result ?? undefined;
+
+  const commentUrl = commentGetPageUrlFromIds({
+    postId: post?._id ?? comment.postId,
+    postSlug: post?.slug,
+    tagSlug: tag?.slug,
+    commentId: comment._id,
+    tagCommentType: comment.tagCommentType,
+    isAbsolute: true,
+  });
+
+  const copyLink = () => {
+    void navigator.clipboard.writeText(commentUrl);
+    flash("Link copied to clipboard");
+  };
 
   // WARNING: Clickable items in this menu must be full-width, and
   // ideally should use the <DropdownItem> component. In particular,
@@ -63,6 +81,11 @@ const CommentActions = ({comment, post, tag, showEdit}: {
       <PinToProfileDropdownItem comment={comment} post={post} />
       <CommentSubscriptionsDropdownItem comment={comment} post={post} />
       {!comment.draft && <BookmarkDropdownItem documentId={comment._id} collectionName="Comments" preventMenuClose />}
+      {!comment.draft && <DropdownItem
+        title="Copy link"
+        icon="Link"
+        onClick={copyLink}
+      />}
       <ReportCommentDropdownItem comment={comment} post={post} />
       <MoveToAlignmentCommentDropdownItem comment={comment} post={postDetails} />
       <SuggestAlignmentCommentDropdownItem comment={comment} post={postDetails} />
