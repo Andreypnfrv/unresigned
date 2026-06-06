@@ -6,7 +6,7 @@ import { useCurrentUser } from '../../common/withUser';
 import withErrorBoundary from '../../common/withErrorBoundary'
 import { useRecordPostView } from '../../hooks/useRecordPostView';
 import { AnalyticsContext, useTracking } from "../../../lib/analyticsEvents";
-import { isAF, isEAForum, recombeeEnabledSetting } from '@/lib/instanceSettings';
+import { commentPermalinkStyleSetting, isAF, isEAForum, recombeeEnabledSetting } from '@/lib/instanceSettings';
 import classNames from 'classnames';
 import { useDialog } from '../../common/withDialog';
 import { PostsPageContext } from './PostsPageContext';
@@ -548,25 +548,42 @@ const PostsPage = ({fullPost, postPreload, sequenceIdFromUrl, refetch, embedded}
     : null;
 
   const hashCommentId = location.hash.length >= 1 ? location.hash.slice(1) : null;
+  const loadedCommentIds = useMemo(
+    () => new Set([...(comments ?? []), ...(answersAndReplies ?? [])].map(({ _id }) => _id)),
+    [answersAndReplies, comments],
+  );
   // If the comment reference in the hash doesn't appear in the page, try and load it separately as a permalinked comment
   const showHashCommentFallback = useMemo(() => (
-    hashCommentId && !loading && ![...(comments ?? []), ...(answersAndReplies ?? [])].map(({ _id }) => _id).includes(hashCommentId)
-  ), [answersAndReplies, hashCommentId, loading, comments]);
+    hashCommentId && !loading && !loadedCommentIds.has(hashCommentId)
+  ), [hashCommentId, loadedCommentIds, loading]);
 
-  const [permalinkedCommentId, setPermalinkedCommentId] = useState((fullPost && !isDebateResponseLink) ? (linkedCommentId ?? null) : null)
-  // Don't show loading state if we are are getting the id from the hash, because it might be a hash referencing a non-comment id in the page
-  const silentLoadingPermalink = permalinkedCommentId === hashCommentId;
-  useEffect(() => { // useEffect required because `location.hash` isn't sent to the server
-    if (!isDebateResponseLink) {
-      if (linkedCommentId) {
-        setPermalinkedCommentId(linkedCommentId)
-      } else if (showHashCommentFallback) {
-        setPermalinkedCommentId(hashCommentId)
-      } else {
-        setPermalinkedCommentId(null)
-      }
+  const isInContextPermalinkStyle = commentPermalinkStyleSetting.get() === 'in-context';
+  const topCommentPermalinkId = useMemo(() => {
+    if (!fullPost || isDebateResponseLink) return null;
+
+    if (!isInContextPermalinkStyle) {
+      if (linkedCommentId) return linkedCommentId;
+      if (showHashCommentFallback) return hashCommentId;
+      return null;
     }
-  }, [fullPost, hashCommentId, isDebateResponseLink, linkedCommentId, showHashCommentFallback])
+
+    if (showHashCommentFallback) return hashCommentId;
+    if (linkedCommentId && !loading && !loadedCommentIds.has(linkedCommentId)) {
+      return linkedCommentId;
+    }
+    return null;
+  }, [
+    fullPost,
+    hashCommentId,
+    isDebateResponseLink,
+    isInContextPermalinkStyle,
+    linkedCommentId,
+    loadedCommentIds,
+    loading,
+    showHashCommentFallback,
+  ]);
+  // Don't show loading state if we are are getting the id from the hash, because it might be a hash referencing a non-comment id in the page
+  const silentLoadingPermalink = topCommentPermalinkId === hashCommentId;
 
   const splashHeaderImage = fullPost && showSplashPageHeader && <div className={classes.splashHeaderImage}>
     <ImageProvider>
@@ -574,7 +591,7 @@ const PostsPage = ({fullPost, postPreload, sequenceIdFromUrl, refetch, embedded}
     </ImageProvider>
   </div>
 
-  const postHeaderHero = post.eventImageId ? <div className={classNames(classes.headerHeroPlaceholder, {[classes.headerHeroPlaceholderWithComment]: permalinkedCommentId})}>
+  const postHeaderHero = post.eventImageId ? <div className={classNames(classes.headerHeroPlaceholder, {[classes.headerHeroPlaceholderWithComment]: topCommentPermalinkId})}>
     <div className={classes.headerHeroBleed}>
       <div className={classes.headerHeroInner}>
         <div className={classes.headerHeroMedia}>
@@ -599,7 +616,7 @@ const PostsPage = ({fullPost, postPreload, sequenceIdFromUrl, refetch, embedded}
     <AnalyticsContext pageSectionContext="postHeader">
       <div className={classNames(classes.title, {[classes.titleWithMarket] : highlightMarket(marketInfo)})}>
         <div className={classes.centralColumn}>
-          {permalinkedCommentId && <CommentPermalink documentId={permalinkedCommentId} post={postPreload ?? fullPost} silentLoading={silentLoadingPermalink} />}
+          {topCommentPermalinkId && <CommentPermalink documentId={topCommentPermalinkId} post={postPreload ?? fullPost} silentLoading={silentLoadingPermalink} />}
           {postHeaderHero}
           <LWPostsPageHeader
             post={post}

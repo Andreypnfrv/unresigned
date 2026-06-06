@@ -67,13 +67,13 @@ const PostPublicationCreditsBanner = ({ credits }: PostPublicationCreditsBannerP
           {ready ? (
             <>
               You have <span className={classes.emphasis}>{balance}</span> credit
-              {balance === 1 ? "" : "s"} (each published post uses{" "}
+              {balance === 1 ? "" : "s"} (your first post is free; from the second post onward, each publish uses{" "}
               <span className={classes.emphasis}>{cost}</span> comments on other people’s posts — not on posts you
               co-author).
             </>
           ) : (
             <>
-              Each time you publish a post, you need <span className={classes.emphasis}>{cost}</span> comments on{" "}
+              From your second post onward, you need <span className={classes.emphasis}>{cost}</span> comments on{" "}
               other people’s posts first (yours and co-authored posts don’t count). You have{" "}
               <span className={classes.emphasis}>{qualifyingCommentsOnOthersPosts}</span> qualifying comment
               {qualifyingCommentsOnOthersPosts === 1 ? "" : "s"} and{" "}

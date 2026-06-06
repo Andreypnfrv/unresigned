@@ -67,7 +67,7 @@ type MenuTabDivider = {
 
 type MenuTabCustomComponent = {
   id: string
-  customComponentName: 'EventsList' | 'SubscribeWidget' | 'WikiTagSubtopicsSidebar' | 'HomeSubnavSidebar'
+  customComponentName: 'EventsList' | 'SubscribeWidget' | 'SurvivalSubnavSidebar' | 'HomeSubnavSidebar'
 }
 
 type MenuItemIcon = React.ComponentType | React.FC<{className?: string}>;
@@ -159,6 +159,19 @@ export const getMenuTabs = (): ForumOptions<Array<MenuTab>> => ({
       customComponentName: 'HomeSubnavSidebar',
     },
     {
+      id: 'survival',
+      title: 'Survival',
+      link: '/w/survival',
+      icon: conceptsIcon,
+      tooltip: 'Strategies for surviving death: geroscience, biostasis, uploading, and more.',
+      showOnMobileStandalone: true,
+      showOnCompressed: true,
+    },
+    {
+      id: 'survivalSubnav',
+      customComponentName: 'SurvivalSubnavSidebar',
+    },
+    {
       id: 'science',
       title: 'Science',
       link: '/w/science',
@@ -168,24 +181,11 @@ export const getMenuTabs = (): ForumOptions<Array<MenuTab>> => ({
       showOnCompressed: true,
     },
     {
-      id: 'wikiTagSubtopicsNav',
-      customComponentName: 'WikiTagSubtopicsSidebar',
-    },
-    {
       id: 'policy',
       title: 'Policy',
       link: '/tag/policy',
       icon: conceptsIcon,
       tooltip: 'Regulation, funding, healthcare systems.',
-      showOnMobileStandalone: true,
-      showOnCompressed: true,
-    },
-    {
-      id: 'startups',
-      title: 'Startups',
-      link: '/tag/startups',
-      icon: conceptsIcon,
-      tooltip: 'Companies, funding, and longevity industry.',
       showOnMobileStandalone: true,
       showOnCompressed: true,
     },
@@ -208,38 +208,11 @@ export const getMenuTabs = (): ForumOptions<Array<MenuTab>> => ({
       showOnCompressed: true,
     },
     {
-      id: 'biohacking',
-      title: 'Biohacking',
-      link: '/tag/biohacking',
-      icon: conceptsIcon,
-      tooltip: 'Protocols, supplements, self-experiments.',
-      showOnMobileStandalone: true,
-      showOnCompressed: true,
-    },
-    {
       id: 'the-pantheon',
       title: 'The Pantheon',
       link: '/tag/the-pantheon',
       icon: conceptsIcon,
       tooltip: 'The Pantheon wiki topic.',
-      showOnMobileStandalone: true,
-      showOnCompressed: true,
-    },
-    {
-      id: 'wiki',
-      title: 'Wiki',
-      link: getAllTagsPath(),
-      icon: conceptsIcon,
-      tooltip: 'Tags and wiki articles.',
-      showOnMobileStandalone: true,
-      showOnCompressed: true,
-    },
-    {
-      id: 'library',
-      title: 'Library',
-      link: '/library',
-      iconComponent: BookIcon,
-      tooltip: 'Sequences and collections.',
       showOnMobileStandalone: true,
       showOnCompressed: true,
     },
@@ -251,14 +224,6 @@ export const getMenuTabs = (): ForumOptions<Array<MenuTab>> => ({
     {
       id: 'subscribeWidget',
       customComponentName: "SubscribeWidget",
-    },
-    {
-      id: 'about',
-      title: 'About',
-      link: '/posts/6MSeSubXkCQgEKRbd/welcome-to-antimortality',
-      subItem: true,
-      compressedIconComponent: AboutQuestionIcon,
-      showOnCompressed: true,
     },
   ],
   default: [

@@ -55,17 +55,16 @@ const styles = defineStyles("TabNavigationMenu", (theme: ThemeType) => ({
     },
 }));
 
-const SCIENCE_SIDEBAR_SUBTAGS = [
+const SURVIVAL_SIDEBAR_SUBTAGS = [
   { slug: "geroscience", title: "Geroscience" },
   { slug: "biostasis", title: "Biostasis" },
   { slug: "replacing", title: "Replacing" },
   { slug: "cyborgisation", title: "Cyborgisation" },
   { slug: "uploading", title: "Uploading" },
-  { slug: "datasets", title: "Datasets" },
-  { slug: "tools", title: "Tools" },
+  { slug: "resurrection", title: "Resurrection" },
 ] as const;
 
-const wikiTagSubtopicsSidebarStyles = defineStyles("WikiTagSubtopicsSidebar", (theme: ThemeType) => ({
+const survivalSubnavSidebarStyles = defineStyles("SurvivalSubnavSidebar", (theme: ThemeType) => ({
   root: {
     ...theme.typography.body2,
     paddingBottom: 12,
@@ -140,15 +139,15 @@ function HomeSubnavSidebar({ onLinkClick }: { onLinkClick?: (e: React.MouseEvent
   );
 }
 
-function WikiTagSubtopicsSidebar() {
-  const classes = useStyles(wikiTagSubtopicsSidebarStyles);
+function SurvivalSubnavSidebar() {
+  const classes = useStyles(survivalSubnavSidebarStyles);
   if (!isLWStyleForum()) {
     return null;
   }
 
   return (
-    <nav className={classes.root} aria-label="Science wiki sections">
-      {SCIENCE_SIDEBAR_SUBTAGS.map(({ slug, title }) => (
+    <nav className={classes.root} aria-label="Survival strategies">
+      {SURVIVAL_SIDEBAR_SUBTAGS.map(({ slug, title }) => (
         <Link key={slug} to={tagGetUrl({ slug })} className={classes.link}>
           {title}
         </Link>
@@ -208,9 +207,9 @@ const TabNavigationMenu = ({
                   />;
                 case 'SubscribeWidget':
                   return <SubscribeWidget key={tab.id} />;
-                case 'WikiTagSubtopicsSidebar':
+                case 'SurvivalSubnavSidebar':
                   return (
-                    <WikiTagSubtopicsSidebar
+                    <SurvivalSubnavSidebar
                       key={tab.id}
                     />
                   );

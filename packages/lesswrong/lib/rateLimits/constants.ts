@@ -125,32 +125,32 @@ const LW: {POSTS: PostAutoRateLimit[], COMMENTS: CommentAutoRateLimit[]} = {
       ),
       rateLimitMessage: `Users with less than 0 karma on recent posts/comments can comment once per hour.<br/>${lwDefaultMessage}`
     },
-  // 3 comments per day rate limits
+  // 7 comments per day rate limits
     {
-      ...timeframe('3 Comments per 1 days'),
+      ...timeframe('7 Comments per 1 days'),
       appliesToOwnPosts: false,
       rateLimitType: "newUserDefault",
       rateLimitCategory: "static",
       isActive: user => (user.karma < 5),
-      rateLimitMessage: `Users with less than 5 karma can write up to 3 comments a day.<br/>${lwDefaultMessage}`,
+      rateLimitMessage: `Users with less than 5 karma can write up to 7 comments a day.<br/>${lwDefaultMessage}`,
     },
     {
-      ...timeframe('3 Comments per 1 days'), // semi-established users can make up to 20 posts/comments without getting upvoted, before hitting a 3/day comment rate limit
+      ...timeframe('5 Comments per 1 days'), // semi-established users can make up to 20 posts/comments without getting upvoted, before hitting a 5/day comment rate limit
       appliesToOwnPosts: false,
       rateLimitCategory: "rolling",
       isActive: (user, features) => (
         user.karma < 2000 &&
         features.last20Karma < 1
       ),  // requires 1 weak upvote from a 1000+ karma user, or two new user upvotes, but at 2000+ karma I trust you more to go on long conversations
-      rateLimitMessage: `You've recently posted a lot without getting upvoted. Users are limited to 3 comments/day unless their last ${RECENT_CONTENT_COUNT} posts/comments have at least 2+ net-karma.<br/>${lwDefaultMessage}`,
+      rateLimitMessage: `You've recently posted a lot without getting upvoted. Users are limited to 5 comments/day unless their last ${RECENT_CONTENT_COUNT} posts/comments have at least 2+ net-karma.<br/>${lwDefaultMessage}`,
     },
-  // 1 comment per day rate limits
+  // 3 comments per day rate limits
     {
-      ...timeframe('1 Comments per 1 days'),
+      ...timeframe('3 Comments per 1 days'),
       appliesToOwnPosts: false,
       rateLimitCategory: "static",
       isActive: user => (user.karma < -2),
-      rateLimitMessage: `Users with less than -2 karma can write up to 1 comment per day.<br/>${lwDefaultMessage}`
+      rateLimitMessage: `Users with less than -2 karma can write up to 3 comments per day.<br/>${lwDefaultMessage}`
     },
     {
       ...timeframe('1 Comments per 1 days'),

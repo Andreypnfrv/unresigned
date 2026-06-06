@@ -49,8 +49,9 @@ export function computePostPublicationCommentCredits(
       commentsNeededForNextPublish: 0,
     };
   }
-  const balance = qualifying - cost * publishedBillable;
-  const commentsNeededForNextPublish = Math.max(0, cost * (publishedBillable + 1) - qualifying);
+  const creditsSpentOnPublishedPosts = cost * Math.max(0, publishedBillable - 1);
+  const balance = qualifying - creditsSpentOnPublishedPosts;
+  const commentsNeededForNextPublish = Math.max(0, cost * publishedBillable - qualifying);
   return {
     enabled: true,
     cost,
@@ -86,12 +87,12 @@ export async function assertUserMayPublishPostWithCommentCredits(
 
   const qualifying = await countQualifyingPublicationCreditComments(context, user._id);
   const publishedBillable = await countBillablePublishedPosts(context, user._id);
-  const required = cost * (publishedBillable + 1);
+  const required = cost * publishedBillable;
 
   if (qualifying < required) {
     const shortfall = required - qualifying;
     throw new Error(
-      `Need ${cost} comments on others’ posts per publication (${shortfall} more; you have ${qualifying}/${required}). Co-authored posts don’t count.`,
+      `Need ${cost} comments on others’ posts before your next publication (${shortfall} more; you have ${qualifying}/${required}). Your first post does not require comments. Co-authored posts don’t count.`,
     );
   }
 }
